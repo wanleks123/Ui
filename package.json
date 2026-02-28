@@ -1,0 +1,10 @@
+{
+  "name": "unimma-monorepo",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter docs dev",
+    "build:docs": "pnpm --filter docs build",
+    "build:ui": "pnpm --filter ui build",
+    "lint": "pnpm -r lint"
+  }
+}

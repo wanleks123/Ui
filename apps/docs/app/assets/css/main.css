@@ -1,0 +1,135 @@
+@import "tailwindcss";
+@import "tailwindcss-primeui";
+
+@source "../../../../../packages/ui/src";
+
+/* 1. CUSTOM VARIANTS
+   This defines the "dark:" prefix logic.
+   It works if a parent has ".dark", UNLESS a parent has ".force-light".
+*/
+@custom-variant dark (&:is(.dark, .dark *):not(.force-light, .force-light *));
+
+
+/* 2. THEME CONFIGURATION (Mapping PrimeVue variables to Tailwind) */
+@theme {
+    /* Map 'primary' to PrimeVue's variables */
+    --color-primary-50: var(--p-primary-50);
+    --color-primary-100: var(--p-primary-100);
+    --color-primary-200: var(--p-primary-200);
+    --color-primary-300: var(--p-primary-300);
+    --color-primary-400: var(--p-primary-400);
+    --color-primary-500: var(--p-primary-500);
+    --color-primary-600: var(--p-primary-600);
+    --color-primary-700: var(--p-primary-700);
+    --color-primary-800: var(--p-primary-800);
+    --color-primary-900: var(--p-primary-900);
+    --color-primary-950: var(--p-primary-950);
+
+    /* Map 'surface' to PrimeVue's variables */
+    --color-surface-0: var(--p-surface-0);
+    --color-surface-50: var(--p-surface-50);
+    --color-surface-100: var(--p-surface-100);
+    --color-surface-200: var(--p-surface-200);
+    --color-surface-300: var(--p-surface-300);
+    --color-surface-400: var(--p-surface-400);
+    --color-surface-500: var(--p-surface-500);
+    --color-surface-600: var(--p-surface-600);
+    --color-surface-700: var(--p-surface-700);
+    --color-surface-800: var(--p-surface-800);
+    --color-surface-900: var(--p-surface-900);
+    --color-surface-950: var(--p-surface-950);
+
+    /* Animation */
+    --animate-skeleton: skeleton 1.5s ease infinite;
+    @keyframes skeleton {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(200%); }
+    }
+}
+
+/* 3. COLOR PALETTE DEFINITION */
+:root {
+    /* Primary (blue) */
+    --p-primary-50: var(--color-blue-50);
+    --p-primary-100: var(--color-blue-100);
+    --p-primary-200: var(--color-blue-200);
+    --p-primary-300: var(--color-blue-300);
+    --p-primary-400: var(--color-blue-400);
+    --p-primary-500: var(--color-blue-500);
+    --p-primary-600: var(--color-blue-600);
+    --p-primary-700: var(--color-blue-700);
+    --p-primary-800: var(--color-blue-800);
+    --p-primary-900: var(--color-blue-900);
+    --p-primary-950: var(--color-blue-950);
+
+    /* Surface (slate) */
+    --p-surface-0: var(--color-white);
+    --p-surface-50: var(--color-slate-50);
+    --p-surface-100: var(--color-slate-100);
+    --p-surface-200: var(--color-slate-200);
+    --p-surface-300: var(--color-slate-300);
+    --p-surface-400: var(--color-slate-400);
+    --p-surface-500: var(--color-slate-500);
+    --p-surface-600: var(--color-slate-600);
+    --p-surface-700: var(--color-slate-700);
+    --p-surface-800: var(--color-slate-800);
+    --p-surface-900: var(--color-slate-900);
+    --p-surface-950: var(--color-slate-950);
+
+    --p-content-border-radius: 6px;
+}
+
+/* 4. SEMANTIC VARIABLES (Light Mode is Default) */
+/* We also apply this to .force-light so nested elements reset to light mode */
+:root, .force-light {
+    --p-primary-color: var(--p-primary-500);
+    --p-primary-contrast-color: var(--p-surface-0);
+    --p-primary-hover-color: var(--p-primary-600);
+    --p-primary-active-color: var(--p-primary-700);
+
+    --p-content-border-color: var(--p-surface-200);
+    --p-content-hover-background: var(--p-surface-100);
+    --p-content-hover-color: var(--p-surface-800);
+
+    --p-highlight-background: var(--p-primary-50);
+    --p-highlight-color: var(--p-primary-700);
+    --p-highlight-focus-background: var(--p-primary-100);
+    --p-highlight-focus-color: var(--p-primary-800);
+
+    --p-text-color: var(--p-surface-700);
+    --p-text-hover-color: var(--p-surface-800);
+    --p-text-muted-color: var(--p-surface-500);
+    --p-text-hover-muted-color: var(--p-surface-600);
+}
+
+/* 5. DARK MODE OVERRIDES */
+/* Uses .dark class.
+   We exclude .force-light so that the Light Mode rules above take precedence inside force-light containers.
+*/
+:root.dark:not(.force-light), .dark:not(.force-light) {
+    --p-primary-color: var(--p-primary-400);
+    --p-primary-contrast-color: var(--p-surface-900);
+    --p-primary-hover-color: var(--p-primary-300);
+    --p-primary-active-color: var(--p-primary-200);
+
+    --p-content-border-color: var(--p-surface-700);
+    --p-content-hover-background: var(--p-surface-800);
+    --p-content-hover-color: var(--p-surface-0);
+
+    --p-highlight-background: color-mix(in srgb, var(--p-primary-400), transparent 84%);
+    --p-highlight-color: rgba(255, 255, 255, 0.87);
+    --p-highlight-focus-background: color-mix(in srgb, var(--p-primary-400), transparent 76%);
+    --p-highlight-focus-color: rgba(255, 255, 255, 0.87);
+
+    --p-text-color: var(--p-surface-0);
+    --p-text-hover-color: var(--p-surface-0);
+    --p-text-muted-color: var(--p-surface-400);
+    --p-text-hover-muted-color: var(--p-surface-300);
+}
+
+/* 6. BASE STYLES */
+@layer base {
+    *, ::after, ::before, ::backdrop, ::file-selector-button {
+        border-color: var(--p-content-border-color);
+    }
+}
