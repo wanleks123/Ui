@@ -9,9 +9,7 @@ export default defineNuxtModule({
             nuxt: '^3.0.0 || ^4.0.0'
         }
     },
-    defaults: {
-        prefix: 'U' // Default prefix for components (e.g., UButton)
-    },
+
     async setup(options, nuxt) {
         // 1. Create a resolver to find files relative to this module
         const { resolve } = createResolver(import.meta.url)

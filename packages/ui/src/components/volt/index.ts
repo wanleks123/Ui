@@ -69,4 +69,3 @@ export { default as ToggleButton } from './ToggleButton.vue';
 export { default as ToggleSwitch } from './ToggleSwitch.vue';
 export { default as Toolbar } from './Toolbar.vue';
 export { default as Tree } from './Tree.vue';
-export { default as WarningButton } from './WarningButton.vue';

@@ -34,6 +34,7 @@
     "@primeuix/utils": "^0.7.0",
     "@primevue/core": "^4.5.4",
     "@primevue/forms": "^4.5.4",
+    "@primevue/icons": "^4.5.4",
     "@vueuse/core": "^14.2.1",
     "@yeger/vue-masonry-wall": "^6.1.0",
     "axios": "^1.13.6",

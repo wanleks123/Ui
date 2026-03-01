@@ -1,1 +1,2 @@
-export * from './components/volt';
+export * from './components';
+// export * from './directives/volt';

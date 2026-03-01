@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tailwindcss-primeui";
+@plugin '@tailwindcss/typography';
 
 @source "../../../../../packages/ui/src";
 
@@ -9,9 +10,50 @@
 */
 @custom-variant dark (&:is(.dark, .dark *):not(.force-light, .force-light *));
 
+/* Fix for severity selector custom variants */
+@custom-variant p-secondary (&[data-p-severity="secondary"], &[data-p~="secondary"]);
+@custom-variant p-contrast (&[data-p-severity="contrast"], &[data-p~="contrast"]);
+@custom-variant p-success (&[data-p-severity="success"], &[data-p~="success"]);
+@custom-variant p-info (&[data-p-severity="info"], &[data-p~="info"]);
+@custom-variant p-warn (&[data-p-severity="warn"], &[data-p~="warn"]);
+@custom-variant p-danger (&[data-p-severity="danger"], &[data-p~="danger"]);
 
 /* 2. THEME CONFIGURATION (Mapping PrimeVue variables to Tailwind) */
 @theme {
+    --text-*: initial;
+    --text-xs: 0.75rem;
+    --text-xs--line-height: 1rem;
+    --text-sm: 0.875rem;
+    --text-sm--line-height: 1.5rem;
+    --text-base: 1rem;
+    --text-base--line-height: 2rem;
+    --text-lg: 1.125rem;
+    --text-lg--line-height: 1.75rem;
+    --text-xl: 1.25rem;
+    --text-xl--line-height: 2rem;
+    --text-2xl: 1.5rem;
+    --text-2xl--line-height: 2.5rem;
+    --text-3xl: 2rem;
+    --text-3xl--line-height: 2.5rem;
+    --text-4xl: 2.5rem;
+    --text-4xl--line-height: 3rem;
+    --text-5xl: 3rem;
+    --text-5xl--line-height: 3.5rem;
+    --text-6xl: 3.75rem;
+    --text-6xl--line-height: 1;
+    --text-7xl: 4.5rem;
+    --text-7xl--line-height: 1;
+    --text-8xl: 6rem;
+    --text-8xl--line-height: 1;
+    --text-9xl: 8rem;
+    --text-9xl--line-height: 1;
+
+    --font-sans: var(--font-inter);
+    --font-display: var(--font-lexend);
+    --font-display--font-feature-settings: 'ss01';
+
+    --container-8xl: 88rem;
+
     /* Map 'primary' to PrimeVue's variables */
     --color-primary-50: var(--p-primary-50);
     --color-primary-100: var(--p-primary-100);
@@ -131,5 +173,9 @@
 @layer base {
     *, ::after, ::before, ::backdrop, ::file-selector-button {
         border-color: var(--p-content-border-color);
+    }
+
+    [inert] ::-webkit-scrollbar {
+        display: none;
     }
 }
