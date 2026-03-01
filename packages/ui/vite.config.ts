@@ -9,7 +9,7 @@ export default defineConfig({
         dts({
             tsconfigPath: './tsconfig.json',
             insertTypesEntry: true, // Creates a convenient index.d.ts export
-            rollupTypes: true       // Bundles all d.ts files into a single file (cleaner)
+            rollupTypes: false       // Bundles all d.ts files into a single file (cleaner)
         })
     ],
     resolve: {

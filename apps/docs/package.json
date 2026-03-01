@@ -9,6 +9,9 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
+    "@algolia/autocomplete-core": "^1.19.6",
+    "@headlessui/vue": "^1.7.23",
+    "@markdoc/markdoc": "^0.5.4",
     "@nuxt/content": "^3.12.0",
     "@nuxt/eslint": "1.15.2",
     "@nuxt/fonts": "0.14.0",
@@ -17,11 +20,18 @@
     "@nuxt/test-utils": "4.0.0",
     "@primeuix/themes": "^2.0.3",
     "@primevue/nuxt-module": "4.5.4",
+    "@sindresorhus/slugify": "^3.0.0",
+    "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.2.1",
+    "@unimma/ui": "workspace:*",
     "@vueuse/nuxt": "14.2.1",
     "better-sqlite3": "^12.6.2",
+    "fast-glob": "^3.3.3",
+    "flexsearch": "^0.8.212",
     "nuxt": "^4.3.1",
+    "nuxt-shiki": "0.3.2",
     "primevue": "^4.5.4",
+    "shiki": "^4.0.0",
     "tailwindcss": "^4.2.1",
     "tailwindcss-primeui": "^0.6.1"
   }

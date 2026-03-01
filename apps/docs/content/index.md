@@ -21,8 +21,14 @@ The current [alert](https://github.com/nuxt/starter/blob/content/app/components/
 ::counter
 ::
 
-::UButton{label="Click Me"}
-aa
+::UButton{label="Click Me" severity="success"}
+#icon
+::Icon{name="ph:check-circle-fill"}
+::
+::
+
+::DocsButton
+a
 ::
 
 Checkout out the [documentation](https://content.nuxt.com/docs/getting-started) to learn more.
