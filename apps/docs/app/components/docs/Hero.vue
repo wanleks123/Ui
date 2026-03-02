@@ -35,7 +35,7 @@ const lines = computed(() => code.split('\n'))
 </script>
 
 <template>
-    <div class="overflow-hidden bg-slate-900 dark:-mt-19 dark:-mb-32 dark:pt-19 dark:pb-32">
+    <div class="overflow-hidden bg-surface-900 dark:-mt-19 dark:-mb-32 dark:pt-19 dark:pb-32">
         <div class="py-16 sm:px-2 lg:relative lg:px-0 lg:py-20">
             <div
                 class="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-8 gap-y-16 px-4 lg:max-w-8xl lg:grid-cols-2 lg:px-8 xl:gap-x-16 xl:px-12">
@@ -44,16 +44,15 @@ const lines = computed(() => code.split('\n'))
                     <img class="absolute right-full bottom-full -mr-72 -mb-56 opacity-50" :src="blurCyanImage" alt=""
                          width="530"/>
                     <div class="relative">
-                        <p class="inline bg-linear-to-r from-indigo-200 via-sky-400 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
-                            Never miss the cache again.
+                        <p class="inline bg-linear-to-r from-indigo-200 via-sky-400 to-indigo-200 bg-clip-text font-display text-4xl tracking-tight text-transparent">
+                            Never start from scratch again.
                         </p>
-                        <p class="mt-3 text-2xl tracking-tight text-slate-400">
-                            Cache every single thing your app could ever do ahead of time,
-                            so your code never even has to run at all.
+                        <p class="mt-3 text-xl tracking-tight text-surface-400">
+                            Access a complete library of standard UI elements ahead of time, so you can focus on building features rather than fighting with CSS.
                         </p>
                         <div class="mt-8 flex gap-4 md:justify-center lg:justify-start">
                             <DocsButton href="/">Get started</DocsButton>
-                            <DocsButton href="/" variant="secondary">View on GitHub</DocsButton>
+                            <DocsButton href="https://git.unimma.ac.id/unimma/ui" variant="secondary">View on Git Unimma</DocsButton>
                         </div>
                     </div>
                 </div>
@@ -74,7 +73,7 @@ const lines = computed(() => code.split('\n'))
                         <div class="relative rounded-2xl bg-[#0A101F]/80 ring-1 ring-white/10 backdrop-blur-sm">
                             <div class="pt-4 pl-4">
                                 <svg aria-hidden="true" viewBox="0 0 42 10" fill="none"
-                                     class="h-2.5 w-auto stroke-slate-500/30">
+                                     class="h-2.5 w-auto stroke-surface-500/30">
                                     <circle cx="5" cy="5" r="4.5"/>
                                     <circle cx="21" cy="5" r="4.5"/>
                                     <circle cx="37" cy="5" r="4.5"/>
@@ -83,10 +82,10 @@ const lines = computed(() => code.split('\n'))
                                 <div class="mt-4 flex space-x-2 text-xs">
                                     <div v-for="tab in tabs" :key="tab.name" :class="[
                                             'flex h-6 rounded-full',
-                                            tab.isActive ? 'bg-linear-to-r from-sky-400/30 via-sky-400 to-sky-400/30 p-px font-medium text-sky-300' : 'text-slate-500'
+                                            tab.isActive ? 'bg-linear-to-r from-sky-400/30 via-sky-400 to-sky-400/30 p-px font-medium text-sky-300' : 'text-surface-500'
                                           ]">
                                         <div
-                                            :class="['flex items-center rounded-full px-2.5', tab.isActive && 'bg-slate-800']">
+                                            :class="['flex items-center rounded-full px-2.5', tab.isActive && 'bg-surface-800']">
                                             {{ tab.name }}
                                         </div>
                                     </div>
@@ -94,7 +93,7 @@ const lines = computed(() => code.split('\n'))
 
                                 <div class="mt-6 flex items-start px-1 text-sm">
                                     <div aria-hidden="true"
-                                         class="border-r border-slate-300/5 pr-4 font-mono text-slate-600 select-none">
+                                         class="border-r border-surface-300/5 pr-4 font-mono text-surface-600 select-none">
                                         <div v-for="(_, i) in lines" :key="i">
                                             {{ (i + 1).toString().padStart(2, '0') }}
                                         </div>

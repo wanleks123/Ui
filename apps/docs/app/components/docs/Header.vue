@@ -28,7 +28,7 @@ const shouldRender = computed(() => props.title || section.value)
 
         <h1
             v-if="title"
-            class="font-display text-3xl tracking-tight text-slate-900 dark:text-white"
+            class="font-display text-3xl tracking-tight text-surface-900 dark:text-white"
         >
             {{ title }}
         </h1>

@@ -77,7 +77,7 @@ function isActive(section: Section | Subsection): boolean {
             <div v-if="tableOfContents.length > 0">
                 <h2
                     id="on-this-page-title"
-                    class="font-display text-sm font-medium text-slate-900 dark:text-white"
+                    class="font-display text-sm font-medium text-surface-900 dark:text-white"
                 >
                     On this page
                 </h2>
@@ -90,7 +90,7 @@ function isActive(section: Section | Subsection): boolean {
                   'transition-colors duration-200',
                   isActive(section)
                     ? 'text-sky-500'
-                    : 'font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300'
+                    : 'font-normal text-surface-500 hover:text-surface-700 dark:text-surface-400 dark:hover:text-surface-300'
                 ]"
                             >
                                 {{ section.title }}
@@ -100,7 +100,7 @@ function isActive(section: Section | Subsection): boolean {
                         <ol
                             v-if="section.children.length > 0"
                             role="list"
-                            class="mt-2 space-y-3 pl-5 text-slate-500 dark:text-slate-400"
+                            class="mt-2 space-y-3 pl-5 text-surface-500 dark:text-surface-400"
                         >
                             <li v-for="subSection in section.children" :key="subSection.id">
                                 <NuxtLink
@@ -109,7 +109,7 @@ function isActive(section: Section | Subsection): boolean {
                     'transition-colors duration-200',
                     isActive(subSection)
                       ? 'text-sky-500'
-                      : 'hover:text-slate-600 dark:hover:text-slate-300'
+                      : 'hover:text-surface-600 dark:hover:text-surface-300'
                   ]"
                                 >
                                     {{ subSection.title }}
