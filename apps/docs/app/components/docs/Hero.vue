@@ -61,7 +61,7 @@ const lines = computed(() => code.split('\n'))
                 <div class="relative lg:static xl:pl-10">
                     <div
                         class="absolute inset-x-[-50vw] -top-32 -bottom-48 mask-[linear-gradient(transparent,white,white)] lg:-top-32 lg:right-0 lg:-bottom-32 lg:left-[calc(50%+14rem)] lg:mask-none dark:mask-[linear-gradient(transparent,white,transparent)] lg:dark:mask-[linear-gradient(white,white,transparent)]">
-                        <HeroBackground
+                        <DocsHeroBackground
                             class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:left-0 lg:translate-x-0 lg:translate-y-[-60%]"/>
                     </div>
 
