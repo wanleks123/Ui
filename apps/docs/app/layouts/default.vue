@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ThemeSwitcher } from '@unimma/ui'
 const route = useRoute()
 const isHomePage = computed(() => route.path === '/')
 
@@ -46,7 +45,7 @@ onUnmounted(() => {
             </div>
 
             <div class="relative flex basis-0 justify-end gap-6 sm:gap-8 md:grow">
-                <ThemeSwitcher />
+                <UThemeSwitcher />
                 <NuxtLink to="https://github.com" class="group" aria-label="GitHub">
                     <Icon name="simple-icons:github"
                           class="h-6 w-6 fill-slate-400 group-hover:fill-slate-500 dark:group-hover:fill-slate-300"/>
@@ -60,7 +59,7 @@ onUnmounted(() => {
             <div class="hidden lg:relative lg:block lg:flex-none">
                 <div class="absolute inset-y-0 right-0 w-[50vw] bg-slate-50 dark:hidden"/>
                 <div
-                    class="absolute top-16 right-0 bottom-0 hidden h-12 w-px bg-gradient-to-t from-slate-800 dark:block"/>
+                    class="absolute top-16 right-0 bottom-0 hidden h-12 w-px bg-linear-to-t from-slate-800 dark:block"/>
                 <div class="absolute top-28 right-0 bottom-0 hidden w-px bg-slate-800 dark:block"/>
                 <div
                     class="sticky top-19 -ml-0.5 h-[calc(100vh-4.75rem)] w-64 overflow-x-hidden overflow-y-auto py-16 pr-8 pl-0.5 xl:w-72 xl:pr-16">
