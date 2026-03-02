@@ -22,16 +22,16 @@ const nextPage = computed(() =>
 <template>
     <dl
         v-if="previousPage || nextPage"
-        class="mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800"
+        class="mt-12 flex border-t border-surface-200 pt-6 dark:border-surface-800"
     >
         <div v-if="previousPage">
-            <dt class="font-display text-sm font-medium text-slate-900 dark:text-white">
+            <dt class="font-display text-sm font-medium text-surface-900 dark:text-white">
                 Previous
             </dt>
             <dd class="mt-1">
                 <NuxtLink
                     :to="previousPage.href"
-                    class="flex flex-row-reverse items-center gap-x-1 text-base font-semibold text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
+                    class="flex flex-row-reverse items-center gap-x-1 text-base font-semibold text-surface-500 hover:text-surface-600 dark:text-surface-400 dark:hover:text-surface-300"
                 >
                     {{ previousPage.title }}
                     <Icon name="ph:arrow-left" class="h-4 w-4 flex-none fill-current" />
@@ -40,13 +40,13 @@ const nextPage = computed(() =>
         </div>
 
         <div v-if="nextPage" class="ml-auto text-right">
-            <dt class="font-display text-sm font-medium text-slate-900 dark:text-white">
+            <dt class="font-display text-sm font-medium text-surface-900 dark:text-white">
                 Next
             </dt>
             <dd class="mt-1">
                 <NuxtLink
                     :to="nextPage.href"
-                    class="flex items-center gap-x-1 text-base font-semibold text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
+                    class="flex items-center gap-x-1 text-base font-semibold text-surface-500 hover:text-surface-600 dark:text-surface-400 dark:hover:text-surface-300"
                 >
                     {{ nextPage.title }}
                     <Icon name="ph:arrow-right" class="h-4 w-4 flex-none fill-current" />

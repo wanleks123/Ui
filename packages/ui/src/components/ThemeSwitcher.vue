@@ -2,7 +2,7 @@
 import { ref, nextTick, onMounted, computed } from 'vue'
 import { useColorMode, useStorage } from '@vueuse/core'
 import { Icon } from '@iconify/vue'
-import { Menu } from './volt'   // Use this if using PrimeVue directly
+import { Menu } from './volt'
 
 const props = withDefaults(defineProps<{
     iconClass?: string
@@ -23,8 +23,6 @@ const colorMode = useColorMode({
 })
 
 // --- 2. Safe Preference Reading ---
-// Instead of hacking colorMode.store, we read the storage key directly.
-// This tells us if the user selected 'auto', 'light', or 'dark'.
 const currentPreference = useStorage('theme', 'auto')
 
 // --- State ---
@@ -32,7 +30,6 @@ const menu = ref();
 const currentTrigger = ref<HTMLElement | null>(null);
 const isMounted = ref(false);
 
-// --- Data ---
 interface ThemeItem {
     label: string,
     icon: string,
@@ -45,20 +42,14 @@ const items: ThemeItem[] = [
     { label: 'Dark', icon: 'ph:moon', value: 'dark' },
 ]
 
-// --- Logic ---
 onMounted(() => {
     isMounted.value = true;
 })
 
-// Active Icon Logic:
-// If preference is 'auto', we show the System icon.
-// Otherwise, we show the icon matching the current mode.
 const activeIcon = computed(() => {
-    // If we are in auto mode, show the system icon
     if (currentPreference.value === 'auto') {
         return 'ph:monitor'
     }
-    // Otherwise show sun or moon based on the resolved value
     return colorMode.value === 'dark' ? 'ph:moon' : 'ph:sun'
 })
 
@@ -68,18 +59,14 @@ const toggle = (event: MouseEvent) => {
 };
 
 const changeTheme = (theme: 'light' | 'dark' | 'auto', event: MouseEvent) => {
-    // 1. Prevent unnecessary animations
     if (theme === currentPreference.value) return;
 
-    // 2. Browser Support Check
     if (!document.startViewTransition) {
         colorMode.value = theme;
-        // Manually update storage if colorMode doesn't catch 'auto' immediately
         currentPreference.value = theme;
         return;
     }
 
-    // 3. Animation Logic
     const triggerBtn = currentTrigger.value || event.currentTarget as HTMLElement;
     const rect = triggerBtn.getBoundingClientRect();
     const x = rect.left + rect.width / 2;
@@ -92,14 +79,11 @@ const changeTheme = (theme: 'light' | 'dark' | 'auto', event: MouseEvent) => {
 
     const transition = document.startViewTransition(async () => {
         colorMode.value = theme;
-        currentPreference.value = theme; // Ensure storage syncs
+        currentPreference.value = theme;
         await nextTick();
     });
 
     transition.ready.then(() => {
-        // Determine if we are visually going to dark mode
-        const isGoingDark = colorMode.value === 'dark';
-
         const clipPath = [
             `circle(0px at ${x}px ${y}px)`,
             `circle(${endRadius}px at ${x}px ${y}px)`,
@@ -107,14 +91,12 @@ const changeTheme = (theme: 'light' | 'dark' | 'auto', event: MouseEvent) => {
 
         document.documentElement.animate(
             {
-                clipPath: isGoingDark ? clipPath : [...clipPath].reverse(),
+                clipPath: clipPath,
             },
             {
                 duration: 500,
                 easing: 'ease-in',
-                pseudoElement: isGoingDark
-                    ? '::view-transition-new(root)'
-                    : '::view-transition-old(root)',
+                pseudoElement: '::view-transition-new(root)',
             }
         );
     });
@@ -128,13 +110,14 @@ const changeTheme = (theme: 'light' | 'dark' | 'auto', event: MouseEvent) => {
             <button
                 aria-controls="overlay_menu"
                 aria-haspopup="true"
-                class="cursor-pointer relative group flex items-center shrink-0 rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary p-1.5 text-primary-200 hover:text-white transition-colors"
+                class="cursor-pointer relative group flex items-center shrink-0 rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary p-1.5 text-primary-200 hover:text-white transition-all"
                 type="button"
                 @click="toggle"
             >
-                <span class="absolute -inset-1.5"/>
                 <span class="sr-only">Set app theme</span>
-                <Icon :icon="activeIcon" class="h-6 w-6 transition-colors" :class="iconClass" />
+                <span class="theme-icon-wrapper block h-6 w-6">
+                     <Icon :icon="activeIcon" class="h-6 w-6 transition-colors" :class="iconClass" />
+                </span>
             </button>
         </template>
         <template v-else>
@@ -149,7 +132,6 @@ const changeTheme = (theme: 'light' | 'dark' | 'auto', event: MouseEvent) => {
                 >
                     <Icon v-if="slotProps.item.icon" :icon="slotProps.item.icon" class="size-5 opacity-75"/>
                     <span class="text-left ml-2 grow">{{ slotProps.item.label }}</span>
-
                     <Icon
                         v-if="slotProps.item.value === currentPreference"
                         class="shrink-0 text-primary size-5"
@@ -162,24 +144,69 @@ const changeTheme = (theme: 'light' | 'dark' | 'auto', event: MouseEvent) => {
 </template>
 
 <style>
-/* 1. Disable default cross-fade so we can handle the clip-path manually */
+/* ---------------------------------------------------------
+   1. Root Wave Animation (Constant Direction, No Blink)
+   --------------------------------------------------------- */
 ::view-transition-old(root),
 ::view-transition-new(root) {
     animation: none;
     mix-blend-mode: normal;
 }
 
-/* 2. Default Stacking: New view on top of Old view */
 ::view-transition-new(root) {
-    z-index: 99998;
+    z-index: 2147483646;
 }
 ::view-transition-old(root) {
     z-index: 1;
 }
 
-/* 3. THE FIX: When switching to Light Mode */
-/* The html tag has NO 'dark' class, so the OLD view (which was dark) needs to be on top */
-html:not(.dark)::view-transition-old(root) {
-    z-index: 99999; /* Higher than new(root) */
+/* ---------------------------------------------------------
+   2. Icon Animation (Sequential: Out then In)
+   --------------------------------------------------------- */
+
+/* Define the view transition name */
+.theme-icon-wrapper {
+    view-transition-name: theme-icon;
+}
+
+/* STEP 1: OLD ICON
+   Effect: Scales down and fades out immediately.
+   Duration: 0.2s
+*/
+::view-transition-old(theme-icon) {
+    animation: icon-out 0.2s ease-in forwards;
+}
+
+/* STEP 2: NEW ICON
+   Effect: Scales up and fades in.
+   Duration: 0.3s
+   Delay: 0.2s (Waits for old icon to finish)
+   Opacity: 0 (Hidden while waiting)
+*/
+::view-transition-new(theme-icon) {
+    animation: icon-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s forwards;
+    opacity: 0; /* IMPORTANT: Hides the icon during the 0.2s delay */
+}
+
+@keyframes icon-out {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+@keyframes icon-in {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 </style>

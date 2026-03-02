@@ -44,13 +44,13 @@ function onLinkClick(event: MouseEvent) {
             aria-label="Open navigation"
             @click="open"
         >
-            <Icon name="ph:list" class="h-6 w-6 stroke-slate-500" />
+            <Icon name="ph:list" class="h-6 w-6 stroke-surface-500" />
         </button>
 
         <TransitionRoot :show="isOpen" as="template">
             <Dialog
                 @close="close"
-                class="fixed inset-0 z-50 flex items-start overflow-y-auto bg-slate-900/50 pr-10 backdrop-blur-sm lg:hidden"
+                class="fixed inset-0 z-50 flex items-start overflow-y-auto bg-surface-900/50 pr-10 backdrop-blur-sm lg:hidden"
             >
                 <TransitionChild
                     as="template"
@@ -61,14 +61,14 @@ function onLinkClick(event: MouseEvent) {
                     leave-from="opacity-100 translate-x-0"
                     leave-to="opacity-0 -translate-x-full"
                 >
-                    <DialogPanel class="min-h-full w-full max-w-xs bg-white px-4 pt-5 pb-12 sm:px-6 dark:bg-slate-900">
+                    <DialogPanel class="min-h-full w-full max-w-xs bg-white px-4 pt-5 pb-12 sm:px-6 dark:bg-surface-900">
                         <div class="flex items-center">
                             <button
                                 type="button"
                                 aria-label="Close navigation"
                                 @click="close"
                             >
-                                <Icon name="ph:x" class="h-6 w-6 stroke-slate-500" />
+                                <Icon name="ph:x" class="h-6 w-6 stroke-surface-500" />
                             </button>
 
                             <NuxtLink to="/" class="ml-6" aria-label="Home page">
