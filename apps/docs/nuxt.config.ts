@@ -10,6 +10,7 @@ export default defineNuxtConfig({
         '@nuxt/icon',
         '@nuxt/test-utils',
         '@nuxt/scripts',
+        '@nuxtjs/color-mode',
         '@vueuse/nuxt',
         '@unimma/ui/nuxt',
         'nuxt-shiki',
@@ -55,6 +56,17 @@ export default defineNuxtConfig({
 
     'unimmaUi': {
         prefix: 'U'
+    },
+
+    colorMode: {
+        preference: 'system',
+        fallback: 'light',
+        globalName: '__NUXT_COLOR_MODE__',
+        componentName: 'ColorScheme',
+        classPrefix: '',
+        classSuffix: '',
+        storage: 'localStorage',
+        storageKey: 'theme'
     },
 
     vite: {
