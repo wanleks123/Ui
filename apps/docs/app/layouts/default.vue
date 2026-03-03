@@ -1,6 +1,29 @@
 <script setup lang="ts">
+
 const route = useRoute()
+
+// 1. Fetch the current page data based on the route path
+// We use useAsyncData to handle SSR and caching, keying it by the route path
+const { data: page } = await useAsyncData(
+    `docs-${route.path}`,
+    () => {
+        return queryCollection('content').path(route.path).first()
+    },
+    {
+        watch: [() => route.path]
+    }
+)
+
+// 2. Compute if we are on the homepage
 const isHomePage = computed(() => route.path === '/')
+
+// 3. Find the "Section" (Group) this page belongs to
+// It scans your navigation array to find which section contains the current link
+const currentSection = computed(() => {
+    return navigation.find((section) =>
+        section.links.find((link) => link.href === route.path)
+    )
+})
 
 // --- Scroll Logic ---
 const isScrolled = ref(false)
@@ -45,9 +68,9 @@ onUnmounted(() => {
             </div>
 
             <div class="relative flex items-center basis-0 justify-end gap-6 md:grow">
-                <UThemeSwitcher icon-class="text-surface-800 dark:text-primary-100 group-hover:scale-125" />
+                <UThemeSwitcher icon-class="size-5 text-surface-800 dark:text-primary-100 group-hover:scale-125" />
                 <NuxtLink to="https://git.unimma.ac.id/unimma/ui" target="_blank" class="group shrink-0 flex items-center p-1.5" aria-label="GitHub">
-                    <UGitUnimma class="size-6 opacity-80 group-hover:opacity-100 group-hover:scale-125 transition-all" />
+                    <UGitUnimma class="size-6 opacity-80 group-hover:opacity-100 group-hover:scale-115 transition-all" />
                 </NuxtLink>
             </div>
         </header>
@@ -64,19 +87,26 @@ onUnmounted(() => {
                 <DocsHero />
             </div>
         </Transition>
+
         <div class="relative mx-auto flex w-full max-w-8xl flex-auto justify-center sm:px-2 lg:px-8 xl:px-12">
             <div class="hidden lg:relative lg:block lg:flex-none">
                 <div class="absolute inset-y-0 right-0 w-[50vw] bg-surface-50 dark:hidden"/>
-                <div
-                    class="absolute top-16 right-0 bottom-0 hidden h-12 w-px bg-linear-to-t from-surface-800 dark:block"/>
+                <div class="absolute top-16 right-0 bottom-0 hidden h-12 w-px bg-linear-to-t from-surface-800 dark:block"/>
                 <div class="absolute top-28 right-0 bottom-0 hidden w-px bg-surface-800 dark:block"/>
-                <div
-                    class="sticky top-19 -ml-0.5 h-[calc(100vh-4.75rem)] w-64 overflow-x-hidden overflow-y-auto py-16 pr-8 pl-0.5 xl:w-72 xl:pr-16">
+                <div class="sticky top-19 -ml-0.5 h-[calc(100vh-4.75rem)] w-64 overflow-x-hidden overflow-y-auto py-16 pr-8 pl-0.5 xl:w-72 xl:pr-16">
                     <DocsNavigation/>
                 </div>
             </div>
 
             <main class="min-w-0 max-w-2xl flex-auto px-4 py-16 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16">
+                <header v-if="page" class="mb-9 space-y-1">
+                    <p v-if="currentSection" class="text-sm font-display font-medium text-sky-500">
+                        {{ currentSection.title }}
+                    </p>
+                    <h1 class="font-display text-3xl tracking-tight text-slate-900 dark:text-white">
+                        {{ page.title }}
+                    </h1>
+                </header>
                 <Prose>
                     <slot/>
                 </Prose>

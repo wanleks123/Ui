@@ -11,9 +11,9 @@ defineProps<Props>()
 </script>
 
 <template>
-    <div class="group relative rounded-xl border border-surface-200 dark:border-surface-800">
+    <div class="group relative rounded-xl border border-surface-200 dark:border-surface-800 transition-colors">
         <div
-            class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,var(--color-sky-50)),var(--quick-links-hover-bg,var(--color-sky-50)))_padding-box,linear-gradient(to_top,var(--color-indigo-400),var(--color-cyan-400),var(--color-sky-500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:var(--color-surface-800)]"
+            class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 transition-colors [background:linear-gradient(var(--quick-links-hover-bg,var(--color-sky-50)),var(--quick-links-hover-bg,var(--color-sky-50)))_padding-box,linear-gradient(to_top,var(--color-indigo-400),var(--color-cyan-400),var(--color-sky-500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:var(--color-surface-800)]"
         />
 
         <div class="relative overflow-hidden rounded-xl p-6">

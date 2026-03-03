@@ -1,3 +1,6 @@
-# Installation
+---
+title: Installation
+---
+
 
 [Back home](/)

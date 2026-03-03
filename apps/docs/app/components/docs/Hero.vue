@@ -64,12 +64,12 @@ const lines = computed(() => code.split('\n'))
                             class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:left-0 lg:translate-x-0 lg:translate-y-[-60%]"/>
                     </div>
 
-                    <div class="relative">
+                    <div class="relative group">
                         <img class="absolute -top-64 -right-64" :src="blurCyanImage" alt="" width="530"/>
                         <img class="absolute -right-44 -bottom-40" :src="blurIndigoImage" alt="" width="567"/>
 
                         <div
-                            class="absolute inset-0 rounded-2xl bg-linear-to-tr from-sky-300 via-sky-300/70 to-blue-300 opacity-10 blur-lg"/>
+                            class="absolute inset-0 rounded-2xl bg-linear-to-tr from-sky-300 via-sky-300/70 to-blue-300 opacity-10 group-hover:opacity-20 transition-opacity blur-lg"/>
                         <div class="relative rounded-2xl bg-[#0A101F]/80 ring-1 ring-white/10 backdrop-blur-sm">
                             <div class="pt-4 pl-4">
                                 <svg aria-hidden="true" viewBox="0 0 42 10" fill="none"
@@ -95,7 +95,7 @@ const lines = computed(() => code.split('\n'))
                                     <div aria-hidden="true"
                                          class="border-r border-surface-300/5 pr-4 font-mono text-surface-600 select-none">
                                         <div v-for="(_, i) in lines" :key="i">
-                                            {{ (i + 1).toString().padStart(2, '0') }}
+                                            {{ (i + 1).toString() }}
                                         </div>
                                     </div>
 

@@ -26,13 +26,12 @@ const props = withDefaults(defineProps<Props>(), {
     <div :class="['my-8 flex rounded-3xl p-6', styles[type].container]">
         <Icon
             v-if="type === 'note'"
-            name="ph:lightbulb"
+            name="fluent-color:megaphone-loud-32"
             class="h-8 w-8 flex-none"
         />
         <Icon
             v-else-if="type === 'warning'"
-            name="ph:warning"
-            color="amber"
+            name="fluent-color:warning-48"
             class="h-8 w-8 flex-none"
         />
 
@@ -40,7 +39,7 @@ const props = withDefaults(defineProps<Props>(), {
             <p :class="['not-prose font-display text-xl', styles[type].title]">
                 {{ title }}
             </p>
-            <div :class="['prose mt-2.5', styles[type].body]">
+            <div :class="['prose mt-2.5 max-w-none', styles[type].body]">
                 <slot />
             </div>
         </div>

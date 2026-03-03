@@ -36,5 +36,9 @@
     "shiki": "^4.0.0",
     "tailwindcss": "^4.2.1",
     "tailwindcss-primeui": "^0.6.1"
+  },
+  "devDependencies": {
+    "@iconify-json/fluent-color": "^1.2.21",
+    "@iconify-json/vscode-icons": "^1.2.44"
   }
 }
