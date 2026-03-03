@@ -8,7 +8,8 @@ const props = withDefaults(defineProps<{
     iconClass?: string
     targetId?: string
 }>(), {
-    targetId: 'page-wrapper'
+    targetId: 'page-wrapper',
+    iconClass: 'h-6 w-6 transition-colors',
 })
 
 // --- 1. VueUse Configuration ---
@@ -115,8 +116,8 @@ const changeTheme = (theme: 'light' | 'dark' | 'auto', event: MouseEvent) => {
                 @click="toggle"
             >
                 <span class="sr-only">Set app theme</span>
-                <span class="theme-icon-wrapper block h-6 w-6">
-                     <Icon :icon="activeIcon" class="h-6 w-6 transition-colors" :class="iconClass" />
+                <span class="theme-icon-wrapper block">
+                     <Icon :icon="activeIcon" :class="iconClass" />
                 </span>
             </button>
         </template>

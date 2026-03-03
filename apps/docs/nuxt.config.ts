@@ -20,7 +20,7 @@ export default defineNuxtConfig({
     app: {
         head: {
             bodyAttrs: {
-                class: 'bg-white dark:bg-slate-900'
+                class: 'bg-white dark:bg-surface-900'
             }
         },
         pageTransition: {name: 'page', mode: 'out-in'}
@@ -42,7 +42,7 @@ export default defineNuxtConfig({
                         sepia: 'monokai'
                     },
                     // Preload languages for performance
-                    preload: ['json', 'js', 'ts', 'html', 'css', 'vue', 'diff']
+                    langs: ['json', 'js', 'ts', 'html', 'css', 'vue', 'php', 'bash', 'shell', 'mdc', 'md', 'yaml'],
                 }
             }
         }
