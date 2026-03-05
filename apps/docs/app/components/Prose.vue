@@ -17,7 +17,7 @@ const proseClasses = [
     // lead
     'prose-lead:text-surface-500 dark:prose-lead:text-surface-400',
     // pre
-    'prose-pre:rounded-xl prose-pre:bg-surface-900 prose-pre:shadow-lg dark:prose-pre:bg-surface-800/60 dark:prose-pre:shadow-none dark:prose-pre:ring-1 dark:prose-pre:ring-surface-300/10',
+    'prose-pre:rounded-xl prose-pre:bg-surface-50 prose-pre:shadow-lg dark:prose-pre:bg-surface-800/60 dark:prose-pre:shadow-none dark:prose-pre:ring-1 dark:prose-pre:ring-surface-300/10',
     // hr
     'dark:prose-hr:border-surface-800',
     // Merge with any custom classes passed to the component

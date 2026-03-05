@@ -42,10 +42,10 @@ const fileIcon = computed(() => {
 </script>
 
 <template>
-    <div class="group relative rounded-xl overflow-hidden">
+    <div class="group relative rounded-xl">
         <div
             v-if="filename"
-            class="flex items-center justify-between border-b border-surface-700 bg-surface-800/50 px-4 py-3"
+            class="flex items-center justify-between border-b border-surface-700 bg-transparent px-4 py-3"
         >
             <div class="flex items-center gap-2">
                 <Icon :name="fileIcon" class="h-5 w-5"/>
