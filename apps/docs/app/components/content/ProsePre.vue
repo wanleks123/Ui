@@ -54,13 +54,13 @@ const fileIcon = computed(() => {
         </div>
 
         <div class="relative">
-        <pre
+            <pre
             :class="[
-            'overflow-x-auto p-4 text-sm leading-6',
-            // If no filename, round the top corners. If filename, flat top (handled by parent overflow-hidden)
-            !filename && 'rounded-t-xl',
-            $attrs.class
-        ]"
+                'overflow-x-auto p-4 text-sm leading-6 m-0! rounded-none!',
+                // If no filename, round the top corners. If filename, flat top (handled by parent overflow-hidden)
+                !filename && 'rounded-t-xl',
+                $attrs.class
+            ]"
         ><slot/></pre>
 
             <ClientOnly fallback-tag="span">

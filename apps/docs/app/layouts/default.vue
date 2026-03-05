@@ -67,8 +67,8 @@ onUnmounted(() => {
                 <DocsSearch/>
             </div>
 
-            <div class="relative flex items-center basis-0 justify-end gap-6 md:grow">
-                <UThemeSwitcher icon-class="size-5 text-surface-800 dark:text-primary-100 group-hover:scale-125" />
+            <div class="relative flex items-center basis-0 justify-end gap-4 md:grow">
+                <UThemeSwitcher icon-class="size-5 text-surface-800 dark:text-primary-100 group-hover:scale-125 transition-transform" />
                 <NuxtLink to="https://git.unimma.ac.id/unimma/ui" target="_blank" class="group shrink-0 flex items-center p-1.5" aria-label="GitHub">
                     <UGitUnimma class="size-6 opacity-80 group-hover:opacity-100 group-hover:scale-115 transition-all" />
                 </NuxtLink>
@@ -100,7 +100,7 @@ onUnmounted(() => {
 
             <main class="min-w-0 max-w-2xl flex-auto px-4 py-16 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16">
                 <header v-if="page" class="mb-9 space-y-1">
-                    <p v-if="currentSection" class="text-sm font-display font-medium text-sky-500">
+                    <p v-if="currentSection" :id="isHomePage ? 'getting-started' : null" class="scroll-mt-35 text-sm font-display font-medium text-sky-500">
                         {{ currentSection.title }}
                     </p>
                     <h1 class="font-display text-3xl tracking-tight text-slate-900 dark:text-white">

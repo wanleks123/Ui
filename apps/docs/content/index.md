@@ -41,8 +41,7 @@ This is what a disclaimer message looks like. You might want to include inline `
 
 Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
 
-```js
-// cache-advance.config.js
+```js [cache-advance.config.js]{2,3}
 export default {
   strategy: 'predictive',
   engine: {
@@ -70,6 +69,16 @@ Minima vel non iste debitis. Consequatur repudiandae et quod accusamus sit moles
 Qui quae esse aspernatur fugit possimus. Quam sed molestiae temporibus. Eum perferendis dignissimos provident ea et. Et repudiandae quasi accusamus consequatur dolore nobis. Quia reiciendis necessitatibus a blanditiis iste quia. Ut quis et amet praesentium sapiente.
 
 Atque eos laudantium. Optio odit aspernatur consequuntur corporis soluta quidem sunt aut doloribus. Laudantium assumenda commodi.
+
+```js
+export default {
+  strategy: 'predictive',
+  engine: {
+    cpus: 12,
+    backups: ['./storage/cache.wtf'],
+  },
+}
+```
 
 ### Clearing the cache
 
