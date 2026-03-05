@@ -41,7 +41,7 @@ const lines = computed(() => code.split('\n'))
                 class="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-8 gap-y-16 px-4 lg:max-w-8xl lg:grid-cols-2 lg:px-8 xl:gap-x-16 xl:px-12">
 
                 <div class="relative z-10 md:text-center lg:text-left">
-                    <img class="absolute right-full bottom-full -mr-72 -mb-56 opacity-50" :src="blurCyanImage" alt=""
+                    <img class="absolute right-full bottom-full -mr-72 -mb-56 opacity-50 select-none" :src="blurCyanImage" alt=""
                          width="530"/>
                     <div class="relative">
                         <p class="inline bg-linear-to-r from-indigo-200 via-sky-400 to-indigo-200 bg-clip-text font-display text-4xl tracking-tight text-transparent">
@@ -51,8 +51,8 @@ const lines = computed(() => code.split('\n'))
                             Access a complete library of standard UI elements ahead of time, so you can focus on building features rather than fighting with CSS.
                         </p>
                         <div class="mt-8 flex gap-4 md:justify-center lg:justify-start">
-                            <DocsButton href="/">Get started</DocsButton>
-                            <DocsButton href="https://git.unimma.ac.id/unimma/ui" variant="secondary">View on Git Unimma</DocsButton>
+                            <DocsButton href="/#getting-started">Get started</DocsButton>
+                            <DocsButton href="https://git.unimma.ac.id/unimma/ui" target="_blank" variant="secondary">View on Git Unimma</DocsButton>
                         </div>
                     </div>
                 </div>
@@ -65,11 +65,11 @@ const lines = computed(() => code.split('\n'))
                     </div>
 
                     <div class="relative group">
-                        <img class="absolute -top-64 -right-64" :src="blurCyanImage" alt="" width="530"/>
-                        <img class="absolute -right-44 -bottom-40" :src="blurIndigoImage" alt="" width="567"/>
+                        <img class="absolute -top-64 -right-64 select-none" :src="blurCyanImage" alt="" width="530"/>
+                        <img class="absolute -right-44 -bottom-40 select-none" :src="blurIndigoImage" alt="" width="567"/>
 
                         <div
-                            class="absolute inset-0 rounded-2xl bg-linear-to-tr from-sky-300 via-sky-300/70 to-blue-300 opacity-10 group-hover:opacity-20 transition-opacity blur-lg"/>
+                            class="absolute inset-0 rounded-2xl bg-linear-to-tr from-sky-300 via-sky-300/70 to-blue-300 opacity-10 group-hover:opacity-20 transition-all blur-lg"/>
                         <div class="relative rounded-2xl bg-[#0A101F]/80 ring-1 ring-white/10 backdrop-blur-sm">
                             <div class="pt-4 pl-4">
                                 <svg aria-hidden="true" viewBox="0 0 42 10" fill="none"

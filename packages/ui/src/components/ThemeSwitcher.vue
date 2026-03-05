@@ -111,7 +111,7 @@ const changeTheme = (theme: 'light' | 'dark' | 'auto', event: MouseEvent) => {
             <button
                 aria-controls="overlay_menu"
                 aria-haspopup="true"
-                class="cursor-pointer relative group flex items-center shrink-0 rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary p-1.5 text-primary-200 hover:text-white transition-all"
+                class="cursor-pointer relative group flex items-center shrink-0 rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary p-1.5 text-primary-200 hover:text-white"
                 type="button"
                 @click="toggle"
             >

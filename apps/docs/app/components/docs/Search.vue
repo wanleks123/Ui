@@ -111,12 +111,12 @@ function getHierarchy(result: any) {
     <div>
         <button
             type="button"
-            class="group flex h-6 w-6 items-center justify-center sm:justify-start md:h-auto md:w-80 md:flex-none md:rounded-lg md:py-2.5 md:pr-3.5 md:pl-4 md:text-sm md:ring-1 md:ring-surface-200 md:hover:ring-surface-300 lg:w-96 dark:md:bg-surface-800/75 dark:md:ring-white/5 dark:md:ring-inset dark:md:hover:bg-surface-700/40 dark:md:hover:ring-surface-500"
+            class="cursor-text group flex h-6 w-6 items-center justify-center sm:justify-start md:h-auto md:w-80 md:flex-none md:rounded-lg md:py-2.5 md:pr-3.5 md:pl-4 md:text-sm md:ring-1 md:ring-surface-200 md:hover:ring-surface-300 lg:w-96 dark:md:bg-surface-800/75 dark:md:ring-white/5 dark:md:ring-inset dark:md:hover:bg-surface-700/40 dark:md:hover:ring-surface-500"
             @click="isOpen = true"
         >
             <Icon name="ph:magnifying-glass" class="h-5 w-5 flex-none text-surface-400 group-hover:text-surface-500 md:group-hover:text-surface-400 dark:text-surface-500" />
             <span class="sr-only md:not-sr-only md:ml-2 md:text-surface-500 md:dark:text-surface-400">Search docs</span>
-            <kbd v-if="modifierKey" class="ml-auto hidden font-medium text-surface-400 md:block dark:text-surface-500">
+            <kbd v-if="modifierKey" class="ml-auto leading-0 hidden font-medium text-surface-400 md:block dark:text-surface-500">
                 <kbd class="font-sans">{{ modifierKey }}</kbd>
                 <kbd class="font-sans">K</kbd>
             </kbd>
