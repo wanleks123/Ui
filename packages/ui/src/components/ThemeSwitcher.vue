@@ -1,33 +1,31 @@
 <script lang="ts" setup>
 import { ref, nextTick, onMounted, computed } from 'vue'
 import { useColorMode, useStorage } from '@vueuse/core'
-import { Icon } from '@iconify/vue'
-import { Menu } from './volt'
+import { Menu } from './volt' // Assuming this is your UI library
 
 const props = withDefaults(defineProps<{
     iconClass?: string
-    targetId?: string
+    // Add a unique ID to prevent ViewTransition name collisions
+    // if you render this component twice (e.g. Mobile + Desktop)
+    uid?: string 
 }>(), {
-    targetId: 'page-wrapper',
-    iconClass: 'h-6 w-6 transition-colors',
+    iconClass: 'h-5 w-5 transition-colors',
+    uid: 'desktop-theme-switcher' 
 })
 
-// --- 1. VueUse Configuration ---
+// --- 1. Configuration ---
 const colorMode = useColorMode({
     selector: 'html',
     attribute: 'class',
     storageKey: 'theme',
-    modes: {
-        dark: 'dark',
-        light: '',
-    },
+    modes: { dark: 'dark', light: '' },
 })
 
-// --- 2. Safe Preference Reading ---
 const currentPreference = useStorage('theme', 'auto')
 
-// --- State ---
-const menu = ref();
+// --- 2. State & Types ---
+// Type the Menu component reference (adjust 'any' if you have the Volt type)
+const menu = ref<InstanceType<typeof Menu> | null>(null);
 const currentTrigger = ref<HTMLElement | null>(null);
 const isMounted = ref(false);
 
@@ -48,26 +46,27 @@ onMounted(() => {
 })
 
 const activeIcon = computed(() => {
-    if (currentPreference.value === 'auto') {
-        return 'ph:monitor'
-    }
+    if (currentPreference.value === 'auto') return 'ph:monitor'
     return colorMode.value === 'dark' ? 'ph:moon' : 'ph:sun'
 })
 
+// --- 3. Logic ---
 const toggle = (event: MouseEvent) => {
     currentTrigger.value = event.currentTarget as HTMLElement;
-    menu.value.toggle(event);
+    menu.value?.toggle(event);
 };
 
 const changeTheme = (theme: 'light' | 'dark' | 'auto', event: MouseEvent) => {
     if (theme === currentPreference.value) return;
 
+    // Fallback for browsers without View Transitions
     if (!document.startViewTransition) {
         colorMode.value = theme;
         currentPreference.value = theme;
         return;
     }
 
+    // Geometry Logic
     const triggerBtn = currentTrigger.value || event.currentTarget as HTMLElement;
     const rect = triggerBtn.getBoundingClientRect();
     const x = rect.left + rect.width / 2;
@@ -78,6 +77,7 @@ const changeTheme = (theme: 'light' | 'dark' | 'auto', event: MouseEvent) => {
         Math.max(y, window.innerHeight - y)
     );
 
+    // Execute Transition
     const transition = document.startViewTransition(async () => {
         colorMode.value = theme;
         currentPreference.value = theme;
@@ -91,9 +91,7 @@ const changeTheme = (theme: 'light' | 'dark' | 'auto', event: MouseEvent) => {
         ];
 
         document.documentElement.animate(
-            {
-                clipPath: clipPath,
-            },
+            { clipPath: clipPath },
             {
                 duration: 500,
                 easing: 'ease-in',
@@ -106,37 +104,41 @@ const changeTheme = (theme: 'light' | 'dark' | 'auto', event: MouseEvent) => {
 
 <template>
     <div>
-        <template v-if="isMounted">
-            <span class="sr-only">Select theme</span>
+        <ClientOnly>
+            <template #fallback>
+                <div class="h-8 w-8 bg-surface-200 dark:bg-surface-800 rounded-full animate-pulse" />
+            </template>
+            
             <button
                 aria-controls="overlay_menu"
                 aria-haspopup="true"
                 class="cursor-pointer relative group flex items-center shrink-0 rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary p-1.5 text-primary-200 hover:text-white"
                 type="button"
                 @click="toggle"
+                @mousedown.prevent
             >
                 <span class="sr-only">Set app theme</span>
-                <span class="theme-icon-wrapper block">
-                     <Icon :icon="activeIcon" :class="iconClass" />
+                <span 
+                    class="block" 
+                    :style="{ 'view-transition-name': `theme-icon-${uid}` }"
+                >
+                     <Icon :name="activeIcon" :class="iconClass" />
                 </span>
             </button>
-        </template>
-        <template v-else>
-            <div class="h-9 w-9 bg-gray-200/20 rounded-full animate-pulse mx-1" />
-        </template>
+        </ClientOnly>
 
         <Menu id="overlay_menu" ref="menu" :model="items" :popup="true">
             <template #item="slotProps">
                 <button
-                    class="cursor-pointer w-full flex items-center gap-2 px-3 py-2"
+                    class="cursor-pointer w-full flex items-center gap-2 px-3 py-2 text-sm text-surface-700 dark:text-surface-200 hover:bg-surface-100 dark:hover:bg-surface-800 rounded-md transition-colors"
                     @click="changeTheme(slotProps.item.value, $event)"
                 >
-                    <Icon v-if="slotProps.item.icon" :icon="slotProps.item.icon" class="size-5 opacity-75"/>
+                    <Icon v-if="slotProps.item.icon" :name="slotProps.item.icon" class="size-4 opacity-75"/>
                     <span class="text-left ml-2 grow">{{ slotProps.item.label }}</span>
                     <Icon
                         v-if="slotProps.item.value === currentPreference"
-                        class="shrink-0 text-primary size-5"
-                        icon="ph:check"
+                        class="shrink-0 text-sky-500 size-4"
+                        name="ph:check"
                     />
                 </button>
             </template>
@@ -145,69 +147,63 @@ const changeTheme = (theme: 'light' | 'dark' | 'auto', event: MouseEvent) => {
 </template>
 
 <style>
-/* ---------------------------------------------------------
-   1. Root Wave Animation (Constant Direction, No Blink)
-   --------------------------------------------------------- */
+/* We must dynamically target the unique ID we generated in the template.
+   Since we can't use v-bind in global CSS, we use a wildcard selector 
+   that targets any element starting with 'theme-icon-'.
+*/
+
+/* 1. Disable Default Fade for Root (The Wave Effect) */
 ::view-transition-old(root),
 ::view-transition-new(root) {
     animation: none;
     mix-blend-mode: normal;
 }
 
+/* Ensure the new view sits on top */
 ::view-transition-new(root) {
-    z-index: 2147483646;
+    z-index: 9999;
 }
 ::view-transition-old(root) {
     z-index: 1;
 }
 
-/* ---------------------------------------------------------
-   2. Icon Animation (Sequential: Out then In)
-   --------------------------------------------------------- */
-
-/* Define the view transition name */
-.theme-icon-wrapper {
-    view-transition-name: theme-icon;
+/* 2. Icon Animation */
+/* Target any view-transition named 'theme-icon-...' */
+::view-transition-old(*),
+::view-transition-new(*) {
+    /* Only apply animation if the name starts with theme-icon */
+    animation-timing-function: ease-in-out; 
 }
 
-/* STEP 1: OLD ICON
-   Effect: Scales down and fades out immediately.
-   Duration: 0.2s
+/* Specific animations for our icon pattern */
+[style*="view-transition-name: theme-icon-"] {
+    /* This serves as a marker selector if needed */
+}
+
+/* We have to use the global wildcards for the keyframes because 
+   CSS doesn't allow selecting pseudo-elements based on attribute selectors easily. 
+   Ideally, your project has global CSS for this. 
+   
+   If you cannot put this in global CSS, keeps your existing @keyframes logic
+   but be aware that it applies to the specific name.
 */
-::view-transition-old(theme-icon) {
+
+::view-transition-old(theme-icon-desktop-theme-switcher) {
     animation: icon-out 0.2s ease-in forwards;
 }
 
-/* STEP 2: NEW ICON
-   Effect: Scales up and fades in.
-   Duration: 0.3s
-   Delay: 0.2s (Waits for old icon to finish)
-   Opacity: 0 (Hidden while waiting)
-*/
-::view-transition-new(theme-icon) {
+::view-transition-new(theme-icon-desktop-theme-switcher) {
     animation: icon-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s forwards;
-    opacity: 0; /* IMPORTANT: Hides the icon during the 0.2s delay */
+    opacity: 0;
 }
 
 @keyframes icon-out {
-    from {
-        opacity: 1;
-        transform: scale(1);
-    }
-    to {
-        opacity: 0;
-        transform: scale(0);
-    }
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0); }
 }
 
 @keyframes icon-in {
-    from {
-        opacity: 0;
-        transform: scale(0);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    from { opacity: 0; transform: scale(0); }
+    to { opacity: 1; transform: scale(1); }
 }
 </style>
