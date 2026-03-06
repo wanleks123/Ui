@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import {useClipboard} from '@vueuse/core'
-
 interface Props {
     code?: string
     language?: string
@@ -42,23 +40,23 @@ const fileIcon = computed(() => {
 </script>
 
 <template>
-    <div class="group relative rounded-xl">
+    <div class="group relative rounded-xl overflow-hidden shadow-lg dark:shadown-none ring-1 ring-surface-300/10">
         <div
             v-if="filename"
-            class="flex items-center justify-between border-b border-surface-700 bg-transparent px-4 py-3"
+            class="flex items-center justify-between border-b border-surface-300 dark:border-surface-700 dark:bg-surface-800/50 px-4 py-3"
         >
             <div class="flex items-center gap-2">
                 <Icon :name="fileIcon" class="h-5 w-5"/>
-                <span class="text-xs font-medium text-surface-200">{{ filename }}</span>
+                <span class="text-sm font-medium text-surface-200">{{ filename }}</span>
             </div>
         </div>
 
         <div class="relative">
             <pre
             :class="[
-                'overflow-x-auto p-4 text-sm leading-6 m-0! rounded-none!',
+                'overflow-x-auto p-4 text-sm leading-6 m-0! rounded-none! bg-surface-0 dark:bg-surface-800/50',
                 // If no filename, round the top corners. If filename, flat top (handled by parent overflow-hidden)
-                !filename && 'rounded-t-xl',
+                !filename,
                 $attrs.class
             ]"
         ><slot/></pre>
@@ -68,13 +66,13 @@ const fileIcon = computed(() => {
                     type="button"
                     @click="copy()"
                     :class="[
-            'absolute right-3 flex h-8 items-center gap-1.5 rounded-md border border-surface-700 bg-surface-800 px-2 py-1 text-xs font-medium text-surface-300 transition focus:outline-none opacity-0 group-hover:opacity-100 hover:bg-surface-700 hover:text-white cursor-pointer',
+            'absolute right-3 flex h-8 items-center gap-1.5 rounded-md border border-surface-300 dark:border-surface-700 dark:bg-surface-800 px-2 py-1 text-xs font-medium text-surface-600 dark:text-surface-300 transition focus:outline-none opacity-0 group-hover:opacity-100 hover:bg-surface-100 dark:hover:bg-surface-700 hover:text-surface-800 dark:hover:text-white cursor-pointer',
             filename ? 'top-3' : 'top-3'
           ]"
                 >
                     <Icon
                         :name="copied ? 'ph:check' : 'ph:copy'"
-                        :class="copied ? 'text-sky-400' : ''"
+                        :class="copied ? 'text-sky-600 dark:text-sky-400' : ''"
                         class="h-4 w-4"
                     />
                     <span v-if="copied" class="text-sky-400">Copied!</span>

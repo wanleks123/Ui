@@ -175,19 +175,6 @@ const changeTheme = (theme: 'light' | 'dark' | 'auto', event: MouseEvent) => {
     animation-timing-function: ease-in-out; 
 }
 
-/* Specific animations for our icon pattern */
-[style*="view-transition-name: theme-icon-"] {
-    /* This serves as a marker selector if needed */
-}
-
-/* We have to use the global wildcards for the keyframes because 
-   CSS doesn't allow selecting pseudo-elements based on attribute selectors easily. 
-   Ideally, your project has global CSS for this. 
-   
-   If you cannot put this in global CSS, keeps your existing @keyframes logic
-   but be aware that it applies to the specific name.
-*/
-
 ::view-transition-old(theme-icon-desktop-theme-switcher) {
     animation: icon-out 0.2s ease-in forwards;
 }
