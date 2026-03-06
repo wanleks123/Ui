@@ -17,13 +17,6 @@ const { data: page } = await useAsyncData(
 // 2. Compute if we are on the homepage
 const isHomePage = computed(() => route.path === '/')
 
-// 3. Find the "Section" (Group) this page belongs to
-// It scans your navigation array to find which section contains the current link
-const currentSection = computed(() => {
-    return navigation.find((section) =>
-        section.links.find((link) => link.href === route.path)
-    )
-})
 
 // --- Scroll Logic ---
 const isScrolled = ref(false)
@@ -98,18 +91,10 @@ onUnmounted(() => {
                 </div>
             </div>
 
-            <main class="min-w-0 max-w-2xl flex-auto px-4 py-16 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16">
-                <header v-if="page" class="mb-9 space-y-1">
-                    <p v-if="currentSection" :id="isHomePage ? 'getting-started' : null" class="scroll-mt-35 text-sm font-display font-medium text-sky-500">
-                        {{ currentSection.title }}
-                    </p>
-                    <h1 class="font-display text-3xl tracking-tight text-slate-900 dark:text-white">
-                        {{ page.title }}
-                    </h1>
-                </header>
-                <Prose>
-                    <slot/>
-                </Prose>
+            <main>
+                <DocsLayout :page="page">
+                     <slot/>
+                </DocsLayout>
             </main>
         </div>
     </div>
