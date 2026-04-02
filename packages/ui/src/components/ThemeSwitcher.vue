@@ -1,43 +1,34 @@
 <script lang="ts" setup>
 import { ref, nextTick, onMounted, computed } from 'vue'
-import { useColorMode } from '@vueuse/core'
-// We import Icon specifically to ensure it works in a package environment
-// If your app registers it globally, you can remove this import.
-import { Icon } from '@iconify/vue'
-import Menu from './volt/Menu.vue';
+import { useColorMode, useStorage } from '@vueuse/core'
+import { Menu } from './volt' // Assuming this is your UI library
 
 const props = withDefaults(defineProps<{
     iconClass?: string
-    /**
-     * The ID of the main page wrapper to clone for the animation.
-     * Default: 'page-wrapper'
-     */
-    targetId?: string
+    // Add a unique ID to prevent ViewTransition name collisions
+    // if you render this component twice (e.g. Mobile + Desktop)
+    uid?: string 
 }>(), {
-    targetId: 'page-wrapper'
+    iconClass: 'h-5 w-5 transition-colors',
+    uid: 'desktop-theme-switcher' 
 })
 
-// --- 1. VueUse Color Mode Configuration ---
-// This replaces the Nuxt-specific useColorMode
-const mode = useColorMode({
-    selector: 'html',    // Element to apply the class to
-    attribute: 'class',  // Attribute to apply (class="dark")
-    initialValue: 'auto',
-    modes: {
-        // Custom modes if needed, otherwise 'dark' and 'light' are standard
-        dark: 'dark',
-        light: '', // or 'light' if you use a specific light class
-    },
+// --- 1. Configuration ---
+const colorMode = useColorMode({
+    selector: 'html',
+    attribute: 'class',
+    storageKey: 'theme',
+    modes: { dark: 'dark', light: '' },
 })
 
-// --- State ---
-const menu = ref();
-const isAnimating = ref(false);
+const currentPreference = useStorage('theme', 'auto')
+
+// --- 2. State & Types ---
+// Type the Menu component reference (adjust 'any' if you have the Volt type)
+const menu = ref<InstanceType<typeof Menu> | null>(null);
 const currentTrigger = ref<HTMLElement | null>(null);
 const isMounted = ref(false);
 
-// --- Data ---
-// We map VueUse's 'auto' to our UI label 'system'
 interface ThemeItem {
     label: string,
     icon: string,
@@ -45,181 +36,109 @@ interface ThemeItem {
 }
 
 const items: ThemeItem[] = [
-    {label: 'System', icon: 'ph:monitor', value: 'auto'},
-    {label: 'Light', icon: 'ph:sun', value: 'light'},
-    {label: 'Dark', icon: 'ph:moon', value: 'dark'},
+    { label: 'System', icon: 'ph:monitor', value: 'auto' },
+    { label: 'Light', icon: 'ph:sun', value: 'light' },
+    { label: 'Dark', icon: 'ph:moon', value: 'dark' },
 ]
 
-// --- Logic ---
 onMounted(() => {
     isMounted.value = true;
 })
 
-// Helper to determine the active icon based on current mode
 const activeIcon = computed(() => {
-    return items.find(i => i.value === mode.value)?.icon ?? 'ph:monitor'
+    if (currentPreference.value === 'auto') return 'ph:monitor'
+    return colorMode.value === 'dark' ? 'ph:moon' : 'ph:sun'
 })
 
+// --- 3. Logic ---
 const toggle = (event: MouseEvent) => {
     currentTrigger.value = event.currentTarget as HTMLElement;
-    menu.value.toggle(event);
+    menu.value?.toggle(event);
 };
 
-const changeTheme = async (theme: 'light' | 'dark' | 'auto', event: MouseEvent): Promise<void> => {
-    // 1. Basic Checks
-    if (isAnimating.value) return;
-    if (theme === mode.value) return;
+const changeTheme = (theme: 'light' | 'dark' | 'auto', event: MouseEvent) => {
+    if (theme === currentPreference.value) return;
 
-    const triggerBtn = currentTrigger.value;
-    if (!triggerBtn) return;
-
-    const page = document.getElementById(props.targetId);
-    if (!page) {
-        // Fallback if ID is missing: just switch theme without animation
-        mode.value = theme;
+    // Fallback for browsers without View Transitions
+    if (!document.startViewTransition) {
+        colorMode.value = theme;
+        currentPreference.value = theme;
         return;
     }
 
-    isAnimating.value = true;
-
-    // 2. Resolve 'auto' to actual color for the clone
-    const resolvedTheme = theme === 'auto'
-        ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-        : theme;
-
-    // 3. Mark the REAL trigger
-    triggerBtn.setAttribute('data-theme-animating', 'true');
-    page.classList.add('disable-transitions');
-
-    // 4. Create Deep Clone
-    const clone = page.cloneNode(true) as HTMLElement;
-
-    // 5. Find the TWIN trigger
-    const cloneTrigger = clone.querySelector('[data-theme-animating="true"]') as HTMLElement;
-    const cloneIcon = cloneTrigger?.querySelector('svg, .iconify') as HTMLElement;
-
-    triggerBtn.removeAttribute('data-theme-animating');
-
-    // 6. ID Renaming Loop
-    const elementsWithIds = clone.querySelectorAll('[id]');
-    elementsWithIds.forEach((el) => {
-        const oldId = el.id;
-        const newId = `${oldId}-clone`;
-        el.id = newId;
-
-        const references = clone.querySelectorAll(`[fill*="#${oldId}"], [stroke*="#${oldId}"], [mask*="#${oldId}"], [filter*="#${oldId}"]`);
-        references.forEach((ref) => {
-            ['fill', 'stroke', 'mask', 'filter'].forEach((attr) => {
-                const val = ref.getAttribute(attr);
-                if (val && val.includes(`#${oldId}`)) {
-                    ref.setAttribute(attr, val.replace(`#${oldId}`, `#${newId}`));
-                }
-            });
-        });
-    });
-
-    // 7. Setup Clone Classes
-    clone.classList.remove('disable-transitions');
-    clone.classList.add('theme-clone');
-
-    // Apply the resolved theme class to the clone immediately
-    if (resolvedTheme === 'dark') {
-        clone.classList.add('dark');
-        // Ensure we don't have conflicting classes
-        clone.classList.remove('light');
-    } else {
-        clone.classList.remove('dark');
-        clone.classList.add('light');
-    }
-
-    if (cloneIcon) {
-        cloneIcon.style.setProperty('transition', 'transform 0.2s ease-in', 'important');
-        cloneIcon.style.transformOrigin = 'center';
-    }
-
-    // 8. Geometry Calculation
+    // Geometry Logic
+    const triggerBtn = currentTrigger.value || event.currentTarget as HTMLElement;
     const rect = triggerBtn.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
 
     const endRadius = Math.hypot(
-        Math.max(centerX, window.innerWidth - centerX),
-        Math.max(centerY, window.innerHeight - centerY)
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y)
     );
 
-    // 9. Execute Animation
-    clone.style.clipPath = `circle(0px at ${centerX}px ${centerY}px)`;
-    document.body.appendChild(clone);
-
-    requestAnimationFrame(() => {
-        clone.style.clipPath = `circle(${endRadius}px at ${centerX}px ${centerY}px)`;
-        if (cloneIcon) cloneIcon.style.transform = 'scale(0)';
+    // Execute Transition
+    const transition = document.startViewTransition(async () => {
+        colorMode.value = theme;
+        currentPreference.value = theme;
+        await nextTick();
     });
 
-    // 10. Cleanup
-    clone.addEventListener('transitionend', async (e) => {
-        if (e.target !== clone) return;
+    transition.ready.then(() => {
+        const clipPath = [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${endRadius}px at ${x}px ${y}px)`,
+        ];
 
-        // SWITCH THE REAL THEME HERE
-        mode.value = theme;
-        await nextTick();
-
-        page.classList.remove('disable-transitions');
-        const newIcon = currentTrigger.value?.querySelector('svg, .iconify') as HTMLElement;
-
-        if (newIcon) {
-            newIcon.style.transition = 'none';
-            newIcon.style.transform = 'scale(0)';
-            void newIcon.offsetWidth;
-        }
-
-        clone.remove();
-        isAnimating.value = false;
-
-        if (newIcon) {
-            newIcon.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-            newIcon.style.transform = 'scale(1)';
-            setTimeout(() => {
-                newIcon.style.transition = '';
-                newIcon.style.transform = '';
-            }, 400);
-        }
+        document.documentElement.animate(
+            { clipPath: clipPath },
+            {
+                duration: 500,
+                easing: 'ease-in',
+                pseudoElement: '::view-transition-new(root)',
+            }
+        );
     });
 }
 </script>
 
 <template>
     <div>
-        <template v-if="isMounted">
-            <span class="sr-only">Select theme</span>
+        <ClientOnly>
+            <template #fallback>
+                <div class="h-8 w-8 bg-surface-200 dark:bg-surface-800 rounded-full animate-pulse" />
+            </template>
+            
             <button
                 aria-controls="overlay_menu"
                 aria-haspopup="true"
-                class="cursor-pointer relative group flex items-center shrink-0 rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary p-1.5 text-primary-200 hover:text-white transition-colors"
+                class="cursor-pointer relative group flex items-center shrink-0 rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary p-1.5 text-primary-200 hover:text-white"
                 type="button"
                 @click="toggle"
+                @mousedown.prevent
             >
-                <span class="absolute -inset-1.5"/>
                 <span class="sr-only">Set app theme</span>
-                <Icon :icon="activeIcon" class="h-6 w-6 transition-colors" :class="iconClass" />
+                <span 
+                    class="block" 
+                    :style="{ 'view-transition-name': `theme-icon-${uid}` }"
+                >
+                     <Icon :name="activeIcon" :class="iconClass" />
+                </span>
             </button>
-        </template>
-        <template v-else>
-            <div class="h-9 w-9 bg-gray-200/20 rounded-full animate-pulse mx-1" />
-        </template>
+        </ClientOnly>
 
-        <Menu id="overlay_menu" ref="menu" :model="items" :popup="true" :pt="{ root: 'mt-2' }">
+        <Menu id="overlay_menu" ref="menu" :model="items" :popup="true">
             <template #item="slotProps">
                 <button
-                    class="cursor-pointer w-full flex items-center gap-2 px-3 py-2"
+                    class="cursor-pointer w-full flex items-center gap-2 px-3 py-2 text-sm text-surface-700 dark:text-surface-200 hover:bg-surface-100 dark:hover:bg-surface-800 rounded-md transition-colors"
                     @click="changeTheme(slotProps.item.value, $event)"
                 >
-                    <Icon v-if="slotProps.item.icon" :icon="slotProps.item.icon" class="size-5 opacity-75"/>
+                    <Icon v-if="slotProps.item.icon" :name="slotProps.item.icon" class="size-4 opacity-75"/>
                     <span class="text-left ml-2 grow">{{ slotProps.item.label }}</span>
                     <Icon
-                        v-if="slotProps.item.value === mode"
-                        class="shrink-0 text-primary size-5"
-                        icon="ph:check"
+                        v-if="slotProps.item.value === currentPreference"
+                        class="shrink-0 text-sky-500 size-4"
+                        name="ph:check"
                     />
                 </button>
             </template>
@@ -228,20 +147,50 @@ const changeTheme = async (theme: 'light' | 'dark' | 'auto', event: MouseEvent):
 </template>
 
 <style>
-/* Global styles required for the clone and page wrapper */
-.disable-transitions,
-.disable-transitions * {
-    transition: none !important;
+/* We must dynamically target the unique ID we generated in the template.
+   Since we can't use v-bind in global CSS, we use a wildcard selector 
+   that targets any element starting with 'theme-icon-'.
+*/
+
+/* 1. Disable Default Fade for Root (The Wave Effect) */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
 }
 
-.theme-clone {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+/* Ensure the new view sits on top */
+::view-transition-new(root) {
     z-index: 9999;
-    pointer-events: none;
-    transition: clip-path 0.8s ease-in-out;
+}
+::view-transition-old(root) {
+    z-index: 1;
+}
+
+/* 2. Icon Animation */
+/* Target any view-transition named 'theme-icon-...' */
+::view-transition-old(*),
+::view-transition-new(*) {
+    /* Only apply animation if the name starts with theme-icon */
+    animation-timing-function: ease-in-out; 
+}
+
+::view-transition-old(theme-icon-desktop-theme-switcher) {
+    animation: icon-out 0.2s ease-in forwards;
+}
+
+::view-transition-new(theme-icon-desktop-theme-switcher) {
+    animation: icon-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s forwards;
+    opacity: 0;
+}
+
+@keyframes icon-out {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0); }
+}
+
+@keyframes icon-in {
+    from { opacity: 0; transform: scale(0); }
+    to { opacity: 1; transform: scale(1); }
 }
 </style>

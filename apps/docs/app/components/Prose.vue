@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Props {
-    as?: string | Component
+    as?: string | Object // changed Component to Object/string to avoid type issues
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -11,19 +11,15 @@ const props = withDefaults(defineProps<Props>(), {
 const attrs = useAttrs()
 
 const proseClasses = [
-    'prose max-w-none prose-slate dark:text-slate-400 dark:prose-invert',
+    'prose max-w-none prose-slate dark:text-surface-400 dark:prose-dark',
     // headings
-    'prose-headings:scroll-mt-28 prose-headings:font-display prose-headings:font-normal lg:prose-headings:scroll-mt-34',
+    'prose-headings:scroll-mt-28 prose-headings:font-display prose-headings:font-normal lg:prose-headings:scroll-mt-34 dark:prose-headings:text-surface-200',
     // lead
-    'prose-lead:text-slate-500 dark:prose-lead:text-slate-400',
-    // links
-    'prose-a:font-semibold dark:prose-a:text-sky-400',
-    // link underline logic
-    'dark:[--tw-prose-background:var(--color-slate-900)] prose-a:no-underline prose-a:shadow-[inset_0_-2px_0_0_var(--tw-prose-background,#fff),inset_0_calc(-1*(var(--tw-prose-underline-size,4px)+2px))_0_0_var(--tw-prose-underline,var(--color-sky-300))] prose-a:hover:[--tw-prose-underline-size:6px] dark:prose-a:shadow-[inset_0_calc(-1*var(--tw-prose-underline-size,2px))_0_0_var(--tw-prose-underline,var(--color-sky-800))] dark:prose-a:hover:[--tw-prose-underline-size:6px]',
+    'prose-lead:text-surface-500 dark:prose-lead:text-surface-400',
     // pre
-    'prose-pre:rounded-xl prose-pre:bg-slate-900 prose-pre:shadow-lg dark:prose-pre:bg-slate-800/60 dark:prose-pre:shadow-none dark:prose-pre:ring-1 dark:prose-pre:ring-slate-300/10',
+    'prose-pre:rounded-xl',
     // hr
-    'dark:prose-hr:border-slate-800',
+    'dark:prose-hr:border-surface-800',
     // Merge with any custom classes passed to the component
     attrs.class
 ]
