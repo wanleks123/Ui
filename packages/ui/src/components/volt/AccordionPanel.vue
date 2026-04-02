@@ -1,11 +1,9 @@
 <template>
     <AccordionPanel
-        :value="props.value"
         unstyled
+        v-bind="$props"
         :pt="theme"
-        :ptOptions="{
-            mergeProps: ptViewMerge
-        }"
+        :ptOptions="{ mergeProps: ptViewMerge }"
     >
         <slot></slot>
     </AccordionPanel>
@@ -17,9 +15,9 @@ import { ref } from 'vue';
 import { ptViewMerge } from './utils';
 
 interface Props extends /* @vue-ignore */ AccordionPanelProps {}
-const props = defineProps<Props>();
+defineProps<Props>();
 
 const theme = ref<AccordionPanelPassThroughOptions>({
-    root: `flex flex-col border-b border-surface-200 dark:border-surface-700`
+    root: 'relative flex flex-col'
 });
 </script>

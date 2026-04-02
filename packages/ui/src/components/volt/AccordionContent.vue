@@ -1,10 +1,9 @@
 <template>
     <AccordionContent
         unstyled
+        v-bind="$props"
         :pt="theme"
-        :ptOptions="{
-            mergeProps: ptViewMerge
-        }"
+        :ptOptions="{ mergeProps: ptViewMerge }"
     >
         <slot></slot>
     </AccordionContent>
@@ -19,14 +18,13 @@ interface Props extends /* @vue-ignore */ AccordionContentProps {}
 defineProps<Props>();
 
 const theme = ref<AccordionContentPassThroughOptions>({
-    root: `flex flex-col`,
-    content: `bg-surface-0 dark:bg-surface-900 text-surface-700 dark:text-surface-0 pt-0 px-[1.125rem] pb-[1.125rem]`,
+    content: 'px-4 pb-5 sm:px-6 text-sm text-surface-600 dark:text-surface-400 bg-surface-0 dark:bg-transparent',
     transition: {
         enterFromClass: 'max-h-0',
-        enterActiveClass: 'overflow-hidden transition-[max-height] duration-1000 ease-[cubic-bezier(0.42,0,0.58,1)]',
+        enterActiveClass: 'overflow-hidden transition-[max-height] duration-500 ease-in-out',
         enterToClass: 'max-h-[1000px]',
         leaveFromClass: 'max-h-[1000px]',
-        leaveActiveClass: 'overflow-hidden transition-[max-height] duration-[450ms] ease-[cubic-bezier(0,1,0,1)]',
+        leaveActiveClass: 'overflow-hidden transition-[max-height] duration-300 ease-in-out',
         leaveToClass: 'max-h-0'
     }
 });
