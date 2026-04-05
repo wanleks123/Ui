@@ -21,15 +21,63 @@ interface Props extends /* @vue-ignore */ AvatarProps {}
 defineProps<Props>();
 
 const theme = ref<AvatarPassThroughOptions>({
-    root: `inline-flex items-center justify-center
-        w-8 h-8 text-base rounded-md
-        bg-surface-200 dark:bg-surface-700
-        has-[img]:bg-transparent
-        p-circle:rounded-full
-        p-large:w-12 p-large:h-12 p-large:text-2xl
-        p-xlarge:w-16 p-xlarge:h-16 p-xlarge:text-[2rem]`,
-    label: ``,
-    icon: `text-base p-large:text-2xl p-xlarge:text-[2rem]`,
-    image: `p-circle:rounded-full w-full h-full`
+    root: ({ props, parent }) => ({
+        class: [
+            // Alignments
+            'inline-flex items-center justify-center relative shrink-0',
+            
+            // Sizes (Matching your layout scale)
+            {
+                'size-8': props.size == null || props.size == 'normal',
+                'size-12': props.size == 'large',
+                'size-16': props.size == 'xlarge'
+            },
+
+            // Shapes
+            {
+                'rounded-md': props.shape == 'square',
+                'rounded-full': props.shape == 'circle'
+            },
+
+            // Colors & Outline (from your layout)
+            'bg-surface-500 dark:bg-surface-800',
+            'outline -outline-offset-1 outline-black/5 dark:outline-white/10',
+
+            // AvatarGroup Integration
+            { 
+                '-ml-4 border-2 border-white dark:border-surface-900': 
+                parent.instance.$style?.name == 'avatargroup' 
+            }
+        ]
+    }),
+    label: ({ props }) => ({
+        class: [
+            'font-medium text-white',
+            {
+                'text-sm': props.size == null || props.size == 'normal',
+                'text-lg': props.size == 'large',
+                'text-xl': props.size == 'xlarge'
+            }
+        ]
+    }),
+    icon: ({ props }) => ({
+        class: [
+            'text-white',
+            {
+                'text-base': props.size == null || props.size == 'normal',
+                'text-2xl': props.size == 'large',
+                'text-[2rem]': props.size == 'xlarge'
+            }
+        ]
+    }),
+    image: ({ props }) => ({
+        class: [
+            'h-full w-full',
+            {
+                'rounded-md': props.shape == 'square',
+                'rounded-full': props.shape == 'circle'
+            }
+        ]
+    })
 });
 </script>
