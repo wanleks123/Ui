@@ -7,6 +7,15 @@ export const navigation = [
         ],
     },
     {
+        title: 'Components',
+        links: [
+            {
+                title: 'Badge',
+                href: '/components/badge'
+            },
+        ]
+    },
+    {
         title: 'Core concepts',
         links: [
             { title: 'Understanding caching', href: '/docs/understanding-caching' },
