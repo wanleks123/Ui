@@ -20,6 +20,7 @@ const proseClasses = [
     'prose-pre:rounded-xl',
     // hr
     'dark:prose-hr:border-surface-800',
+    'prose-table:my-0!',
     // Merge with any custom classes passed to the component
     attrs.class
 ]

@@ -12,11 +12,16 @@
 
 <script setup lang="ts">
 import Button, { type ButtonPassThroughOptions, type ButtonProps } from 'primevue/button';
-import { ref } from 'vue';
+import {onMounted, ref, useAttrs} from 'vue';
 import { ptViewMerge } from './utils';
 
 interface Props extends /* @vue-ignore */ ButtonProps {}
-defineProps<Props>();
+const props = defineProps<Props>();
+const attrs = useAttrs();
+
+const mergedProps = { ...props, ...attrs };
+
+console.log(attrs);
 
 const rootClasses = [
     // --- Base Layout ---
@@ -84,13 +89,13 @@ const rootClasses = [
     'dark:p-success:active:bg-teal-600 dark:p-success:active:border-teal-600',
 
     // --- Info ---
-    'p-info:bg-blue-600 p-info:border-blue-600',
-    'p-info:hover:bg-blue-500 p-info:hover:border-blue-500',
-    'p-info:active:bg-blue-700 p-info:active:border-blue-700',
-    'p-info:focus-visible:outline-blue-600',
-    'dark:p-info:bg-blue-500 dark:p-info:border-blue-500',
-    'dark:p-info:hover:bg-blue-400 dark:p-info:hover:border-blue-400',
-    'dark:p-info:active:bg-blue-600 dark:p-info:active:border-blue-600',
+    'p-info:bg-cyan-600 p-info:border-cyan-600',
+    'p-info:hover:bg-cyan-500 p-info:hover:border-cyan-500',
+    'p-info:active:bg-cyan-700 p-info:active:border-cyan-700',
+    'p-info:focus-visible:outline-cyan-600',
+    'dark:p-info:bg-cyan-500 dark:p-info:border-cyan-500',
+    'dark:p-info:hover:bg-cyan-400 dark:p-info:hover:border-cyan-400',
+    'dark:p-info:active:bg-cyan-600 dark:p-info:active:border-cyan-600',
 
     // --- Warn ---
     'p-warn:bg-amber-600 p-warn:border-amber-600',
@@ -123,7 +128,8 @@ const rootClasses = [
 
     // --- Text & Outlined (Reset Base) ---
     'p-text:bg-transparent p-text:border-transparent p-text:shadow-none',
-    'p-outlined:bg-transparent p-outlined:shadow-none',
+    'p-outlined:bg-transparent p-outlined:hover:bg-surface-100/50 p-outlined:shadow-none dark:p-outlined:bg-transparent dark:p-outlined:hover:bg-surface-800/50 dark:p-outlined:shadow-none',
+    'p-outlined:active:bg-surface-100/80 dark:p-outlined:active:bg-surface-950/10',
 
     // --- Text Colors ---
     // Note: Used /20 for active state vs /10 for hover
@@ -180,8 +186,24 @@ const theme = ref<ButtonPassThroughOptions>({
         'p-left:-ml-0.5',
         'p-right:-mr-0.5 p-right:order-1',
     ].join(' '),
-    pcBadge: ({ props }) => ({
-        class: [{ 'ml-2 w-4 h-4 leading-none flex items-center justify-center': props.badge }]
-    })
+    pcBadge: {
+        root: [
+            `min-w-4 h-4 leading-4 rounded-full text-primary text-xs font-bold`,
+            {
+                'bg-primary text-surface-0 dark:text-surface-950': (mergedProps.outlined || mergedProps.text),
+                'bg-teal-500 text-surface-0 dark:text-surface-950': (mergedProps.outlined || mergedProps.text) && mergedProps.severity === 'success',
+                'bg-cyan-500 text-surface-0 dark:text-surface-950': (mergedProps.outlined || mergedProps.text) && mergedProps.severity === 'info',
+                'bg-amber-500 text-surface-0 dark:text-surface-950': (mergedProps.outlined || mergedProps.text) && mergedProps.severity === 'warn',
+                'bg-red-500 text-surface-0 dark:text-surface-950': (mergedProps.outlined || mergedProps.text) && mergedProps.severity === 'danger',
+                'bg-surface-950 dark:bg-surface-0 text-surface-0 dark:text-surface-950': (mergedProps.outlined || mergedProps.text) && mergedProps.severity === 'contrast',
+                'bg-surface-0 text-primary': !mergedProps.outlined && !mergedProps.text,
+                'bg-surface-0 text-teal-500': !mergedProps.outlined && !mergedProps.text && mergedProps.severity === 'success',
+                'bg-surface-0 text-cyan-500': !mergedProps.outlined && !mergedProps.text && mergedProps.severity === 'info',
+                'bg-surface-0 text-amber-500': !mergedProps.outlined && !mergedProps.text && mergedProps.severity === 'warn',
+                'bg-surface-0 text-red-500': !mergedProps.outlined && !mergedProps.text && mergedProps.severity === 'danger',
+                'bg-surface-0 text-surface-950': !mergedProps.outlined && !mergedProps.text && mergedProps.severity === 'contrast',
+            }
+        ]
+    }
 });
 </script>

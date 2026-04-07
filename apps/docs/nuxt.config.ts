@@ -20,6 +20,48 @@ export default defineNuxtConfig({
 
     app: {
         head: {
+            script: [
+                {
+                    // This script runs INSTANTLY as the browser parses the head.
+                    // It does not wait for Vue, Nuxt, or DOMContentLoaded.
+                    innerHTML: `
+                        (function() {
+                            // 1. Define detection logic
+                            const getTheme = () => {
+                                if (localStorage.theme === 'dark') return 'dark';
+                                if (localStorage.theme === 'light') return 'light';
+                                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                            };
+
+                            const theme = getTheme();
+                            const html = document.documentElement;
+
+                            // 2. Apply Theme Class (Blocking)
+                            if (theme === 'dark') {
+                                html.classList.add('dark');
+                            } else {
+                                html.classList.remove('dark');
+                            }
+
+                            // 3. Apply OS Class (Mac/Win)
+                            if (navigator.userAgent.indexOf('Mac OS X') !== -1) {
+                                html.classList.add('mac');
+                            } else {
+                                html.classList.add('win');
+                            }
+
+                            // 4. Handle Favicon (Immediate)
+                            const link = document.createElement('link');
+                            link.rel = 'shortcut icon';
+                            link.href = theme === 'dark' 
+                                ? 'https://auth.unimma.ac.id/favicon-dark.png' 
+                                : 'https://auth.unimma.ac.id/favicon-light.png';
+                            document.head.appendChild(link);
+                        })();
+                    `,
+                    type: 'text/javascript'
+                }
+            ],
             bodyAttrs: {
                 class: 'bg-white dark:bg-surface-900'
             }
