@@ -23,9 +23,7 @@ Content to display is defined with the value property or the default slot.
 ::DocsCard
 ::UBadge{value="2"}
 ::
-::UBadge
-10
-::
+:UBadge[10]
 ::
 
 ```vue
@@ -43,7 +41,7 @@ Buttons have built-in support for badges to display a badge inline.
         ::Icon{name="ph:bell" style="width:1.125rem; height:1.125rem"}
         ::
     ::
-    ::UButton{type="button" label="Inbox" badge="2" badgeSeverity="contrast" outlined}
+    ::UButton{type="button" label="Inbox" badge="2" outlined}
     #icon
         ::Icon{name="ph:envelope" style="width:1.125rem; height:1.125rem"}
         ::
@@ -55,7 +53,7 @@ Buttons have built-in support for badges to display a badge inline.
 
 ```vue
 <Button type="button" label="Notifications" icon="ph:bell" badge="2" />
-<Button type="button" label="Inbox" icon="ph:inbox" badge="2" badgeSeverity="contrast" variant="outlined" />
+<Button type="button" label="Inbox" icon="ph:inbox" badge="2" variant="outlined" />
 ```
 #full
 ```vue
@@ -74,18 +72,19 @@ Buttons have built-in support for badges to display a badge inline.
 
 ## Overlay
 
-A badge can be added to any element by encapsulating the content with the OverlayBadge component.
+A badge can be added to any element by encapsulating the content with the OverlayBadge component. If you need a simple dot badge,
+use the OverlayDot component instead.
 
 ::DocsCard
-    ::UOverlayBadge{value="2"}
+    ::UOverlayBadge{value="22" size="small"}
         ::Icon{name="ph:bell" style="width: 2rem; height: 2rem;"}
         ::
     ::
-    ::UOverlayBadge{value="4" severity="danger"}
+    ::UOverlayBadge{value="4" size="small" severity="danger"}
         ::Icon{name="ph:calendar" style="width: 2rem; height: 2rem;"}
         ::
     ::
-    ::UOverlayBadge{severity="danger"}
+    ::UOverlayDot{severity="danger"}
         ::Icon{name="ph:envelope" style="width: 2rem; height: 2rem;"}
         ::
     ::
@@ -100,9 +99,9 @@ A badge can be added to any element by encapsulating the content with the Overla
 <OverlayBadge value="4" severity="danger">
     <Icon name="ph:calendar" style="font-size: 2rem" />
 </OverlayBadge>
-<OverlayBadge severity="danger">
+<OverlayDot severity="danger">
     <Icon name="ph:envelope" style="font-size: 2rem" />
-</OverlayBadge> 
+</OverlayDot> 
 ```
 #full
 ```vue
@@ -141,6 +140,8 @@ Severity defines the variant of a badge.
 ::
 ::UBadge{value="9" severity="warn"}
 ::
+::UBadge{value="7" severity="help"}
+::
 ::UBadge{value="3" severity="danger"}
 ::
 ::UBadge{value="5" severity="contrast"}
@@ -154,6 +155,7 @@ Severity defines the variant of a badge.
 <Badge value="8" severity="success"></Badge>
 <Badge value="4" severity="info"></Badge>
 <Badge value="9" severity="warn"></Badge>
+<Badge value="7" severity="help"></Badge>
 <Badge value="3" severity="danger"></Badge>
 <Badge value="5" severity="contrast"></Badge>
 ```
