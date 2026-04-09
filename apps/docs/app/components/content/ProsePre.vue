@@ -53,7 +53,7 @@ const fileIcon = computed(() => {
 </script>
 
 <template>
-    <div class="group relative rounded-xl overflow-hidden shadow-lg ring-1 ring-surface-300/10">
+    <div class="w-full min-w-0 group relative rounded-xl overflow-hidden shadow-lg ring-1 ring-surface-300/10">
         <div
             v-if="filename"
             class="flex items-center justify-between border-b border-surface-300 dark:border-surface-700 dark:bg-surface-800/50 px-4 py-3"
@@ -64,11 +64,10 @@ const fileIcon = computed(() => {
             </div>
         </div>
 
-        <div class="relative">
+        <div class="relative w-full">
             <pre
                 :class="[
-                    'overflow-x-auto px-7 py-6 text-sm leading-6 m-0! rounded-none! bg-surface-0 dark:bg-surface-800/50',
-                    !filename,
+                    'max-w-full overflow-x-auto whitespace-pre px-7 py-6 text-sm leading-6 m-0! bg-surface-0 dark:bg-surface-800/50',
                     $attrs.class
                 ]"
             ><slot/></pre>

@@ -91,7 +91,7 @@ onUnmounted(() => {
                 </div>
             </div>
 
-            <main>
+            <main class="max-w-[100vw] overflow-x-hidden">
                 <DocsLayout :page="page">
                      <slot/>
                 </DocsLayout>
