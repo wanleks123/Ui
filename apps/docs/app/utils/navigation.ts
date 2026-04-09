@@ -17,6 +17,10 @@ export const navigation = [
                 title: 'Button',
                 href: '/components/button'
             },
+            {
+                title: 'DataTable',
+                href: '/components/data-table'
+            },
         ]
     },
     {
