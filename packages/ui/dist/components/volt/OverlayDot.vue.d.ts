@@ -5,7 +5,6 @@ declare function __VLS_template(): {
     attrs: Partial<{}>;
     slots: {
         default?(_: {}): any;
-        badge?(_: {}): any;
     };
     refs: {};
     rootEl: any;
