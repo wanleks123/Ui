@@ -15,7 +15,7 @@
                         class="inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium transition-colors duration-200 disabled:opacity-40 disabled:cursor-not-allowed
                                text-surface-500 hover:border-surface-300 hover:text-surface-700 dark:text-surface-400 dark:hover:border-white/20 dark:hover:text-surface-200"
                     >
-                        <ArrowLongLeftIcon class="mr-3 size-5 text-surface-400 dark:text-surface-500" aria-hidden="true" />
+                        <Icon name="ph:arrow-left" class="mr-3 size-5 text-surface-400 dark:text-surface-500" aria-hidden="true" />
                         Previous
                     </button>
                 </div>
@@ -44,7 +44,7 @@
                                text-surface-500 hover:border-surface-300 hover:text-surface-700 dark:text-surface-400 dark:hover:border-white/20 dark:hover:text-surface-200"
                     >
                         Next
-                        <ArrowLongRightIcon class="ml-3 size-5 text-surface-400 dark:text-surface-500" aria-hidden="true" />
+                        <Icon name="ph:arrow-right" class="ml-3 size-5 text-surface-400 dark:text-surface-500" aria-hidden="true" />
                     </button>
                 </div>
             </nav>
@@ -53,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/vue/24/outline';
+// Heroicons import dihapus
 import Paginator, { type PaginatorPassThroughOptions, type PaginatorProps } from 'primevue/paginator';
 import { ref } from 'vue';
 import { ptViewMerge } from './utils';

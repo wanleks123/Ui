@@ -13,6 +13,10 @@ export const navigation = [
                 title: 'Badge',
                 href: '/components/badge'
             },
+            {
+                title: 'Button',
+                href: '/components/button'
+            },
         ]
     },
     {
