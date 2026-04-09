@@ -6,56 +6,64 @@
             mergeProps: ptViewMerge
         }"
     >
-        <template #container="{ page, pageCount, pageLinks, changePageCallback, firstPageCallback, lastPageCallback, prevPageCallback, nextPageCallback }">
-            <div class="flex flex-wrap gap-2 items-center justify-center">
-                <SecondaryButton text rounded @click="firstPageCallback" :disabled="page === 0">
-                    <template #icon>
-                        <AngleDoubleLeftIcon />
-                    </template>
-                </SecondaryButton>
-                <SecondaryButton text rounded @click="prevPageCallback" :disabled="page === 0">
-                    <template #icon>
-                        <AngleLeftIcon />
-                    </template>
-                </SecondaryButton>
-                <div class="items-center justify-center gap-2 hidden sm:flex">
-                    <SecondaryButton v-for="pageLink of pageLinks" :key="pageLink" :text="page + 1 !== pageLink" rounded @click="() => changePageCallback(pageLink - 1)" :class="['shrink-0 min-w-10 h-10', { 'bg-highlight!': page + 1 === pageLink }]"
-                        >{{ pageLink }}
-                    </SecondaryButton>
+        <template #container="{ page, pageCount, pageLinks, changePageCallback, prevPageCallback, nextPageCallback }">
+            <nav class="flex items-center justify-between border-t border-surface-200 px-4 sm:px-0 dark:border-white/10 w-full">
+                <div class="-mt-px flex w-0 flex-1">
+                    <button 
+                        @click="prevPageCallback" 
+                        :disabled="page === 0"
+                        class="inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium transition-colors duration-200 disabled:opacity-40 disabled:cursor-not-allowed
+                               text-surface-500 hover:border-surface-300 hover:text-surface-700 dark:text-surface-400 dark:hover:border-white/20 dark:hover:text-surface-200"
+                    >
+                        <ArrowLongLeftIcon class="mr-3 size-5 text-surface-400 dark:text-surface-500" aria-hidden="true" />
+                        Previous
+                    </button>
                 </div>
-                <SecondaryButton text rounded @click="nextPageCallback" :disabled="page === pageCount! - 1">
-                    <template #icon>
-                        <AngleRightIcon />
-                    </template>
-                </SecondaryButton>
-                <SecondaryButton text rounded @click="lastPageCallback" :disabled="page === pageCount! - 1">
-                    <template #icon>
-                        <AngleDoubleRightIcon />
-                    </template>
-                </SecondaryButton>
-            </div>
-        </template>
-        <template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
-            <slot :name="slotName" v-bind="slotProps ?? {}" />
+
+                <div class="hidden md:-mt-px md:flex">
+                    <button 
+                        v-for="pageLink of pageLinks" 
+                        :key="pageLink"
+                        @click="changePageCallback(pageLink - 1)"
+                        :class="[
+                            'inline-flex items-center border-t-2 px-4 pt-4 text-sm font-medium transition-colors duration-200',
+                            page + 1 === pageLink 
+                                ? 'border-primary-500 text-primary-600 dark:border-primary-400 dark:text-primary-400' 
+                                : 'border-transparent text-surface-500 hover:text-surface-700 hover:border-surface-300 dark:text-surface-400 dark:hover:border-white/20 dark:hover:text-surface-200'
+                        ]"
+                    >
+                        {{ pageLink }}
+                    </button>
+                </div>
+
+                <div class="-mt-px flex w-0 flex-1 justify-end">
+                    <button 
+                        @click="nextPageCallback" 
+                        :disabled="page === pageCount - 1"
+                        class="inline-flex items-center border-t-2 border-transparent pt-4 pl-1 text-sm font-medium transition-colors duration-200 disabled:opacity-40 disabled:cursor-not-allowed
+                               text-surface-500 hover:border-surface-300 hover:text-surface-700 dark:text-surface-400 dark:hover:border-white/20 dark:hover:text-surface-200"
+                    >
+                        Next
+                        <ArrowLongRightIcon class="ml-3 size-5 text-surface-400 dark:text-surface-500" aria-hidden="true" />
+                    </button>
+                </div>
+            </nav>
         </template>
     </Paginator>
 </template>
 
 <script setup lang="ts">
-import AngleDoubleLeftIcon from '@primevue/icons/angledoubleleft';
-import AngleDoubleRightIcon from '@primevue/icons/angledoubleright';
-import AngleLeftIcon from '@primevue/icons/angleleft';
-import AngleRightIcon from '@primevue/icons/angleright';
+import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/vue/24/outline';
 import Paginator, { type PaginatorPassThroughOptions, type PaginatorProps } from 'primevue/paginator';
-import {ref} from 'vue'
-import SecondaryButton from './SecondaryButton.vue';
+import { ref } from 'vue';
 import { ptViewMerge } from './utils';
 
 interface Props extends /* @vue-ignore */ PaginatorProps {}
 defineProps<Props>();
 
 const theme = ref<PaginatorPassThroughOptions>({
-    root: `flex items-center justify-center flex-wrap py-2 px-4 rounded-md gap-1
-        bg-surface-0 dark:bg-surface-900 text-surface-700 dark:text-surface-0`
+    root: {
+        class: 'flex items-center justify-center flex-wrap w-full bg-surface-0 dark:bg-surface-950'
+    }
 });
 </script>

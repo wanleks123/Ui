@@ -37,108 +37,95 @@ interface Props extends /* @vue-ignore */ MultiSelectProps {}
 defineProps<Props>();
 
 const theme = ref<MultiSelectPassThroughOptions>({
-    root: `inline-flex cursor-pointer relative select-none rounded-md p-fluid:flex
-        bg-surface-0 dark:bg-surface-950
-        border border-surface-300 hover:border-surface-400 dark:border-surface-600 dark:hover:border-surface-700
-        p-focus:border-primary
-        p-filled:bg-surface-50 dark:p-filled:bg-surface-800
-        p-invalid:border-red-400 dark:p-invalid:border-red-300
-        p-disabled:bg-surface-200 p-disabled:text-surface-500 dark:p-disabled:bg-surface-700 dark:p-disabled:text-surface-400 p-disabled:pointer-events-none
-        shadow-[0_1px_2px_0_rgba(18,18,23,0.05)]
-        transition-colors duration-200`,
-    labelContainer: `overflow-hidden flex-auto`,
-    label: `flex items-center gap-1 whitespace-nowrap overflow-hidden text-ellipsis px-3 py-2 p-has-chip:py-1 p-has-chip:px-[0.375rem]
-        text-surface-700 dark:text-surface-0 
-        p-placeholder:text-surface-500 dark:p-placeholder:text-surface-400
-        p-disabled:text-surface-500 dark:p-disabled:text-surface-400
-        p-empty:overflow-hidden p-empty:opacity-0
-        p-small:text-sm p-small:px-[0.625rem] p-small:py-[0.375rem]
-        p-large:text-lg p-large:px-[0.875rem] p-large:py-[0.625rem]`,
-    chipItem: ``,
+    root: ({ props, state }: any) => ({
+        class: [
+            'inline-flex cursor-pointer relative select-none rounded-md transition-all duration-200',
+            'bg-surface-0 dark:bg-surface-950',
+            'border',
+            {
+                'border-surface-300 dark:border-surface-600': !props.invalid,
+                'border-red-500 dark:border-red-400': props.invalid,
+                'ring-1 ring-primary-500 dark:ring-primary-400': state.focused && !props.invalid
+            },
+            { 'hover:border-surface-400 dark:hover:border-surface-700': !props.invalid && !state.focused },
+            { 'bg-surface-200 dark:bg-surface-700 opacity-60 cursor-default pointer-events-none': props.disabled },
+            'shadow-sm'
+        ]
+    }),
+    labelContainer: 'overflow-hidden flex flex-auto cursor-pointer',
+    label: ({ props }: any) => ({
+        class: [
+            'text-sm leading-none transition-colors duration-200 overflow-hidden whitespace-nowrap text-ellipsis',
+            {
+                'py-2 px-3': props.display === 'comma' || (props.display === 'chip' && !props.modelValue?.length),
+                'py-1 px-1': props.display === 'chip' && props.modelValue?.length > 0
+            },
+            {
+                'text-surface-800 dark:text-surface-0': props.modelValue?.length,
+                'text-surface-400 dark:text-surface-500': !props.modelValue?.length
+            }
+        ]
+    }),
     pcChip: {
-        root: `inline-flex items-center gap-2 px-3 py-1 rounded-sm
-            bg-surface-100 dark:bg-surface-800
-            text-surface-800 dark:text-surface-0
-            has-[img]:pt-1 has-[img]:pb-1
-            p-removable:pe-2`,
-        removeIcon: `cursor-pointer text-base w-4 h-4 rounded-full text-surface-800 dark:text-surface-0`
+        root: 'inline-flex items-center gap-1.5 px-2 py-0.5 rounded-sm bg-surface-100 dark:bg-surface-800 text-surface-700 dark:text-surface-300',
+        label: 'text-xs font-medium',
+        removeIcon: 'size-3.5 cursor-pointer hover:text-red-500 transition-colors'
     },
-    dropdown: `flex items-center justify-center shrink-0 bg-transparent
-        text-surface-400 w-10 rounded-e-md`,
-    overlay: `absolute top-0 left-0 rounded-md p-portal-self:min-w-full 
-        bg-surface-0 dark:bg-surface-900
-        border border-surface-200 dark:border-surface-700
-        text-surface-700 dark:text-surface-0
-        shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-2px_rgba(0,0,0,0.1)]`,
-    header: `flex items-center pt-2 pb-1 px-4 gap-2`,
+    dropdown: 'flex items-center justify-center shrink-0 bg-transparent text-surface-400 w-10 rounded-r-md',
+    overlay: 'bg-surface-0 dark:bg-surface-900 text-surface-700 dark:text-surface-0 border border-surface-200 dark:border-surface-700 rounded-md shadow-lg mt-1',
+    header: 'flex items-center justify-between p-2 gap-2 border-b border-surface-100 dark:border-surface-800',
     pcHeaderCheckbox: {
-        root: `relative inline-flex select-none w-5 h-5 align-bottom`,
-        input: `peer cursor-pointer disabled:cursor-default appearance-none 
-            absolute start-0 top-0 w-full h-full m-0 p-0 opacity-0 z-10
-            border border-transparent rounded-xs`,
-        box: `flex justify-center items-center rounded-sm w-5 h-5
-            border border-surface-300 dark:border-surface-700
-            bg-surface-0 dark:bg-surface-950
-            text-surface-700 dark:text-surface-0
-            peer-enabled:peer-hover:border-surface-400 dark:peer-enabled:peer-hover:border-surface-600
-            p-checked:border-primary p-checked:bg-primary p-checked:text-primary-contrast
-            peer-enabled:peer-hover:p-checked:bg-primary-emphasis peer-enabled:peer-hover:p-checked:border-primary-emphasis
-            peer-focus-visible:outline-1 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-primary peer-focus-visible:outline 
-            p-disabled:bg-surface-200 dark:p-disabled:bg-surface-400 p-disabled:border-surface-300 dark:p-disabled:border-surface-700 p-disabled:text-surface-700 dark:p-disabled:text-surface-400
-            shadow-[0_1px_2px_0_rgba(18,18,23,0.05)] transition-colors duration-200`,
-        icon: `text-sm w-[0.875rem] h-[0.875rem] transition-none`
+        root: 'relative inline-flex align-bottom size-5',
+        box: ({ context }: any) => ({
+            class: [
+                'flex justify-center items-center rounded border transition-all duration-200 size-5',
+                context.checked 
+                    ? 'bg-primary-600 border-primary-600 text-white' 
+                    : 'bg-surface-0 dark:bg-surface-950 border-surface-300 dark:border-surface-700',
+                'hover:border-primary-500'
+            ]
+        })
     },
-    pcFilterContainer: {
-        root: `relative flex-auto`
-    },
+    pcFilterContainer: 'relative flex-auto',
     pcFilter: {
-        root: `w-full appearance-none rounded-md outline-hidden
-            bg-surface-0 dark:bg-surface-950
-            text-surface-700 dark:text-surface-0
-            placeholder:text-surface-500 dark:placeholder:text-surface-400
-            border border-surface-300 dark:border-surface-700
-            enabled:hover:border-surface-400 dark:enabled:hover:border-surface-600
-            enabled:focus:border-primary
-            disabled:bg-surface-200 disabled:text-surface-500
-            dark:disabled:bg-surface-700 dark:disabled:text-surface-400
-            ps-3 pe-10 py-2 p-fluid:w-full
-            transition-colors duration-200 shadow-[0_1px_2px_0_rgba(18,18,23,0.05)]`
+        root: 'w-full text-sm py-1.5 ps-8 pe-3 rounded border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-800 outline-none focus:border-primary-500'
     },
-    pcFilterIconContainer: {
-        root: `absolute top-1/2 -mt-2 leading-none end-3 z-1`
-    },
-    listContainer: `overflow-auto`,
-    virtualScroller: ``,
-    list: `m-0 p-1 list-none gap-[2px] flex flex-col`,
-    optionGroup: `m-0 px-3 py-2 bg-transparent text-surface-500 dark:text-surface-400 font-semibold`,
-    option: `cursor-pointer font-normal whitespace-nowrap relative overflow-hidden flex items-center gap-2 px-3 py-2
-        rounded-sm text-surface-700 dark:text-surface-0 bg-transparent border-none
-        p-focus:bg-surface-100 dark:p-focus:bg-surface-800 p-focus:text-surface-800 dark:p-focus:text-surface-0
-        transition-colors duration-200`,
-    optionLabel: ``,
+    pcFilterIconContainer: 'absolute top-1/2 -mt-2 leading-none start-2.5',
+    list: 'p-1 list-none m-0 flex flex-col gap-[2px]',
+    option: ({ context }: any) => ({
+        class: [
+            'relative flex items-center px-3 py-2 gap-2 rounded-sm cursor-pointer transition-colors duration-200',
+            {
+                'text-surface-700 dark:text-surface-300': !context.focused && !context.selected,
+                'bg-surface-100 dark:bg-surface-800 text-surface-900 dark:text-surface-0': context.focused && !context.selected,
+                'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300': context.selected
+            }
+        ]
+    }),
     pcOptionCheckbox: {
-        root: `relative inline-flex select-none w-5 h-5 align-bottom`,
-        input: `peer cursor-pointer disabled:cursor-default appearance-none 
-            absolute start-0 top-0 w-full h-full m-0 p-0 opacity-0 z-10
-            border border-transparent rounded-xs`,
-        box: `flex justify-center items-center rounded-sm w-5 h-5
-            border border-surface-300 dark:border-surface-700
-            bg-surface-0 dark:bg-surface-950
-            text-surface-700 dark:text-surface-0
-            peer-enabled:peer-hover:border-surface-400 dark:peer-enabled:peer-hover:border-surface-600
-            p-checked:border-primary p-checked:bg-primary p-checked:text-primary-contrast
-            peer-enabled:peer-hover:p-checked:bg-primary-emphasis peer-enabled:peer-hover:p-checked:border-primary-emphasis
-            peer-focus-visible:outline-1 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-primary peer-focus-visible:outline 
-            p-disabled:bg-surface-200 dark:p-disabled:bg-surface-400 p-disabled:border-surface-300 dark:p-disabled:border-surface-700 p-disabled:text-surface-700 dark:p-disabled:text-surface-400
-            shadow-[0_1px_2px_0_rgba(18,18,23,0.05)] transition-colors duration-200`,
-        icon: `text-sm w-[0.875rem] h-[0.875rem] transition-none`
+        root: 'relative inline-flex align-bottom size-4',
+        box: ({ context }: any) => ({
+            class: [
+                'flex justify-center items-center rounded border transition-all duration-200 size-4',
+                context.checked 
+                    ? 'bg-primary-600 border-primary-600 text-white' 
+                    : 'bg-surface-0 dark:bg-surface-950 border-surface-300 dark:border-surface-700'
+            ]
+        }),
+        icon: 'size-3'
     },
-    emptyMessage: `px-3 py-2`,
+    optionGroup: 'font-bold text-xs uppercase tracking-wider mt-2 mb-1 px-3 text-surface-400 dark:text-surface-500',
+    emptyMessage: 'py-2 px-3 text-sm text-surface-500',
     transition: {
-        enterFromClass: 'opacity-0 scale-y-75',
-        enterActiveClass: 'transition duration-120 ease-[cubic-bezier(0,0,0.2,1)]',
+        enterFromClass: 'opacity-0 scale-y-[0.8]',
+        enterActiveClass: 'transition-[transform,opacity] duration-[120ms] ease-[cubic-bezier(0,0,0.2,1)]',
         leaveActiveClass: 'transition-opacity duration-100 ease-linear',
         leaveToClass: 'opacity-0'
     }
+});
+
+const el = ref();
+defineExpose({
+    toggle: (event: any) => el.value.toggle(event)
 });
 </script>

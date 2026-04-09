@@ -14,6 +14,7 @@
                 </template>
             </SecondaryButton>
         </template>
+        
         <template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
             <slot :name="slotName" v-bind="slotProps ?? {}" />
         </template>
@@ -32,22 +33,48 @@ interface Props extends /* @vue-ignore */ PanelProps {}
 defineProps<Props>();
 
 const theme = ref<PanelPassThroughOptions>({
-    root: `border border-surface-200 dark:border-surface-700 rounded-md
-        bg-surface-0 dark:bg-surface-900
-        text-surface-700 dark:text-surface-0`,
-    header: `flex justify-between items-center p-[1.125rem] p-toggleable:py-[0.375rem] p-toggleable:px-[1.125rem]`,
-    title: `leading-none font-semibold`,
-    headerActions: `flex items-center gap-1`,
-    contentContainer: ``,
-    content: `pt-0 pb-[1.125rem] px-[1.125rem] `,
-    footer: `pt-0 pb-[1.125rem] px-[1.125rem] `,
+    root: {
+        class: [
+            'rounded-lg shadow-sm',
+            'bg-surface-0 dark:bg-surface-800/50',
+            'border border-surface-200 dark:border-white/10',
+            'text-surface-700 dark:text-surface-0'
+        ]
+    },
+    header: ({ props }: any) => ({
+        class: [
+            'flex items-center justify-between',
+            'bg-transparent',
+            // Matching the px-4 py-5 sm:p-6 container logic
+            'px-4 pt-5 sm:px-6 sm:pt-6 pb-0',
+            { 'cursor-pointer select-none': props.toggleable }
+        ]
+    }),
+    title: {
+        class: 'text-base font-semibold text-surface-900 dark:text-white leading-none'
+    },
+    headerActions: {
+        class: 'flex items-center gap-2'
+    },
+    contentContainer: {
+        class: 'transition-all duration-300'
+    },
+    content: {
+        class: [
+            'px-4 pb-5 sm:px-6 sm:pb-6 pt-5', // Internal padding for the body
+            'text-sm text-surface-600 dark:text-surface-400'
+        ]
+    },
+    footer: {
+        class: 'px-4 pb-5 sm:px-6 sm:pb-6 pt-0 border-0'
+    },
     transition: {
-        enterFromClass: 'max-h-0',
-        enterActiveClass: 'overflow-hidden transition-[max-height] duration-1000 ease-[cubic-bezier(0.42,0,0.58,1)]',
-        enterToClass: 'max-h-[1000px]',
-        leaveFromClass: 'max-h-[1000px]',
-        leaveActiveClass: 'overflow-hidden transition-[max-height] duration-[450ms] ease-[cubic-bezier(0,1,0,1)]',
-        leaveToClass: 'max-h-0'
+        enterFromClass: 'max-h-0 opacity-0',
+        enterActiveClass: 'overflow-hidden transition-[max-height,opacity] duration-500 ease-in-out',
+        enterToClass: 'max-h-[1000px] opacity-100',
+        leaveFromClass: 'max-h-[1000px] opacity-100',
+        leaveActiveClass: 'overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out',
+        leaveToClass: 'max-h-0 opacity-0'
     }
 });
 </script>

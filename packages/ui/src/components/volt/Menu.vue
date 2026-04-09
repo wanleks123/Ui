@@ -2,6 +2,7 @@
     <Menu
         ref="el"
         unstyled
+        :model="model"
         :pt="theme"
         :ptOptions="{
             mergeProps: ptViewMerge
@@ -9,6 +10,27 @@
     >
         <template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
             <slot :name="slotName" v-bind="slotProps ?? {}" />
+        </template>
+        
+        <template #item="{ item, props }">
+            <a v-ripple :href="item.url" v-bind="props.action" class="group">
+                <component 
+                    :is="item.icon" 
+                    :class="[
+                        item.current ? 'text-primary-600 dark:text-primary-400' : 'text-surface-400 group-hover:text-primary-600 dark:text-surface-500 dark:group-hover:text-white',
+                        'size-6 shrink-0 transition-colors duration-200'
+                    ]" 
+                />
+                <span :class="[item.current ? 'text-primary-600 dark:text-white' : 'text-surface-700 dark:text-surface-300 group-hover:text-primary-600 dark:group-hover:text-white']">
+                    {{ item.label }}
+                </span>
+                <span 
+                    v-if="item.count" 
+                    class="ml-auto w-9 min-w-max rounded-full bg-surface-0 px-2.5 py-0.5 text-center text-xs/5 font-medium text-surface-600 outline-1 -outline-offset-1 outline-surface-200 dark:bg-surface-900 dark:text-surface-400 dark:outline-white/10"
+                >
+                    {{ item.count }}
+                </span>
+            </a>
         </template>
     </Menu>
 </template>
@@ -18,31 +40,60 @@ import Menu, { type MenuPassThroughOptions, type MenuProps } from 'primevue/menu
 import { ref } from 'vue';
 import { ptViewMerge } from './utils';
 
-interface Props extends /* @vue-ignore */ MenuProps {}
+interface Props extends /* @vue-ignore */ MenuProps {
+    model?: any[];
+}
 defineProps<Props>();
 
 const theme = ref<MenuPassThroughOptions>({
-    root: `bg-surface-0 dark:bg-surface-900
-        text-surface-700 dark:text-surface-0
-        border border-surface-200 dark:border-surface-700
-        rounded-md min-w-52
-        p-popup:shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-2px_rgba(0,0,0,0.1)]`,
-    list: `m-0 p-1 list-none outline-none flex flex-col gap-[2px]`,
-    item: `p-disabled:opacity-60 p-disabled:pointer-events-none`,
-    itemContent: `group transition-colors duration-200 rounded-sm text-surface-700 dark:text-surface-0
-        p-focus:bg-surface-100 dark:p-focus:bg-surface-800 p-focus:text-surface-800 dark:p-focus:text-surface-0
-        hover:bg-surface-100 dark:hover:bg-surface-800 hover:text-surface-800 dark:hover:text-surface-0`,
-    itemLink: `cursor-pointer flex items-center no-underline overflow-hidden relative text-inherit
-        px-3 py-2 gap-2 select-none outline-none`,
-    itemIcon: `text-surface-400 dark:text-surface-500
-        p-focus:text-surface-500 dark:p-focus:text-surface-400
-        group-hover:text-surface-500 dark:group-hover:text-surface-400`,
-    itemLabel: ``,
-    submenuLabel: `bg-transparent px-3 py-2 text-surface-500 dark:text-surface-400 font-semibold`,
-    separator: `border-t border-surface-200 dark:border-surface-700`,
+    root: {
+        class: [
+            // Sizing and Shape
+            'min-w-[12.5rem] rounded-md',
+            // Spacing
+            'mt-1 p-1',
+            // Colors
+            'bg-surface-0 dark:bg-surface-900',
+            'border border-surface-200 dark:border-surface-700',
+            'shadow-lg'
+        ]
+    },
+    list: {
+        class: 'list-none m-0 p-0 outline-none flex flex-col gap-y-1'
+    },
+    item: {
+        class: 'relative'
+    },
+    itemContent: ({ context }: any) => ({
+        class: [
+            'rounded-md transition-all duration-200',
+            // Active/Current State vs Normal State
+            context.active 
+                ? 'bg-surface-50 dark:bg-white/5' 
+                : 'hover:bg-surface-50 dark:hover:bg-white/5',
+            // Disabled
+            { 'opacity-60 pointer-events-none': context.disabled }
+        ]
+    }),
+    itemLink: {
+        class: [
+            'relative flex items-center gap-x-3 px-2 py-2',
+            'text-sm/6 font-semibold no-underline cursor-pointer select-none overflow-hidden'
+        ]
+    },
+    submenuLabel: {
+        class: [
+            'text-xs/6 font-semibold uppercase tracking-wider',
+            'mt-4 mb-2 px-2',
+            'text-surface-400 dark:text-surface-500'
+        ]
+    },
+    separator: {
+        class: 'border-t border-surface-200 dark:border-surface-700 my-1'
+    },
     transition: {
-        enterFromClass: 'opacity-0 scale-y-75',
-        enterActiveClass: 'transition duration-120 ease-[cubic-bezier(0,0,0.2,1)]',
+        enterFromClass: 'opacity-0 scale-y-[0.8]',
+        enterActiveClass: 'transition-[transform,opacity] duration-[120ms] ease-[cubic-bezier(0,0,0.2,1)]',
         leaveActiveClass: 'transition-opacity duration-100 ease-linear',
         leaveToClass: 'opacity-0'
     }
