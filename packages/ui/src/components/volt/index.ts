@@ -37,6 +37,7 @@ export { default as MeterGroup } from './MeterGroup.vue';
 export { default as MultiSelect } from './MultiSelect.vue';
 export { default as OrganizationChart } from './OrganizationChart.vue';
 export { default as OverlayBadge } from './OverlayBadge.vue';
+export { default as OverlayDot } from './OverlayDot.vue';
 export { default as Paginator } from './Paginator.vue';
 export { default as Panel } from './Panel.vue';
 export { default as Password } from './Password.vue';

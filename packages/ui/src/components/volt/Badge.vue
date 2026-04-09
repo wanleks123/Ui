@@ -14,63 +14,66 @@
 
 <script setup lang="ts">
 import Badge, { type BadgePassThroughOptions, type BadgeProps } from 'primevue/badge';
-import { ref } from 'vue';
+import {ref, useSlots} from 'vue';
 import { ptViewMerge } from './utils';
+import {useSlotContent} from "../../composables/useSlotContent";
 
 interface Props extends /* @vue-ignore */ BadgeProps {}
 defineProps<Props>();
+
+const hasDefault = useSlotContent();
 
 const theme = ref<BadgePassThroughOptions>({
     root: ({ props }) => ({
         class: [
             // Base Alignment & Font
-            'inline-flex items-center justify-center font-medium transition-all duration-200',
+            'shrink-0 inline-flex items-center justify-center font-medium transition-all duration-200 rounded-full',
             
             // Shape logic from preset
-            {
-                'rounded-md': props.value?.length !== 1 && props.size !== 'small',
-                'rounded-full': props.value?.length === 1 || props.size === 'small' || props.value === null
-            },
+            // {
+            //     'rounded-md': props.value?.length !== 1 && props.size !== 'small',
+            //     'rounded-full': props.value?.length === 1 || props.size === 'small' || props.value === null
+            // },
 
             // Sizing (Matches your layout scale)
             {
                 'px-2 py-1 text-xs': props.size === null,
-                'px-1.5 py-0.5 text-[0.625rem]': props.size === 'small',
-                'px-2.5 py-1.5 text-sm': props.size === 'large',
-                'px-3 py-2 text-base': props.size === 'xlarge'
+                'px-2 py-0.5 text-[0.625rem]': props.size === 'small',
+                'px-3.5 py-1.5 text-sm': props.size === 'large',
+                'px-5 py-2 text-base': props.size === 'xlarge'
             },
 
             // Empty (Dot) State
-            { 'size-2 p-0 min-w-0 h-2': props.value === null },
+            { 'size-2 p-0 min-w-0 h-2': props.value === null && !hasDefault.value },
 
             // Colors & Inset Rings (Soft Style)
             {
                 // Primary (Indigo Replacement)
-                'bg-primary-50 text-primary-700 inset-ring inset-ring-primary-700/10 dark:bg-primary-400/10 dark:text-primary-400 dark:inset-ring-primary-400/30':
+                'bg-primary-50 text-primary-700 inset-ring inset-ring-primary-700/10 dark:bg-[#1B2C48] dark:text-primary-400 dark:inset-ring-primary-400/30':
                     props.severity === null || props.severity === 'primary',
 
                 // Secondary (Surface/Gray Replacement)
-                'bg-surface-50 text-surface-600 inset-ring inset-ring-surface-500/10 dark:bg-surface-400/10 dark:text-surface-400 dark:inset-ring-surface-400/20':
+                'bg-surface-50 text-surface-600 inset-ring inset-ring-surface-500/10 dark:bg-[#212C40] dark:text-surface-400 dark:inset-ring-surface-400/20':
                     props.severity === 'secondary',
 
                 // Success
-                'bg-green-50 text-green-700 inset-ring inset-ring-green-600/20 dark:bg-green-400/10 dark:text-green-400 dark:inset-ring-green-500/20':
+                'bg-green-50 text-green-700 inset-ring inset-ring-green-600/20 dark:bg-[#133239] dark:text-green-400 dark:inset-ring-green-500/20':
                     props.severity === 'success',
 
                 // Info
-                'bg-blue-50 text-blue-700 inset-ring inset-ring-blue-700/10 dark:bg-blue-400/10 dark:text-blue-400 dark:inset-ring-blue-400/30':
+                'bg-cyan-50 text-cyan-700 inset-ring inset-ring-cyan-700/10 dark:bg-[#133146] dark:text-cyan-400 dark:inset-ring-cyan-400/30':
                     props.severity === 'info',
 
                 // Warning
-                'bg-yellow-50 text-yellow-800 inset-ring inset-ring-yellow-600/20 dark:bg-yellow-400/10 dark:text-yellow-500 dark:inset-ring-yellow-400/20':
+                'bg-yellow-50 text-yellow-800 inset-ring inset-ring-yellow-600/20 dark:bg-[#2C302E] dark:text-yellow-500 dark:inset-ring-yellow-400/20':
                     props.severity === 'warn',
 
                 // Help (Purple)
-                'bg-purple-50 text-purple-700 inset-ring inset-ring-purple-700/10 dark:bg-purple-400/10 dark:text-purple-400 dark:inset-ring-purple-400/30':
+                'bg-purple-50 text-purple-700 inset-ring inset-ring-purple-700/10 dark:bg-[#262848] dark:text-purple-400 dark:inset-ring-purple-400/30':
                     props.severity === 'help',
 
                 // Danger
-                'bg-red-50 text-red-700 inset-ring inset-ring-red-600/10 dark:bg-red-400/10 dark:text-red-400 dark:inset-ring-red-400/20':
+                'bg-red-50 text-red-700 inset-ring inset-ring-red-600/10 dark:bg-[#2D2638] dark:text-red-400 dark:inset-ring-red-400/20':
                     props.severity === 'danger',
                 
                 // Contrast
