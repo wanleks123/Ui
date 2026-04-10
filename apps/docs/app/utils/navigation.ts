@@ -10,6 +10,10 @@ export const navigation = [
         title: 'Components',
         links: [
             {
+                title: 'Avatar',
+                href: '/components/avatar'
+            },
+            {
                 title: 'Badge',
                 href: '/components/badge'
             },
