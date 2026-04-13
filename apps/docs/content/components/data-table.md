@@ -2,12 +2,14 @@
 title: DataTable
 ---
 
-DataTable displays data in tabular format.
+DataTable displays data in tabular format with a customized paginator and unstyled Tailwind integration.
 
 ## Import
 
+This component is a custom wrapper around the standard PrimeVue DataTable, utilizing Tailwind CSS for styling.
+
 ```javascript
-import DataTable from 'primevue/datatable';
+import DataTable from '@/components/DataTable.vue';
 import Column from 'primevue/column';
 import ColumnGroup from 'primevue/columngroup';
 import Row from 'primevue/row';
@@ -15,20 +17,11 @@ import Row from 'primevue/row';
 
 ## Accessibility
 
-Screen Reader DataTable uses a table element whose attributes can be extended with the tableProps option. Default role of the table is `table`. Header, body and footer elements use `rowgroup`, rows use `row` role, header cells have `columnheader` and body cells use `cell` roles. Sortable headers utilize `aria-sort`. Built-in selection components use `checkbox` and `radiobutton`. When a row is selected, `aria-selected` is set to `true`.
-
-### Keyboard Support
-| Key | Function |
-|-----|----------|
-| **tab** | Moves through the headers or elements inside popups. |
-| **enter** | Sorts the column or activates buttons. |
-| **space** | Sorts the column or toggles selection. |
-| **arrow keys** | Navigates through rows. |
-| **home / end** | Moves focus to the first or last row. |
+Screen Reader DataTable uses a native table element. Default role of the table is `table`. Header, body and footer elements use `rowgroup`, rows use `row` role, header cells have `columnheader` and body cells use `cell` roles. The custom wrapper maintains all native accessibility features while providing enhanced focus states via Tailwind CSS.
 
 ## Basic
 
-DataTable requires a `value` as data to display and `Column` components as children.
+DataTable requires a `value` as data to display and `Column` components as children. The unstyled theme is automatically applied via the internal `theme` configuration.
 
 ::DocsCard
     ::UDataTable{:value="products" tableStyle="min-width: 50rem"}
@@ -54,14 +47,64 @@ DataTable requires a `value` as data to display and `Column` components as child
 ```
 ::
 
-## Column Group
+## Paginator
 
-Columns can be grouped within a `Row` component and groups can be displayed within a `ColumnGroup` component using the `type` property (header or footer).
+The custom wrapper features a specialized `#paginatorcontainer` using `SecondaryButton` components and localized icons. Enable it by adding the `paginator` prop.
+
+::DocsCard
+    ::UDataTable{:value="products" paginator :rows="5" tableStyle="min-width: 50rem"}
+        ::UColumn{field="code" header="Code"}
+        ::
+        ::UColumn{field="name" header="Name"}
+        ::
+        ::UColumn{field="category" header="Category"}
+        ::
+    ::
+::
 
 ::DocsCodeSample
 #default
 ```vue
-<DataTable :value="sales" tableStyle="min-width: 50rem">
+<DataTable :value="products" paginator :rows="5">
+    <Column field="code" header="Code"></Column>
+    <Column field="name" header="Name"></Column>
+    <Column field="category" header="Category"></Column>
+</DataTable>
+```
+::
+
+## Column Group
+
+Columns can be grouped within a `Row` component. The custom theme ensures proper border and background rendering for complex header structures.
+
+::DocsCard
+    ::UDataTable{:value="sales" tableStyle="min-width: 50rem"}
+        ::UColumnGroup{type="header"}
+            ::URow
+                ::UColumn{header="Product" :rowspan="3"}
+                ::
+                ::UColumn{header="Sale Rate" :colspan="4"}
+                ::
+            ::
+            ::URow
+                ::UColumn{header="Sales" :colspan="2"}
+                ::
+                ::UColumn{header="Profits" :colspan="2"}
+                ::
+            ::
+        ::
+        ::UColumn{field="product"}
+        ::
+        ::UColumn{field="lastYearSale"}
+        ::
+        ::UColumn{field="thisYearSale"}
+        ::
+    ::
+::
+
+::DocsCodeSample
+```vue
+<DataTable :value="sales">
     <ColumnGroup type="header">
         <Row>
             <Column header="Product" :rowspan="3" />
@@ -79,29 +122,9 @@ Columns can be grouped within a `Row` component and groups can be displayed with
 ```
 ::
 
-## Dynamic Columns
-
-Columns can be created programmatically by iterating over a collection.
-
-::DocsCard
-    ::UDataTable{:value="products" tableStyle="min-width: 50rem"}
-        ::UColumn{v-for="col of columns" :key="col.field" :field="col.field" :header="col.header"}
-        ::
-    ::
-::
-
-::DocsCodeSample
-#default
-```vue
-<DataTable :value="products" tableStyle="min-width: 50rem">
-    <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header"></Column>
-</DataTable>
-```
-::
-
 ## Striped Rows
 
-Enabling `stripedRows` displays alternating colors for rows.
+The `stripedRows` property adds alternating background colors to rows, styled via the internal `tbody` pass-through configuration.
 
 ::DocsCard
     ::UDataTable{:value="products" stripedRows tableStyle="min-width: 50rem"}
@@ -118,30 +141,62 @@ Enabling `stripedRows` displays alternating colors for rows.
 ```
 ::
 
+## Loading State
+
+The wrapper includes a custom `SpinnerIcon` that animates automatically when the `loading` prop is active, providing a consistent feedback loop.
+
+::DocsCodeSample
+#full
+```vue
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const products = ref([...]);
+const loading = ref(true);
+</script>
+
+<template>
+    <DataTable :value="products" :loading="loading">
+        <Column field="code" header="Code"></Column>
+        <Column field="name" header="Name"></Column>
+    </DataTable>
+</template>
+```
+::
+
 ## API
 
 ### Props
 
+Inherits all properties from **PrimeVue DataTable**.
+
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| `value` | `any[]`{lang="ts"} | `null` | An array of objects to display. |
-| `dataKey` | `string`{lang="ts"} | `null` | Name of the field that uniquely identifies a record. |
-| `rows` | `number`{lang="ts"} | `0` | Number of rows to display per page. |
-| `paginator` | `boolean`{lang="ts"} | `false` | When specified, enables pagination. |
-| `lazy` | `boolean`{lang="ts"} | `false` | Defines if data is loaded in lazy manner. |
-| `loading` | `boolean`{lang="ts"} | `false` | Displays a loader to indicate data load. |
-| `selectionMode` | `"single" \| "multiple"`{lang="ts"} | `null` | Specifies the selection mode. |
-| `reorderableColumns` | `boolean`{lang="ts"} | `false` | Enables column reordering with drag and drop. |
-| `showGridlines` | `boolean`{lang="ts"} | `false` | Whether to show grid lines between cells. |
-| `stripedRows` | `boolean`{lang="ts"} | `false` | Whether to display alternating row colors. |
-| `size` | `"small" \| "large"`{lang="ts"} | `null` | Defines the size of the table. |
+| `value` | `any[]` | `null` | Array of objects to display. |
+| `paginator` | `boolean` | `false` | Enables the custom paginator container. |
+| `rows` | `number` | `0` | Number of rows to display per page. |
+| `loading` | `boolean` | `false` | Displays the custom spinner overlay. |
+| `selectionMode` | `"single" \| "multiple"` | `null` | Specifies the row selection mode. |
+| `stripedRows` | `boolean` | `false` | Whether to display alternating row colors. |
+| `showGridlines` | `boolean` | `false` | Whether to show grid lines between cells. |
+
+### Methods
+
+The following methods are exposed via `defineExpose`:
+
+| Name | Parameters | Description |
+|------|------------|-------------|
+| `exportCSV` | `-` | Exports the table data to CSV format. |
 
 ### Pass Through Options
 
+The custom theme is pre-applied. You can extend it using the `pt` prop which merges with internal styles.
+
 | Name | Type | Description |
 |------|------|-------------|
-| `root` | `DataTablePassThroughOptionType`{lang="ts"} | Attributes for the root element. |
-| `header` | `DataTablePassThroughOptionType`{lang="ts"} | Attributes for the header element. |
-| `table` | `DataTablePassThroughOptionType`{lang="ts"} | Attributes for the table element. |
-| `tbody` | `DataTablePassThroughOptionType`{lang="ts"} | Attributes for the body element. |
-| `footer` | `DataTablePassThroughOptionType`{lang="ts"} | Attributes for the footer element. |
+| `root` | `any` | Attributes for the root container. |
+| `header` | `any` | Attributes for the table header. |
+| `table` | `any` | Attributes for the table element. |
+| `column` | `any` | Attributes for the Column components. |
+| `pcPaginator` | `any` | Attributes for the Paginator component. |
+```

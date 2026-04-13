@@ -10,6 +10,10 @@ export const navigation = [
         title: 'Components',
         links: [
             {
+                title: 'Accordion',
+                href: '/components/accordion'
+            },
+            {
                 title: 'Avatar',
                 href: '/components/avatar'
             },
@@ -20,6 +24,10 @@ export const navigation = [
             {
                 title: 'Button',
                 href: '/components/button'
+            },
+            {
+                title: 'Checkbox',
+                href: '/components/checkbox'
             },
             {
                 title: 'DataTable',
