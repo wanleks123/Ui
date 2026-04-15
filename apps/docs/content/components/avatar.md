@@ -19,72 +19,66 @@ Screen Reader Avatar does not include any roles and attributes by default. Any a
 
 Grouping is available by wrapping multiple Avatar components inside an AvatarGroup.
 
-::DocsCard
-  ::UAvatarGroup
-    ::UAvatar{image="/images/avatar/amyelsner.png" shape="circle"}
-    ::
-    ::UAvatar{image="/images/avatar/asiyajavayant.png" shape="circle"}
-    ::
-    ::UAvatar{image="/images/avatar/onyamalimba.png" shape="circle"}
-    ::
-    ::UAvatar{image="/images/avatar/ionibowcher.png" shape="circle"}
-    ::
-    ::UAvatar{image="/images/avatar/xuxuefeng.png" shape="circle"}
-    ::
-    ::UAvatar{label="+2" shape="circle"}
-    ::
-  ::
+::SampleAvatarGroup
 ::
 
 ::DocsCodeSample
 #default
 ```vue
-<AvatarGroup>
-    <Avatar image="/images/avatar/amyelsner.png" shape="circle" />
-    <Avatar image="/images/avatar/asiyajavayant.png" shape="circle" />
-    <Avatar image="/images/avatar/onyamalimba.png" shape="circle" />
-    <Avatar image="/images/avatar/ionibowcher.png" shape="circle" />
-    <Avatar image="/images/avatar/xuxuefeng.png" shape="circle" />
-    <Avatar label="+2" shape="circle" />
-</AvatarGroup>
-```
-
-#full
-```vue
 <template>
-    <div class="card flex justify-center">
-        <AvatarGroup>
-            <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" />
-            <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/asiyajavayant.png" shape="circle" />
-            <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/onyamalimba.png" shape="circle" />
-            <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/ionibowcher.png" shape="circle" />
-            <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/xuxuefeng.png" shape="circle" />
-            <Avatar label="+2" shape="circle" />
-        </AvatarGroup>
-    </div>
+    <DocsCard>
+    <UAvatarGroup class="flex items-center -space-x-4 pl-4">
+      <UAvatar 
+        image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" 
+        shape="circle" 
+        size="xlarge" 
+        
+      />
+      <UAvatar 
+        image="https://primefaces.org/cdn/primevue/images/avatar/asiyajavayant.png" 
+        shape="circle" 
+        size="xlarge" 
+        
+      />
+      <UAvatar 
+        image="https://primefaces.org/cdn/primevue/images/avatar/onyamalimba.png" 
+        shape="circle" 
+        size="xlarge" 
+        
+      />
+      <UAvatar 
+        image="https://primefaces.org/cdn/primevue/images/avatar/ionibowcher.png" 
+        shape="circle" 
+        size="xlarge" 
+        
+      />
+      <UAvatar 
+        image="https://primefaces.org/cdn/primevue/images/avatar/xuxuefeng.png" 
+        shape="circle" 
+        size="xlarge" 
+        
+      />
+      <UAvatar 
+        label="+2" 
+        shape="circle" 
+        size="xlarge" 
+        
+        style="background-color: #9c27b0; color: #ffffff" 
+      />
+    </UAvatarGroup>
+  </DocsCard>
 </template>
+
+<script setup>
+
+</script>
 ```
-::
 
 ## Icon
 
 A font icon is displayed as an Avatar with the icon property. Di sini kita menggunakan integrasi **Nuxt Icon**.
 
-::DocsCard
-  ::div{.flex.items-center.gap-4}
-    ::UAvatar{size="xlarge"}
-      ::Icon{name="ph:user-duotone" style="width: 1.5rem; height: 1.5rem"}
-      ::
-    ::
-    ::UAvatar{size="large" style="background-color: #ece9fc; color: #2a1261"}
-      ::Icon{name="ph:user-bold" style="width: 1.2rem; height: 1.2rem"}
-      ::
-    ::
-    ::UAvatar{style="background-color: #dee9fc; color: #1a2551"}
-      ::Icon{name="ph:user"}
-      ::
-    ::
-  ::
+::SampleAvatarIcon
 ::
 
 ::DocsCodeSample
