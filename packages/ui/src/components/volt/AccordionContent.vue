@@ -1,24 +1,22 @@
 <template>
-    <AccordionContent
+    <BaseAccordionContent
         unstyled
-        v-bind="$props"
         :pt="theme"
         :ptOptions="{ mergeProps: ptViewMerge }"
     >
         <slot></slot>
-    </AccordionContent>
+    </BaseAccordionContent>
 </template>
 
 <script setup lang="ts">
-import AccordionContent, { type AccordionContentPassThroughOptions, type AccordionContentProps } from 'primevue/accordioncontent';
+// Import menggunakan nama alias "BaseAccordionContent" agar tidak bentrok dengan nama file komponenmu
+import BaseAccordionContent from 'primevue/accordioncontent';
+import type { AccordionContentPassThroughOptions } from 'primevue/accordioncontent';
 import { ref } from 'vue';
 import { ptViewMerge } from './utils';
 
-interface Props extends /* @vue-ignore */ AccordionContentProps {}
-defineProps<Props>();
-
 const theme = ref<AccordionContentPassThroughOptions>({
-    content: 'px-4 py-4 sm:px-6 text-sm text-surface-600 dark:text-surface-400 bg-surface-0 dark:bg-transparent',
+    content: 'px-4 pb-5 sm:px-6 text-sm text-surface-600 dark:text-surface-400 bg-surface-0 dark:bg-transparent',
     transition: {
         enterFromClass: 'max-h-0',
         enterActiveClass: 'overflow-hidden transition-[max-height] duration-500 ease-in-out',
