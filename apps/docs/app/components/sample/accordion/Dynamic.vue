@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <DocsCard>
         <UAccordion :value="['0']" multiple>
             <UAccordionPanel v-for="tab in tabs" :key="tab.value" :value="tab.value">
                 <UAccordionHeader>{{ tab.title }}</UAccordionHeader>
@@ -8,11 +8,10 @@
                 </UAccordionContent>
             </UAccordionPanel>
         </UAccordion>
-    </div>
+    </DocsCard>
 </template>
 
 <script setup>
-import { ref } from 'vue';
 
 const tabs = ref([
     { 

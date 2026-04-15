@@ -1,3 +1,22 @@
+<script setup lang="ts">
+import AccordionPanel, { type AccordionPanelPassThroughOptions, type AccordionPanelProps } from 'primevue/accordionpanel';
+import { computed } from 'vue'; // Gunakan computed agar reaktif
+import { ptViewMerge } from './utils';
+
+interface Props extends /* @vue-ignore */ AccordionPanelProps {}
+const props = defineProps<Props>(); // Ambil props agar bisa cek props.disabled
+
+const theme = computed<AccordionPanelPassThroughOptions>(() => ({
+    root: [
+        'relative flex flex-col',
+        // Jika disabled, tambahkan class Tailwind untuk warna abu-abu
+        { 
+            'opacity-60 bg-gray-100 cursor-not-allowed': props.disabled 
+        }
+    ]
+}));
+</script>
+
 <template>
     <AccordionPanel
         unstyled
@@ -8,16 +27,3 @@
         <slot></slot>
     </AccordionPanel>
 </template>
-
-<script setup lang="ts">
-import AccordionPanel, { type AccordionPanelPassThroughOptions, type AccordionPanelProps } from 'primevue/accordionpanel';
-import { ref } from 'vue';
-import { ptViewMerge } from './utils';
-
-interface Props extends /* @vue-ignore */ AccordionPanelProps {}
-defineProps<Props>();
-
-const theme = ref<AccordionPanelPassThroughOptions>({
-    root: 'relative flex flex-col'
-});
-</script>

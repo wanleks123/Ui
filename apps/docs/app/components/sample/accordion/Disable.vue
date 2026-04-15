@@ -1,15 +1,16 @@
 <template>
     <DocsCard>
         <UAccordion :value="['0']" multiple>
+            
             <UAccordionPanel value="0">
                 <UAccordionHeader>Header I</UAccordionHeader>
                 <UAccordionContent>
                     <p class="m-0">
-                        Secara default, panel pertama terbuka. Anda bisa membuka panel lain tanpa menutup panel ini karena mode 'multiple' aktif.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </p>
                 </UAccordionContent>
             </UAccordionPanel>
-            
+
             <UAccordionPanel value="1">
                 <UAccordionHeader>Header II</UAccordionHeader>
                 <UAccordionContent>
@@ -18,7 +19,7 @@
                     </p>
                 </UAccordionContent>
             </UAccordionPanel>
-            
+
             <UAccordionPanel value="2">
                 <UAccordionHeader>Header III</UAccordionHeader>
                 <UAccordionContent>
@@ -27,7 +28,15 @@
                     </p>
                 </UAccordionContent>
             </UAccordionPanel>
+
+            <UAccordionPanel value="3" disabled >
+                <UAccordionHeader>Header IV </UAccordionHeader>
+            </UAccordionPanel>
+            
         </UAccordion>
     </DocsCard>
 </template>
 
+<script setup>
+
+</script>

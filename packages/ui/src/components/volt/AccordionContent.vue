@@ -16,7 +16,7 @@ import { ref } from 'vue';
 import { ptViewMerge } from './utils';
 
 const theme = ref<AccordionContentPassThroughOptions>({
-    content: 'px-4 pb-5 sm:px-6 text-sm text-surface-600 dark:text-surface-400 bg-surface-0 dark:bg-transparent',
+    content: 'px-4 pb-5 pt-4 sm:px-6 text-sm text-surface-600 dark:text-surface-400 bg-surface-0 dark:bg-transparent',
     transition: {
         enterFromClass: 'max-h-0',
         enterActiveClass: 'overflow-hidden transition-[max-height] duration-500 ease-in-out',
