@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <div class="py-3">
+    <div class="py-3 not-prose">
         <UCard>
             <template #content>
                 <div class="flex justify-center items-center flex-wrap gap-4">

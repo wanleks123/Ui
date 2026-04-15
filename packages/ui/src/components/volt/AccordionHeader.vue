@@ -6,9 +6,9 @@
         :ptOptions="{ mergeProps: ptViewMerge }"
     >
         <template #toggleicon="slotProps: any">
-            <component 
-                :is="slotProps.active ? ChevronUpIcon : ChevronDownIcon" 
-                class="size-5 flex-none text-surface-400 dark:text-surface-500" 
+            <component
+                :is="slotProps.active ? ChevronUpIcon : ChevronDownIcon"
+                class="size-5 flex-none text-surface-400 dark:text-surface-500"
             />
         </template>
         <slot></slot>

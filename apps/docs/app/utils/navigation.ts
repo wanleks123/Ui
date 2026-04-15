@@ -33,6 +33,10 @@ export const navigation = [
                 title: 'DataTable',
                 href: '/components/data-table'
             },
+            {
+                title: 'InputText',
+                href: '/components/input-text'
+            }
         ]
     },
     {
