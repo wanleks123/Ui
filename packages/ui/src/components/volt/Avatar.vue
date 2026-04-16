@@ -52,7 +52,7 @@ const theme = ref<AvatarPassThroughOptions>({
     }),
     label: ({ props }) => ({
         class: [
-            'font-medium text-white',
+            'font-medium ',
             {
                 'text-sm': props.size == null || props.size == 'normal',
                 'text-lg': props.size == 'large',

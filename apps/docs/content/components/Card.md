@@ -1,5 +1,5 @@
 ---
-title: Avatar
+title: Card
 ---
 
 Avatar represents people using icons, labels and images.
@@ -15,11 +15,11 @@ import AvatarGroup from 'primevue/avatargroup'; // Optional for grouping
 
 Screen Reader Avatar does not include any roles and attributes by default. Any attribute is passed to the root element so you may add a role like `img` along with `aria-labelledby` or `aria-label` to describe the component. In case avatars need to be tabbable, `tabindex` can be added as well to implement custom key handlers.
 
-## Label
+## Basic
 
 A letter Avatar is defined with the label property.
 
-::SampleAvatarLabel
+::SampleCardBasic
 ::
 
 ::DocsCodeSample
@@ -73,11 +73,11 @@ A letter Avatar is defined with the label property.
 ```
 ::
 
-## Image
+## Advanced
 
 Use the image property to display an image as an Avatar.
 
-::SampleAvatarImage
+::SampleCardAdvanced
 ::
 
 ::DocsCodeSample

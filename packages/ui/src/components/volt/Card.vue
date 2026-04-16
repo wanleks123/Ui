@@ -46,7 +46,7 @@ const theme = ref<CardPassThroughOptions>({
         class: 'flex flex-col gap-2 px-4 py-5 sm:px-6'
     },
     title: {
-        class: 'text-lg font-medium leading-6 text-surface-900 dark:text-surface-0'
+        class: 'text-lg font-semibold leading-6 text-surface-900 dark:text-surface-0'
     },
     subtitle: {
         class: 'text-sm text-surface-500 dark:text-surface-400'

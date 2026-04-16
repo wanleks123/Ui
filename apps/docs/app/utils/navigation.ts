@@ -26,6 +26,10 @@ export const navigation = [
                 href: '/components/button'
             },
             {
+                title: 'Card',
+                href: '/components/card'
+            },
+            {
                 title: 'Checkbox',
                 href: '/components/checkbox'
             },

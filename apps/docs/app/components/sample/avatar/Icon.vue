@@ -1,59 +1,46 @@
 <template>
-    <div class="card p-10">
-        <div class="flex flex-wrap gap-8 justify-center">
-            <div class="flex-auto text-center">
-                <h5 class="mb-4 font-bold">Icon</h5>
-                <div class="flex items-center justify-center gap-2">
-                    <UAvatar size="xlarge">
-                        <Icon name="ph:user-duotone" class="text-2xl flex items-center justify-center" />
+    <DocsCard>
+            <div class="flex-auto">
+                <h5 class="mb-4">Icon</h5>
+                <div class="flex items-end gap-2">
+                    <UAvatar size="xlarge" class="bg-primary">
+                        <Icon name="ph:user-bold" class="size-1/2" />
                     </UAvatar>
                     
-                    <UAvatar size="large" style="background-color: #ece9fc; color: #2a1261">
-                        <Icon name="ph:user-bold" />
+                    <UAvatar size="large" class="bg-surface-100 dark:bg-surface-800 ">
+                        <Icon name="ph:user-bold" class="size-1/2" />
                     </UAvatar>
                     
-                    <UAvatar style="background-color: #dee9fc; color: #1a2551">
-                        <Icon name="ph:user" />
+                    <UAvatar class="bg-surface-200 dark:bg-surface-700">
+                        <Icon name="ph:user-bold" class="size-1/2" />
                     </UAvatar>
                 </div>
             </div>
 
-            <div class="flex-auto text-center">
-                <h5 class="mb-4 font-bold">Circle</h5>
-                <div class="flex items-center justify-center gap-2">
-                    <UAvatar size="xlarge" shape="circle">
-                        <Icon name="ph:user-circle-duotone" class="text-2xl" />
+            <div class="flex-auto">
+                <h5 class="mb-4">Circle</h5>
+                <div class="flex items-end gap-2">
+                    <UAvatar size="xlarge" shape="circle" class="bg-primary ">
+                        <Icon name="ph:user-bold" class="size-1/2" />
                     </UAvatar>
                     
-                    <UAvatar size="large" shape="circle" style="background-color: #ece9fc; color: #2a1261">
-                        <Icon name="ph:user-circle-bold" />
+                    <UAvatar size="large" shape="circle" class="bg-surface-100 dark:bg-surface-800 ">
+                        <Icon name="ph:user-bold" class="size-1/2" />
                     </UAvatar>
                     
-                    <UAvatar shape="circle" style="background-color: #dee9fc; color: #1a2551">
-                        <Icon name="ph:user-circle" />
+                    <UAvatar shape="circle" class="bg-surface-200 dark:bg-surface-700 ">
+                        <Icon name="ph:user-bold" class="size-1/2" />
                     </UAvatar>
                 </div>
             </div>
 
-            <div class="flex-auto text-center">
-                <h5 class="mb-4 font-bold">Badge</h5>
-                <OverlayBadge value="4" severity="danger" class="inline-flex">
-                    <UAvatar size="xlarge" shape="circle">
-                        <Icon name="ph:bell-duotone" class="text-2xl" />
+            <div class="flex-auto">
+                <h5 class="mb-4">Badge</h5>
+                <UOverlayBadge value="4" severity="danger" class="inline-flex">
+                    <UAvatar size="xlarge" class="bg-primary ">
+                        <Icon name="ph:user-bold" class="size-1/2" />
                     </UAvatar>
-                </OverlayBadge>
+                </UOverlayBadge>
             </div>
-        </div>
-    </div>
+    </DocsCard>
 </template>
-
-<script setup>
-import Avatar from 'primevue/avatar';
-import OverlayBadge from 'primevue/overlaybadge';
-
-// Alias agar sesuai dengan template
-const UAvatar = Avatar;
-
-// Catatan: Pastikan modul @nuxt/icon sudah terinstal di nuxt.config.ts
-// Komponen <Icon /> akan otomatis tersedia secara global di Nuxt.
-</script>
