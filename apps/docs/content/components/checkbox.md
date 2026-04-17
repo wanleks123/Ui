@@ -36,9 +36,7 @@ Screen Reader Checkbox component uses a hidden native checkbox element internall
 
 Binary checkbox is used with the `v-model` for two-way value binding and the `binary` property.
 
-::DocsCard
-  ::UCheckbox{binary}
-  ::
+::SampleCheckBoxBasic
 ::
 
 ::DocsCodeSample
@@ -49,61 +47,247 @@ Binary checkbox is used with the `v-model` for two-way value binding and the `bi
 
 #full
 ```vue
-<script setup>
-import { ref } from "vue";
-
-const checked = ref(false);
-</script>
 
 <template>
     <div class="card flex justify-center">
         <Checkbox v-model="checked" binary />
     </div>
 </template>
+
+<script setup>
+import { ref } from "vue";
+
+const checked = ref(false);
+</script>
+
 ```
 ::
 
-## Disabled
+## Group
 
 When `disabled` is present, the element cannot be edited and focused.
 
-::DocsCard
-  ::div{class="flex justify-center gap-2"}
-    ::UCheckbox{binary disabled}
-    ::
-    ::UCheckbox{":modelValue"="true" binary disabled}
-    ::
-  ::
+::SampleCheckBoxGroup
 ::
 
 ::DocsCodeSample
 #default
 ```vue
-<Checkbox v-model="checked1" binary disabled />
-<Checkbox v-model="checked2" binary disabled />
+<div class="card flex flex-wrap justify-center gap-4">
+    <div class="flex items-center gap-2">
+        <Checkbox v-model="pizza" inputId="ingredient1" name="pizza" value="Cheese" />
+        <label for="ingredient1"> Cheese </label>
+    </div>
+    <div class="flex items-center gap-2">
+        <Checkbox v-model="pizza" inputId="ingredient2" name="pizza" value="Mushroom" />
+        <label for="ingredient2"> Mushroom </label>
+    </div>
+    <div class="flex items-center gap-2">
+        <Checkbox v-model="pizza" inputId="ingredient3" name="pizza" value="Pepper" />
+        <label for="ingredient3"> Pepper </label>
+    </div>
+    <div class="flex items-center gap-2">
+        <Checkbox v-model="pizza" inputId="ingredient4" name="pizza" value="Onion" />
+        <label for="ingredient4"> Onion </label>
+    </div>
+</div>
 ```
 
 #full
 ```vue
+
+<template>
+    <div class="card flex flex-wrap justify-center gap-4">
+        <div class="flex items-center gap-2">
+            <Checkbox v-model="pizza" inputId="ingredient1" name="pizza" value="Cheese" />
+            <label for="ingredient1"> Cheese </label>
+        </div>
+        <div class="flex items-center gap-2">
+            <Checkbox v-model="pizza" inputId="ingredient2" name="pizza" value="Mushroom" />
+            <label for="ingredient2"> Mushroom </label>
+        </div>
+        <div class="flex items-center gap-2">
+            <Checkbox v-model="pizza" inputId="ingredient3" name="pizza" value="Pepper" />
+            <label for="ingredient3"> Pepper </label>
+        </div>
+        <div class="flex items-center gap-2">
+            <Checkbox v-model="pizza" inputId="ingredient4" name="pizza" value="Onion" />
+            <label for="ingredient4"> Onion </label>
+        </div>
+    </div>
+</template>
+
 <script setup>
 import { ref } from "vue";
 
-const checked1 = ref(false);
-const checked2 = ref(true);
+const pizza = ref();
 </script>
 
+```
+::
+
+::SampleCheckBoxGroup1
+::
+
+::DocsCodeSample
+#default
+```vue
+<CheckboxGroup v-model="ingredients" class="flex flex-wrap gap-4">
+    <div class="flex items-center gap-2">
+        <Checkbox inputId="ingredient5" value="Cheese" />
+        <label for="ingredient5"> Cheese </label>
+    </div>
+    <div class="flex items-center gap-2">
+        <Checkbox inputId="ingredient6" value="Mushroom" />
+        <label for="ingredient6"> Mushroom </label>
+    </div>
+    <div class="flex items-center gap-2">
+        <Checkbox inputId="ingredient7" value="Pepper" />
+        <label for="ingredient7"> Pepper </label>
+    </div>
+    <div class="flex items-center gap-2">
+        <Checkbox inputId="ingredient8" value="Onion" />
+        <label for="ingredient8"> Onion </label>
+    </div>
+</CheckboxGroup>
+```
+
+#full
+```vue
+
 <template>
-    <div class="card flex justify-center gap-2">
-        <Checkbox v-model="checked1" binary disabled />
-        <Checkbox v-model="checked2" binary disabled />
+    <div class="card flex flex-wrap justify-center gap-4">
+        <CheckboxGroup v-model="ingredients" class="flex flex-wrap gap-4">
+            <div class="flex items-center gap-2">
+                <Checkbox inputId="ingredient5" value="Cheese" />
+                <label for="ingredient5"> Cheese </label>
+            </div>
+            <div class="flex items-center gap-2">
+                <Checkbox inputId="ingredient6" value="Mushroom" />
+                <label for="ingredient6"> Mushroom </label>
+            </div>
+            <div class="flex items-center gap-2">
+                <Checkbox inputId="ingredient7" value="Pepper" />
+                <label for="ingredient7"> Pepper </label>
+            </div>
+            <div class="flex items-center gap-2">
+                <Checkbox inputId="ingredient8" value="Onion" />
+                <label for="ingredient8"> Onion </label>
+            </div>
+        </CheckboxGroup>
     </div>
 </template>
+
+<script setup>
+import { ref } from "vue";
+
+const ingredients = ref([]);
+</script>
+
+```
+::
+
+## Form
+
+Binary checkbox is used with the `v-model` for two-way value binding and the `binary` property.
+
+::SampleCheckBoxForm
+::
+
+::DocsCodeSample
+#default
+```vue
+<Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex justify-center flex-col gap-4">
+    <div class="flex flex-col gap-2">
+        <CheckboxGroup name="ingredient" class="flex flex-wrap gap-4">
+            <div class="flex items-center gap-2">
+                <Checkbox inputId="cheese" value="Cheese" />
+                <label for="cheese"> Cheese </label>
+            </div>
+            <div class="flex items-center gap-2">
+                <Checkbox inputId="mushroom" value="Mushroom" />
+                <label for="mushroom"> Mushroom </label>
+            </div>
+            <div class="flex items-center gap-2">
+                <Checkbox inputId="pepper" value="Pepper" />
+                <label for="pepper"> Pepper </label>
+            </div>
+            <div class="flex items-center gap-2">
+                <Checkbox inputId="onion" value="Onion" />
+                <label for="onion"> Onion </label>
+            </div>
+        </CheckboxGroup>
+        <Message v-if="$form.ingredient?.invalid" severity="error" size="small" variant="simple">{{ $form.ingredient.error?.message }}</Message>
+    </div>
+    <Button type="submit" severity="secondary" label="Submit" />
+</Form>
+```
+
+#full
+```vue
+
+<template>
+    <div class="card flex justify-center">
+        <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex justify-center flex-col gap-4">
+            <div class="flex flex-col gap-2">
+                <CheckboxGroup name="ingredient" class="flex flex-wrap gap-4">
+                    <div class="flex items-center gap-2">
+                        <Checkbox inputId="cheese" value="Cheese" />
+                        <label for="cheese"> Cheese </label>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <Checkbox inputId="mushroom" value="Mushroom" />
+                        <label for="mushroom"> Mushroom </label>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <Checkbox inputId="pepper" value="Pepper" />
+                        <label for="pepper"> Pepper </label>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <Checkbox inputId="onion" value="Onion" />
+                        <label for="onion"> Onion </label>
+                    </div>
+                </CheckboxGroup>
+                <Message v-if="$form.ingredient?.invalid" severity="error" size="small" variant="simple">{{ $form.ingredient.error?.message }}</Message>
+            </div>
+            <Button type="submit" severity="secondary" label="Submit" />
+        </Form>
+    </div>
+    <Toast />
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { zodResolver } from '@primevue/forms/resolvers/zod';
+import { useToast } from "primevue/usetoast";
+import { z } from 'zod';
+
+const toast = useToast();
+const initialValues = ref({
+    ingredient: []
+});
+const resolver = ref(zodResolver(
+    z.object({
+        ingredient: z.array(z.string()).min(1, { message: 'At least one ingredient must be selected.' })
+    })
+));
+
+const onFormSubmit = ({ valid }) => {
+    if (valid) {
+        toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
+    }
+};
+</script>
+        
 ```
 ::
 
 ## Dynamic
 
-Checkboxes can be generated using a list of values.
+Binary checkbox is used with the `v-model` for two-way value binding and the `binary` property.
+
+::SampleCheckBoxDynamic
+::
 
 ::DocsCodeSample
 #default
@@ -116,6 +300,18 @@ Checkboxes can be generated using a list of values.
 
 #full
 ```vue
+
+<template>
+    <div class="card flex justify-center">
+        <div class="flex flex-col gap-4">
+            <div v-for="category of categories" :key="category.key" class="flex items-center gap-2">
+                <Checkbox v-model="selectedCategories" :inputId="category.key" name="category" :value="category.name" />
+                <label :for="category.key">{{ category.name }}</label>
+            </div>
+        </div>
+    </div>
+</template>
+
 <script setup>
 import { ref } from "vue";
 
@@ -128,16 +324,35 @@ const categories = ref([
 const selectedCategories = ref(['Marketing']);
 </script>
 
+```
+::
+
+## Indeterminate
+
+Binary checkbox is used with the `v-model` for two-way value binding and the `binary` property.
+
+::SampleCheckBoxIndeterminate
+::
+
+::DocsCodeSample
+#default
+```vue
+<Checkbox v-model="checked" indeterminate binary />
+```
+
+#full
+```vue
 <template>
     <div class="card flex justify-center">
-        <div class="flex flex-col gap-4">
-            <div v-for="category of categories" :key="category.key" class="flex items-center gap-2">
-                <Checkbox v-model="selectedCategories" :inputId="category.key" name="category" :value="category.name" />
-                <label :for="category.key">{{ category.name }}</label>
-            </div>
-        </div>
+        <Checkbox v-model="checked" indeterminate binary />
     </div>
 </template>
+
+<script setup>
+import { ref } from "vue";
+
+const checked = ref(false);
+</script>
 ```
 ::
 
@@ -145,9 +360,7 @@ const selectedCategories = ref(['Marketing']);
 
 Specify the `variant` property as `filled` to display the component with a higher visual emphasis than the default outlined style.
 
-::DocsCard
-  ::UCheckbox{binary variant="filled"}
-  ::
+::SampleCheckBoxFilled
 ::
 
 ::DocsCodeSample
@@ -158,109 +371,139 @@ Specify the `variant` property as `filled` to display the component with a highe
 
 #full
 ```vue
-<script setup>
-import { ref } from "vue";
-
-const checked = ref(false);
-</script>
 
 <template>
     <div class="card flex justify-center">
         <Checkbox v-model="checked" binary variant="filled" />
     </div>
 </template>
-```
-::
 
-## Forms
+<script setup>
+import { ref } from "vue";
 
-Checkbox integrates seamlessly with the PrimeVue Forms library.
+const checked = ref(false);
+</script>
 
-::DocsCodeSample
-#default
-```vue
-<Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit">
-    <CheckboxGroup name="ingredient" class="flex flex-wrap gap-4">
-        <div class="flex items-center gap-2">
-            <Checkbox inputId="cheese" value="Cheese" />
-            <label for="cheese"> Cheese </label>
-        </div>
-        </CheckboxGroup>
-    <Message v-if="$form.ingredient?.invalid" severity="error" size="small" variant="simple">{{ $form.ingredient.error?.message }}</Message>
-    <Button type="submit" label="Submit" />
-</Form>
-```
-::
-
-## Group
-
-Multiple checkboxes can be grouped by binding each one to the same model. Alternatively, a `CheckboxGroup` wrapper can be used to group checkboxes.
-
-::DocsCard
-  ::div{class="flex flex-wrap justify-center gap-4"}
-      ::div{class="flex items-center gap-2"}
-          ::UCheckbox{inputId="ing1" value="Cheese"}
-          ::
-          ::label{for="ing1"} Cheese ::
-      ::
-      ::div{class="flex items-center gap-2"}
-          ::UCheckbox{inputId="ing2" value="Mushroom"}
-          ::
-          ::label{for="ing2"} Mushroom ::
-      ::
-  ::
-::
-
-::DocsCodeSample
-#default
-```vue
-<div class="flex flex-wrap gap-4">
-    <div class="flex items-center gap-2">
-        <Checkbox v-model="pizza" inputId="ingredient1" name="pizza" value="Cheese" />
-        <label for="ingredient1"> Cheese </label>
-    </div>
-    <div class="flex items-center gap-2">
-        <Checkbox v-model="pizza" inputId="ingredient2" name="pizza" value="Mushroom" />
-        <label for="ingredient2"> Mushroom </label>
-    </div>
-</div>
-```
-::
-
-## Indeterminate
-
-When `indeterminate` is present, the checkbox masks the actual value visually.
-
-::DocsCard
-  ::UCheckbox{binary indeterminate}
-  ::
-::
-
-::DocsCodeSample
-#default
-```vue
-<Checkbox v-model="checked" indeterminate binary />
 ```
 ::
 
 ## Sizes
 
-Checkbox provides small and large sizes as alternatives to the base.
+Specify the `variant` property as `filled` to display the component with a higher visual emphasis than the default outlined style.
 
-::DocsCard
-  ::div{class="flex flex-wrap justify-center gap-4 items-center"}
-    ::UCheckbox{size="small" binary}::
-    ::UCheckbox{binary}::
-    ::UCheckbox{size="large" binary}::
-  ::
+::SampleCheckBoxSizes
 ::
 
 ::DocsCodeSample
 #default
 ```vue
-<Checkbox v-model="size" value="Small" size="small" />
-<Checkbox v-model="size" value="Normal" />
-<Checkbox v-model="size" value="Large" size="large" />
+<div class="card flex flex-wrap justify-center gap-4">
+    <div class="flex items-center gap-2">
+        <Checkbox v-model="size" inputId="size_small" name="size" value="Small" size="small" />
+        <label for="size_small" class="text-sm">Small</label>
+    </div>
+    <div class="flex items-center gap-2">
+        <Checkbox v-model="size" inputId="size_normal" name="size" value="Normal" />
+        <label for="size_normal">Normal</label>
+    </div>
+    <div class="flex items-center gap-2">
+        <Checkbox v-model="size" inputId="size_large" name="size" value="Large" size="large" />
+        <label for="size_large" class="text-lg">Large</label>
+    </div>
+</div>
+```
+
+#full
+```vue
+
+<template>
+    <div class="card flex flex-wrap justify-center gap-4">
+        <div class="flex items-center gap-2">
+            <Checkbox v-model="size" inputId="size_small" name="size" value="Small" size="small" />
+            <label for="size_small" class="text-sm">Small</label>
+        </div>
+        <div class="flex items-center gap-2">
+            <Checkbox v-model="size" inputId="size_normal" name="size" value="Normal" />
+            <label for="size_normal">Normal</label>
+        </div>
+        <div class="flex items-center gap-2">
+            <Checkbox v-model="size" inputId="size_large" name="size" value="Large" size="large" />
+            <label for="size_large" class="text-lg">Large</label>
+        </div>
+    </div>
+</template>
+
+<script setup>
+import { ref } from "vue";
+
+const size = ref();
+</script>
+
+```
+::
+
+## Invalid
+
+Specify the `variant` property as `filled` to display the component with a higher visual emphasis than the default outlined style.
+
+::SampleCheckBoxInvalid
+::
+
+::DocsCodeSample
+#default
+```vue
+<Checkbox v-model="checked" :invalid="!checked"  binary />
+```
+
+#full
+```vue
+
+<template>
+    <div class="card flex justify-center">
+        <Checkbox v-model="checked" :invalid="!checked"  binary />
+    </div>
+</template>
+
+<script setup>
+import { ref } from "vue";
+
+const checked = ref(false);
+</script>
+
+```
+::
+
+## Disabled
+
+Specify the `variant` property as `filled` to display the component with a higher visual emphasis than the default outlined style.
+
+::SampleCheckBoxDisabled
+::
+
+::DocsCodeSample
+#default
+```vue
+<Checkbox v-model="checked1" binary disabled />
+<Checkbox v-model="checked2" binary disabled />
+```
+
+#full
+```vue
+
+<template>
+    <div class="card flex justify-center gap-2">
+        <Checkbox v-model="checked1" binary disabled />
+        <Checkbox v-model="checked2" binary disabled />
+    </div>
+</template>
+
+<script setup>
+import { ref } from "vue";
+
+const checked1 = ref(false);
+const checked2 = ref(true);
+</script>
+
 ```
 ::
 

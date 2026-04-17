@@ -1,7 +1,7 @@
 <template>
     <UCard style="width: 25rem; overflow: hidden">
         <template #header>
-            <img alt="user header" src="https://primefaces.org/cdn/primevue/images/card-vue.jpg" />
+            <img alt="user header" src="https://primefaces.org/cdn/primevue/images/card-vue.jpg" class="w-full h-auto block m-0"/>
         </template>
         <template #title>Advanced Card</template>
         <template #subtitle>Card subtitle</template>

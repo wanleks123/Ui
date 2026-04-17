@@ -23,22 +23,26 @@ defineProps<Props>();
 const theme = ref<CardPassThroughOptions>({
     root: {
         class: [
-            // Layout
             'flex flex-col',
             'overflow-hidden rounded-lg',
-            
-            // Background & Shadow
             'bg-surface-0 shadow-sm',
             'dark:bg-surface-800/50 dark:shadow-none',
-            
-            // Dark mode borders (using surface-white/10 equivalent)
-            'dark:outline dark:-outline-offset-1 dark:outline-surface-700/50'
+            'dark:outline dark:-outline-offset-1 dark:outline-surface-700/50',
+            'gap-0' // PAKSA gap jadi nol agar header dan body menempel
+        ]
+    },
+    header: {
+        class: [
+            'w-full m-0 p-0', 
+            'overflow-hidden',
+            'flex flex-col', // Menghilangkan masalah line-height pada img
+            'border-none'    // Memastikan tidak ada border bawaan
         ]
     },
     body: {
         class: [
             'flex flex-col p-0',
-            // This applies lines between Caption, Content, and Footer
+            // Pastikan divide-y tidak menambah border di paling atas body yang nempel ke gambar
             'divide-y divide-surface-200 dark:divide-surface-700'
         ]
     },

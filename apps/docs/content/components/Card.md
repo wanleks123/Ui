@@ -25,51 +25,15 @@ A letter Avatar is defined with the label property.
 ::DocsCodeSample
 #default
 ```vue
-<Avatar label="P" class="mr-2" size="xlarge" />
-<Avatar label="V" class="mr-2" size="large" style="background-color: #ece9fc; color: #2a1261" />
-<Avatar label="U" class="mr-2" style="background-color: #dee9fc; color: #1a2551" />
-
-<Avatar label="P" class="mr-2" size="xlarge" shape="circle" />
-<Avatar label="V" class="mr-2" size="large" style="background-color: #ece9fc; color: #2a1261" shape="circle" />
-<Avatar label="U" class="mr-2" style="background-color: #dee9fc; color: #1a2551" shape="circle" />
-
-<OverlayBadge value="4" severity="danger" class="inline-flex">
-    <Avatar label="U" size="xlarge" />
-</OverlayBadge>
-```
-
-#full
-```vue
-
-<template>
-    <div class="flex flex-wrap gap-8">
-        <div class="flex-auto">
-            <h5>Label</h5>
-            <Avatar label="P" class="mr-2" size="xlarge" />
-            <Avatar label="V" class="mr-2" size="large" style="background-color: #ece9fc; color: #2a1261" />
-            <Avatar label="U" class="mr-2" style="background-color: #dee9fc; color: #1a2551" />
-        </div>
-
-        <div class="flex-auto">
-            <h5>Circle</h5>
-            <Avatar label="P" class="mr-2" size="xlarge" shape="circle" />
-            <Avatar label="V" class="mr-2" size="large" style="background-color: #ece9fc; color: #2a1261" shape="circle" />
-            <Avatar label="U" class="mr-2" style="background-color: #dee9fc; color: #1a2551" shape="circle" />
-        </div>
-
-        <div class="flex-auto">
-            <h5>Badge</h5>
-            <OverlayBadge value="4" severity="danger" class="inline-flex">
-                <Avatar label="U" size="xlarge" />
-            </OverlayBadge>
-        </div>
-    </div>
-</template>
-
-<script setup>
-
-</script>
-
+<UCard>
+        <template #title>Simple Card</template>
+        <template #content>
+            <p class="m-0">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
+                quas!
+            </p>
+        </template>
+</UCard>
 ```
 ::
 
@@ -83,15 +47,25 @@ Use the image property to display an image as an Avatar.
 ::DocsCodeSample
 #default
 ```vue
-<Avatar image="/images/avatar/amyelsner.png" class="mr-2" size="xlarge" shape="circle" />
-<Avatar image="/images/avatar/asiyajavayant.png" class="mr-2" size="large" shape="circle" />
-<Avatar image="/images/avatar/onyamalimba.png" shape="circle" />
-
-<OverlayBadge value="4" severity="danger" class="inline-flex">
-    <Avatar class="p-overlay-badge" image="https://primefaces.org/cdn/primevue/images/organization/walter.jpg" size="xlarge" />
-</OverlayBadge>
-
-<Avatar image="https://www.gravatar.com/avatar/05dfd4b41340d09cae045235eb0893c3?d=mp" class="flex items-center justify-center mr-2" size="xlarge" />
+<UCard style="width: 25rem; overflow: hidden">
+    <template #header>
+        <img alt="user header" src="https://primefaces.org/cdn/primevue/images/card-vue.jpg" class="w-full h-auto block m-0"/>
+    </template>
+    <template #title>Advanced Card</template>
+    <template #subtitle>Card subtitle</template>
+    <template #content>
+        <p class="m-0">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
+            quas!
+        </p>
+    </template>
+    <template #footer>
+        <div class="flex gap-4 mt-1">
+            <UButton label="Cancel" severity="secondary" variant="outlined" class="w-full" />
+            <UButton label="Save" class="w-full" />
+        </div>
+    </template>
+</UCard>
 ```
 
 #full
@@ -126,140 +100,6 @@ Use the image property to display an image as an Avatar.
 </script>
 ```
 ::
-
-
-## Icon
-
-A font icon is displayed as an Avatar with the icon property.
-
-::SampleAvatarIcon
-::
-
-::DocsCodeSample
-#default
-```vue
-<Avatar size="xlarge" class="bg-primary">
-    <Icon name="ph:user-bold" class="size-1/2" />
-</Avatar> 
-<Avatar size="large" class="bg-surface-100 dark:bg-surface-800 ">
-   <Icon name="ph:user-bold" class="size-1/2" />
-</Avatar>              
-<Avatar class="bg-surface-200 dark:bg-surface-700">
-    <Icon name="ph:user-bold" class="size-1/2" />
-</Avatar>
-
-<Avatar size="xlarge" shape="circle" class="bg-primary ">
-    <Icon name="ph:user-bold" class="size-1/2" />
-</Avatar>
-<Avatar size="large" shape="circle" class="bg-surface-100 dark:bg-surface-800 ">
-     <Icon name="ph:user-bold" class="size-1/2" />
-</Avatar>
-                    
-<Avatar shape="circle" class="bg-surface-200 dark:bg-surface-700 ">
-      <Icon name="ph:user-bold" class="size-1/2" />
-</Avatar>
-
-<OverlayBadge value="4" severity="danger" class="inline-flex">
-    <Avatar size="xlarge" class="bg-primary ">
-    <Icon name="ph:user-bold" class="size-1/2" />
-    </Avatar>
-</OverlayBadge>
-```
-
-#full
-```vue
-<template>
-    <DocsCard>
-            <div class="flex-auto">
-                <h5 class="mb-4">Icon</h5>
-                <div class="flex items-end gap-2">
-                    <Avatar size="xlarge" class="bg-primary">
-                        <Icon name="ph:user-bold" class="size-1/2" />
-                    </Avatar>
-                    
-                    <Avatar size="large" class="bg-surface-100 dark:bg-surface-800 ">
-                        <Icon name="ph:user-bold" class="size-1/2" />
-                    </Avatar>
-                    
-                    <Avatar class="bg-surface-200 dark:bg-surface-700">
-                        <Icon name="ph:user-bold" class="size-1/2" />
-                    </Avatar>
-                </div>
-            </div>
-
-            <div class="flex-auto">
-                <h5 class="mb-4">Circle</h5>
-                <div class="flex items-end gap-2">
-                    <Avatar size="xlarge" shape="circle" class="bg-primary ">
-                        <Icon name="ph:user-bold" class="size-1/2" />
-                    </Avatar>
-                    
-                    <Avatar size="large" shape="circle" class="bg-surface-100 dark:bg-surface-800 ">
-                        <Icon name="ph:user-bold" class="size-1/2" />
-                    </Avatar>
-                    
-                    <Avatar shape="circle" class="bg-surface-200 dark:bg-surface-700 ">
-                        <Icon name="ph:user-bold" class="size-1/2" />
-                    </Avatar>
-                </div>
-            </div>
-
-            <div class="flex-auto">
-                <h5 class="mb-4">Badge</h5>
-                <OverlayBadge value="4" severity="danger" class="inline-flex">
-                    <Avatar size="xlarge" class="bg-primary ">
-                        <Icon name="ph:user-bold" class="size-1/2" />
-                    </Avatar>
-                </OverlayBadge>
-            </div>
-    </DocsCard>
-</template>
-```
-::
-
-## AvatarGroup
-
-Grouping is available by wrapping multiple Avatar components inside an AvatarGroup.
-
-::SampleAvatarGroup
-::
-
-::DocsCodeSample
-#default
-```vue
-<AvatarGroup>
-    <Avatar image="/images/avatar/amyelsner.png" shape="circle" />
-    <Avatar image="/images/avatar/asiyajavayant.png" shape="circle" />
-    <Avatar image="/images/avatar/onyamalimba.png" shape="circle" />
-    <Avatar image="/images/avatar/ionibowcher.png" shape="circle" />
-    <Avatar image="/images/avatar/xuxuefeng.png" shape="circle" />
-    <Avatar label="+2" shape="circle" />
-</AvatarGroup>
-```
-
-#full
-```vue
-
-<template>
-    <div class="card flex justify-center">
-        <AvatarGroup>
-            <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" />
-            <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/asiyajavayant.png" shape="circle" />
-            <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/onyamalimba.png" shape="circle" />
-            <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/ionibowcher.png" shape="circle" />
-            <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/xuxuefeng.png" shape="circle" />
-            <Avatar label="+2" shape="circle" />
-        </AvatarGroup>
-    </div>
-</template>
-
-<script setup>
-
-</script>
-
-```
-::
-
 
 ## API
 
