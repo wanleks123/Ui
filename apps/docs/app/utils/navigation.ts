@@ -14,6 +14,10 @@ export const navigation = [
                 href: '/components/accordion'
             },
             {
+                title: 'Auto Complete',
+                href: '/components/auto-complete'
+            },
+            {
                 title: 'Avatar',
                 href: '/components/avatar'
             },
