@@ -64,6 +64,18 @@ export const navigation = [
             {
                 title: 'Meter Group',
                 href: '/components/meter-group'
+            },
+            {
+                title: 'Multi Select',
+                href: '/components/multi-select'
+            },
+            {
+                title: 'Pagination',
+                href: '/components/pagination'
+            },
+            {
+                title: 'Progress Bar',
+                href: '/components/progress-bar'
             }
         ]
     },
