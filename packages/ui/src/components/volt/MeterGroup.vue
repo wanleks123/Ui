@@ -21,16 +21,45 @@ interface Props extends /* @vue-ignore */ MeterGroupProps {}
 defineProps<Props>();
 
 const theme = ref<MeterGroupPassThroughOptions>({
-    root: `flex gap-4 p-horizontal:flex-col p-vertical:flex-row`,
-    meters: `flex bg-surface-200 dark:bg-surface-700 rounded-md p-horizontal:h-2 p-vertical:flex-col p-vertical:w-2 p-vertical:h-full`,
-    meter: `p-horizontal:first-of-type:rounded-s-md p-horizontal:last-of-type:rounded-e-md
-        p-vertical:first-of-type:rounded-ss-md p-vertical:first-of-type:rounded-se-md
-        p-vertical:last-of-type:rounded-ee-md p-vertical:last-of-type:rounded-es-md`,
-    labelList: `flex flex-wrap m-0 p-0 list-none
-        p-horizontal:gap-4 p-vertical:flex-col p-vertical:gap-1 p-vertical:items-start`,
-    label: `inline-flex items-center gap-2`,
-    labelIcon: `text-base w-4 h-4`,
-    labelMarker: `inline-flex w-2 h-2 rounded-full`,
-    labelText: ``
+    // Root: Mengatur arah antara meteran dan daftar label
+    root: ({ props }: any) => ({
+        class: [
+            'flex gap-8',
+            props.orientation === 'horizontal' ? 'flex-col' : 'flex-row items-start h-64'
+        ]
+    }),
+
+    // Meters: Track utama (wadah batang)
+    meters: ({ props }: any) => ({
+        class: [
+            'flex bg-surface-200 dark:bg-surface-800 rounded-full overflow-hidden shrink-0',
+            props.orientation === 'horizontal' ? 'h-2 w-full' : 'flex-col w-2 h-full'
+        ]
+    }),
+
+    // Meter: Batang warna-warni
+    meter: ({ props }: any) => ({
+        class: [
+            'transition-all duration-500',
+            props.orientation === 'horizontal' ? 'h-full' : 'w-full'
+        ]
+    }),
+
+    // LabelList: INI BAGIAN YANG MEMBUAT LABEL MENURUN
+    labelList: ({ props }: any) => ({
+        class: [
+            'flex m-0 p-0 list-none gap-4',
+            // Jika horizontal -> mendatar (row), jika vertical -> menurun (col)
+            props.orientation === 'horizontal' ? 'flex-row items-center flex-wrap' : 'flex-col items-start'
+        ]
+    }),
+
+    label: 'inline-flex items-center gap-3',
+    
+    labelMarker: 'inline-flex w-2.5 h-2.5 rounded-full shrink-0',
+    
+    labelText: 'text-sm font-medium text-surface-700 dark:text-surface-300',
+    
+    labelIcon: 'text-sm w-4 h-4'
 });
 </script>

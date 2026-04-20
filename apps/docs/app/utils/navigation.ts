@@ -56,6 +56,14 @@ export const navigation = [
             {
                 title: 'Menu',
                 href: '/components/menu'
+            },
+            {
+                title: 'Message',
+                href: '/components/message'
+            },
+            {
+                title: 'Meter Group',
+                href: '/components/meter-group'
             }
         ]
     },
