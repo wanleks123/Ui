@@ -28,37 +28,76 @@ Accordion is defined using `AccordionPanel`, `AccordionHeader` and `AccordionCon
 
 ::DocsCodeSample
 ```vue
+<Accordion value="0">
+    <AccordionPanel value="0">
+        <AccordionHeader>Header I</AccordionHeader>
+        <AccordionContent>
+            <p class="m-0">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </AccordionContent>
+    </AccordionPanel>
+    <AccordionPanel value="1">
+        <AccordionHeader>Header II</AccordionHeader>
+        <AccordionContent>
+            <p class="m-0">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+                ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+            </p>
+        </AccordionContent>
+    </AccordionPanel>
+    <AccordionPanel value="2">
+        <AccordionHeader>Header III</AccordionHeader>
+        <AccordionContent>
+            <p class="m-0">
+                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
+                qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
+            </p>
+        </AccordionContent>
+    </AccordionPanel>
+</Accordion>
+
+```
+
+#full
+```vue
 <template>
-    <Accordion value="0">
-        <AccordionPanel value="0">
-            <AccordionHeader>Header I</AccordionHeader>
-            <AccordionContent>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-            </AccordionContent>
-        </AccordionPanel>
-        <AccordionPanel value="1">
-            <AccordionHeader>Header II</AccordionHeader>
-            <AccordionContent>
-                <p>
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
-                    ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
-                </p>
-            </AccordionContent>
-        </AccordionPanel>
-        <AccordionPanel value="2">
-            <AccordionHeader>Header III</AccordionHeader>
-            <AccordionContent>
-                <p>
-                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
-                    qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
-                </p>
-            </AccordionContent>
-        </AccordionPanel>
-    </Accordion>
+    <div class="card">
+        <Accordion value="0">
+            <AccordionPanel value="0">
+                <AccordionHeader>Header I</AccordionHeader>
+                <AccordionContent>
+                    <p class="m-0">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </AccordionContent>
+            </AccordionPanel>
+            <AccordionPanel value="1">
+                <AccordionHeader>Header II</AccordionHeader>
+                <AccordionContent>
+                    <p class="m-0">
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+                        ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+                    </p>
+                </AccordionContent>
+            </AccordionPanel>
+            <AccordionPanel value="2">
+                <AccordionHeader>Header III</AccordionHeader>
+                <AccordionContent>
+                    <p class="m-0">
+                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
+                        qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
+                    </p>
+                </AccordionContent>
+            </AccordionPanel>
+        </Accordion>
+    </div>
 </template>
+
+<script setup>
+</script>
 ```
 ::
 
@@ -70,37 +109,38 @@ AccordionPanel can be generated dynamically using the standard `v-for directive.
 
 ::DocsCodeSample
 ```vue
+<Accordion value="0">
+    <AccordionPanel v-for="tab in tabs" :key="tab.title" :value="tab.value">
+        <AccordionHeader>{{ tab.title }}</AccordionHeader>
+        <AccordionContent>
+            <p class="m-0">{{ tab.content }}</p>
+        </AccordionContent>
+    </AccordionPanel>
+</Accordion>
+```
+#full
+```vue
+
 <template>
-    
-        <Accordion :value="['0']" multiple>
-            <AccordionPanel v-for="tab in tabs" :key="tab.value" :value="tab.value">
+    <div class="card">
+        <Accordion value="0">
+            <AccordionPanel v-for="tab in tabs" :key="tab.title" :value="tab.value">
                 <AccordionHeader>{{ tab.title }}</AccordionHeader>
                 <AccordionContent>
                     <p class="m-0">{{ tab.content }}</p>
                 </AccordionContent>
             </AccordionPanel>
         </Accordion>
-    
+    </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 
 const tabs = ref([
-    { 
-        title: 'Header Dinamis I', 
-        content: 'Konten ini di-render menggunakan v-for dari data array.', 
-        value: '0' 
-    },
-    { 
-        title: 'Header Dinamis II', 
-        content: 'Setiap panel mendapatkan value unik untuk mengontrol status aktifnya.', 
-        value: '1' 
-    },
-    { 
-        title: 'Header Dinamis III', 
-        content: 'Sangat memudahkan jika Anda menarik data dari database atau API.', 
-        value: '2' 
-    }
+    { title: 'Title 1', content: 'Content 1', value: '0' },
+    { title: 'Title 2', content: 'Content 2', value: '1' },
+    { title: 'Title 3', content: 'Content 3', value: '2' }
 ]);
 </script>
 ```
@@ -114,38 +154,76 @@ Only one tab at a time can be active by default, enabling `multiple` property ch
 
 ::DocsCodeSample
 ```vue
+<Accordion :value="['0']" multiple>
+    <AccordionPanel value="0">
+        <AccordionHeader>Header I</AccordionHeader>
+        <AccordionContent>
+            <p class="m-0">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </AccordionContent>
+    </AccordionPanel>
+    <AccordionPanel value="1">
+        <AccordionHeader>Header II</AccordionHeader>
+        <AccordionContent>
+            <p class="m-0">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+                ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+            </p>
+        </AccordionContent>
+    </AccordionPanel>
+    <AccordionPanel value="2">
+        <AccordionHeader>Header III</AccordionHeader>
+        <AccordionContent>
+            <p class="m-0">
+                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
+                qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
+            </p>
+        </AccordionContent>
+    </AccordionPanel>
+</Accordion>
+```
+
+#full
+```vue
+
 <template>
-    
+    <div class="card">
         <Accordion :value="['0']" multiple>
             <AccordionPanel value="0">
                 <AccordionHeader>Header I</AccordionHeader>
                 <AccordionContent>
                     <p class="m-0">
-                        Secara default, panel pertama terbuka. Anda bisa membuka panel lain tanpa menutup panel ini karena mode 'multiple' aktif.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </p>
                 </AccordionContent>
             </AccordionPanel>
-            
             <AccordionPanel value="1">
                 <AccordionHeader>Header II</AccordionHeader>
                 <AccordionContent>
                     <p class="m-0">
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+                        ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
                     </p>
                 </AccordionContent>
             </AccordionPanel>
-            
             <AccordionPanel value="2">
                 <AccordionHeader>Header III</AccordionHeader>
                 <AccordionContent>
                     <p class="m-0">
-                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.
+                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
+                        qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
                     </p>
                 </AccordionContent>
             </AccordionPanel>
         </Accordion>
-    
+    </div>
 </template>
+
+<script setup>
+</script>
 ```
 ::
 
@@ -156,8 +234,6 @@ Enabling `disabled` property of an AccordionPanel prevents user interaction.
 
 ::DocsCodeSample
 ```vue
-<template>
-    
         <Accordion :value="['0']" multiple>
             <AccordionPanel value="0">
                 <AccordionHeader>Header I</AccordionHeader>
@@ -186,8 +262,49 @@ Enabling `disabled` property of an AccordionPanel prevents user interaction.
                 </AccordionContent>
             </AccordionPanel>
         </Accordion>
-    
+```
+#full
+```vue
+
+<template>
+    <div class="card">
+        <Accordion :value="['0']" multiple>
+            <AccordionPanel value="0">
+                <AccordionHeader>Header I</AccordionHeader>
+                <AccordionContent>
+                    <p class="m-0">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </AccordionContent>
+            </AccordionPanel>
+            <AccordionPanel value="1">
+                <AccordionHeader>Header II</AccordionHeader>
+                <AccordionContent>
+                    <p class="m-0">
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+                        ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+                    </p>
+                </AccordionContent>
+            </AccordionPanel>
+            <AccordionPanel value="2">
+                <AccordionHeader>Header III</AccordionHeader>
+                <AccordionContent>
+                    <p class="m-0">
+                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
+                        qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
+                    </p>
+                </AccordionContent>
+            </AccordionPanel>
+            <AccordionPanel value="3" disabled>
+                <AccordionHeader>Header IV</AccordionHeader>
+            </AccordionPanel>
+        </Accordion>
+    </div>
 </template>
+
+<script setup>
+</script>
 ```
 ::
 
@@ -200,9 +317,6 @@ Panels can be controlled programmatically using `value` property as a model.
 
 ::DocsCodeSample
 ```vue
-
-<template>
-    
         <div class="flex mb-4 gap-2 justify-end">
             <UButton @click="active = '0'" rounded label="1" class="w-8 h-8 p-0" :outlined="active !== '0'" />
             <UButton @click="active = '1'" rounded label="2" class="w-8 h-8 p-0" :outlined="active !== '1'" />
@@ -238,14 +352,9 @@ Panels can be controlled programmatically using `value` property as a model.
                 </AccordionContent>
             </AccordionPanel>
         </Accordion>
-    
-</template>
-
-
 ```
 #full
 ```vue
-
 <template>
     
         <div class="flex mb-4 gap-2 justify-end">
@@ -303,9 +412,6 @@ Custom content for a header is defined with the default slot. The optional `as` 
 
 ::DocsCodeSample
 ```vue
-
-<template>
-    
         <Accordion value="0" expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
             <AccordionPanel value="0">
                 <AccordionHeader>
@@ -353,12 +459,64 @@ Custom content for a header is defined with the default slot. The optional `as` 
                 </AccordionContent>
             </AccordionPanel>
         </Accordion>
-    
+```
+#full
+```vue
+
+<template>
+    <div class="card">
+        <Accordion value="0" expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
+            <AccordionPanel value="0">
+                <AccordionHeader>
+                    <span class="flex items-center gap-2 w-full">
+                        <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" />
+                        <span class="font-bold whitespace-nowrap">Amy Elsner</span>
+                        <Badge value="3" class="ml-auto mr-2" />
+                    </span>
+                </AccordionHeader>
+                <AccordionContent>
+                    <p class="m-0">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </AccordionContent>
+            </AccordionPanel>
+            <AccordionPanel value="1">
+                <AccordionHeader>
+                    <span class="flex items-center gap-2 w-full">
+                        <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/onyamalimba.png" shape="circle" />
+                        <span class="font-bold whitespace-nowrap">Onyama Limba</span>
+                        <Badge value="4" class="ml-auto mr-2" />
+                    </span>
+                </AccordionHeader>
+                <AccordionContent>
+                    <p class="m-0">
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+                        ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+                    </p>
+                </AccordionContent>
+            </AccordionPanel>
+            <AccordionPanel value="2">
+                <AccordionHeader>
+                    <span class="flex items-center gap-2 w-full">
+                        <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/ionibowcher.png" shape="circle" />
+                        <span class="font-bold whitespace-nowrap">Ioni Bowcher</span>
+                        <Badge value="2" class="ml-auto mr-2" />
+                    </span>
+                </AccordionHeader>
+                <AccordionContent>
+                    <p class="m-0">
+                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
+                        qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
+                    </p>
+                </AccordionContent>
+            </AccordionPanel>
+        </Accordion>
+    </div>
 </template>
 
 <script setup>
 </script>
-
 ```
 ::
 

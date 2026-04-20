@@ -15,13 +15,6 @@ import CheckboxGroup from 'primevue/checkboxgroup';
 
 Screen Reader Checkbox component uses a hidden native checkbox element internally that is only visible to screen readers. Value to describe the component can either be provided via label tag combined with `inputId` prop or using `aria-labelledby`, `aria-label` props.
 
-### Keyboard Support
-
-| Key | Function |
-|-----|----------|
-| *tab* | Moves focus to the checkbox. |
-| *space* | Toggles the checked state. |
-
 ```vue
 <label for="chkbox1">Remember Me</label>
 <Checkbox inputId="chkbox1" />
@@ -125,6 +118,8 @@ const pizza = ref();
 
 ```
 ::
+
+Alternatively, a CheckboxGroup wrapper can be used to group checkboxes. In this case, the v-model should be defined on the CheckboxGroup, not on the individual checkboxes. When a Checkbox is inside a CheckboxGroup, it reads and writes the group's value instead of its own.
 
 ::SampleCheckBoxGroup1
 ::

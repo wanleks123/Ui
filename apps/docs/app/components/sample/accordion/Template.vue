@@ -5,7 +5,7 @@
             <UAccordionPanel value="0">
                 <UAccordionHeader>
                     <span class="flex items-center gap-2 w-full">
-                        <UAvatar image="https://primefaces.org/cdn/primevue/images/UAvatar/amyelsner.png" shape="circle" />
+                        <UAvatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" />
                         <span class="font-bold whitespace-nowrap">Amy Elsner</span>
                         <UBadge value="3" class="ml-auto mr-2" />
                     </span>
@@ -20,7 +20,7 @@
             <UAccordionPanel value="1">
                 <UAccordionHeader>
                     <span class="flex items-center gap-2 w-full">
-                        <UAvatar image="https://primefaces.org/cdn/primevue/images/UAvatar/onyamalimba.png" shape="circle" />
+                        <UAvatar image="https://primefaces.org/cdn/primevue/images/avatar/onyamalimba.png" shape="circle" />
                         <span class="font-bold whitespace-nowrap">Onyama Limba</span>
                         <UBadge value="4" class="ml-auto mr-2" />
                     </span>
@@ -35,7 +35,7 @@
             <UAccordionPanel value="2">
                 <UAccordionHeader>
                     <span class="flex items-center gap-2 w-full">
-                        <UAvatar image="https://primefaces.org/cdn/primevue/images/UAvatar/ionibowcher.png" shape="circle" />
+                        <UAvatar image="https://primefaces.org/cdn/primevue/images/avatar/ionibowcher.png" shape="circle" />
                         <span class="font-bold whitespace-nowrap">Ioni Bowcher</span>
                         <UBadge value="2" class="ml-auto mr-2" />
                     </span>

@@ -30,6 +30,10 @@ export const navigation = [
                 href: '/components/button'
             },
             {
+                title: 'Breadcrumb',
+                href: '/components/breadcrumb'
+            },
+            {
                 title: 'Card',
                 href: '/components/card'
             },
@@ -38,12 +42,20 @@ export const navigation = [
                 href: '/components/checkbox'
             },
             {
-                title: 'DataTable',
-                href: '/components/data-table'
+                title: 'Chip',
+                href: '/components/chip'
             },
             {
-                title: 'InputText',
-                href: '/components/input-text'
+                title: 'Confirm Dialog',
+                href: '/components/confirm-dialog'
+            },
+            {
+                title: 'Listbox',
+                href: '/components/listbox'
+            },
+            {
+                title: 'Menu',
+                href: '/components/menu'
             }
         ]
     },
