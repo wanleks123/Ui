@@ -182,6 +182,10 @@ const toggle = (event) => {
 
 Items with navigation are defined with templating to be able to use a router link component, an external link or programmatic navigation.
 
+::SampleMenuRouter
+::
+
+::DocsCodeSample
 ```vue
 <Menu :model="items">
     <template #item="{ item, props }">
@@ -198,9 +202,7 @@ Items with navigation are defined with templating to be able to use a router lin
     </template>
 </Menu>
 ```
-
-<details>
-<summary>Composition API Example</summary>
+#full
 
 ```vue
 <template>
@@ -247,14 +249,18 @@ const items = ref([
         url: 'https://vuejs.org/'
     }
 ]);
-<\/script>
+</script>
 ```
-</details>
+::
 
 ## Template
 
 Menu offers item customization with the item template that receives the menuitem instance from the model as a parameter. The submenu label has its own submenulabel template, additional slots named start and end are provided to embed content before or after the menu.
 
+::SampleMenuTemplate
+::
+
+::DocsCodeSample
 ```vue
 <Menu :model="items" class="w-full md:w-60">
     <template #start>
@@ -288,9 +294,7 @@ Menu offers item customization with the item template that receives the menuitem
     </template>
 </Menu>
 ```
-
-<details>
-<summary>Composition API Example</summary>
+#full
 
 ```vue
 <template>
@@ -383,5 +387,5 @@ const items = ref([
 ]);
 <\/script>
 ```
-</details>
+::
 
