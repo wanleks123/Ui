@@ -70,12 +70,36 @@ export const navigation = [
                 href: '/components/multi-select'
             },
             {
-                title: 'Pagination',
-                href: '/components/pagination'
+                title: 'Organization Chart',
+                href: '/components/organization-chart'
+            },
+            {
+                title: 'Paginator',
+                href: '/components/paginator'
+            },
+            {
+                title: 'Panel',
+                href: '/components/panel'
+            },
+            {
+                title: 'Password',
+                href: '/components/password'
+            },
+            {
+                title: 'Popover',
+                href: '/components/popover'
             },
             {
                 title: 'Progress Bar',
                 href: '/components/progress-bar'
+            },
+            {
+                title: 'Progress Spinner',
+                href: '/components/progress-spinner'
+            },
+            {
+                title: 'Tabs',
+                href: '/components/tabs'
             }
         ]
     },

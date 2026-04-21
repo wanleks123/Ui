@@ -1,10 +1,9 @@
 <template>
     <ProgressBar
         unstyled
+        v-bind="$attrs"
         :pt="theme"
-        :ptOptions="{
-            mergeProps: ptViewMerge
-        }"
+        :ptOptions="{ mergeProps: ptViewMerge }"
     >
         <template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
             <slot :name="slotName" v-bind="slotProps ?? {}" />
@@ -20,49 +19,66 @@ import { ptViewMerge } from './utils';
 interface Props extends /* @vue-ignore */ ProgressBarProps {}
 defineProps<Props>();
 
+defineOptions({ inheritAttrs: false });
+
 const theme = ref<ProgressBarPassThroughOptions>({
-    root: `relative overflow-hidden h-5 bg-surface-200 dark:bg-surface-700 rounded-md`,
-    value: `m-0 bg-primary
-        p-determinate:h-full p-determinate:w-0 p-determinate:absolute p-determinate:flex p-determinate:items-center p-determinate:justify-center 
-        p-determinate:overflow-hidden p-determinate:transition-[width] p-determinate:duration-1000 p-determinate:ease-in-out
-        p-indeterminate:before:content-[''] p-indeterminate:before:absolute p-indeterminate:before:bg-inherit p-indeterminate:before:top-0 p-indeterminate:before:start-0 p-indeterminate:before:bottom-0 p-indeterminate:before:will-change-[inset-inline-start,inset-inline-end]
-        p-indeterminate:before:animate-[p-progressbar-indeterminate-anim_2.1s_cubic-bezier(0.65,0.815,0.735,0.395)_infinite]
-        p-indeterminate:after:content-[''] p-indeterminate:after:absolute p-indeterminate:after:bg-inherit p-indeterminate:after:top-0 p-indeterminate:after:start-0 p-indeterminate:after:bottom-0 p-indeterminate:after:will-change-[inset-inline-start,inset-inline-end]
-        p-indeterminate:after:animate-[p-progressbar-indeterminate-anim-short_2.1s_cubic-bezier(0.165,0.84,0.44,1)_infinite]
-        p-indeterminate:after:animate-delay-[1.15s]`,
-    label: `text-primary-contrast text-xs font-semibold
-        p-determinate:inline-flex`
+    root: ({ props }) => ({
+        class: [
+            'relative overflow-hidden h-5 w-full bg-surface-200 dark:bg-surface-700 rounded-md',
+            // Jika indeterminate, kita jadikan root sebagai kontainer animasinya langsung
+            { 'animate-indeterminate-root': props.mode === 'indeterminate' }
+        ]
+    }),
+    value: ({ props }) => ({
+        class: [
+            'absolute top-0 left-0 bottom-0',
+            // Hanya tampilkan bar biru statis jika mode-nya BUKAN indeterminate
+            props.mode !== 'indeterminate' 
+                ? 'bg-primary transition-[width] duration-1000 ease-in-out flex items-center justify-center' 
+                : 'hidden' // Sembunyikan elemen value bawaan saat indeterminate agar tidak bentrok
+        ]
+    }),
+    label: 'text-primary-contrast text-xs font-semibold px-2 inline-flex items-center justify-center h-full'
 });
 </script>
 
-<style>
-@keyframes p-progressbar-indeterminate-anim {
-    0% {
-        inset-inline-start: -35%;
-        inset-inline-end: 100%;
-    }
-    60% {
-        inset-inline-start: 100%;
-        inset-inline-end: -90%;
-    }
-    100% {
-        inset-inline-start: 100%;
-        inset-inline-end: -90%;
-    }
+<style scoped>
+/* Kita pasang animasinya di pseudo-element milik ROOT */
+.animate-indeterminate-root::before,
+.animate-indeterminate-root::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    will-change: left, right;
+    /* PAKSA WARNA BIRU STANDAR (Ganti ke hex warna primarimu jika perlu) */
+    background-color: #3b82f6; 
 }
 
-@keyframes p-progressbar-indeterminate-anim-short {
-    0% {
-        inset-inline-start: -200%;
-        inset-inline-end: 100%;
-    }
-    60% {
-        inset-inline-start: 107%;
-        inset-inline-end: -8%;
-    }
-    100% {
-        inset-inline-start: 107%;
-        inset-inline-end: -8%;
-    }
+/* Gunakan variable prime jika ada */
+:root {
+    --p-primary-color: #3b82f6;
+}
+
+.animate-indeterminate-root::before {
+    animation: p-indeterminate-1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+}
+
+.animate-indeterminate-root::after {
+    animation: p-indeterminate-2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+    animation-delay: 1.15s;
+}
+
+@keyframes p-indeterminate-1 {
+    0% { left: -35%; right: 100%; }
+    60% { left: 100%; right: -90%; }
+    100% { left: 100%; right: -90%; }
+}
+
+@keyframes p-indeterminate-2 {
+    0% { left: -200%; right: 100%; }
+    60% { left: 107%; right: -8%; }
+    100% { left: 107%; right: -8%; }
 }
 </style>

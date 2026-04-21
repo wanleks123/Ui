@@ -1,6 +1,12 @@
 <template>
     <div class="card flex justify-center">
-        <UForm v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-56">
+        <Form
+            v-slot="$form"
+            :resolver="resolver"
+            :initialValues="initialValues"
+            @submit="onFormSubmit"
+            class="flex flex-col gap-4 w-full sm:w-56"
+        >
             <div class="flex flex-col gap-1">
                 <UListbox name="city" :options="cities" optionLabel="name" fluid />
                 <UMessage v-if="$form.city?.invalid" severity="error" size="small" variant="simple">
@@ -8,7 +14,7 @@
                 </UMessage>
             </div>
             <UButton type="submit" severity="secondary" label="Submit" />
-        </UForm>
+        </Form>
     </div>
 </template>
 

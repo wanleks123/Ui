@@ -466,6 +466,10 @@ const cities = ref([
 
 Invalid state is displayed using the invalid prop to indicate a failed validation. You can use this style when integrating with form validation libraries.
 
+::SampleMultiSelectInvalid
+::
+
+::DocsCodeSample
 ```vue
 <MultiSelect v-model="selectedCities1" :options="cities" optionLabel="name" filter placeholder="Select Cities" 
         :maxSelectedLabels="3" :invalid="selectedCities1?.length === 0" class="w-full md:w-80" />
@@ -473,8 +477,7 @@ Invalid state is displayed using the invalid prop to indicate a failed validatio
         :maxSelectedLabels="3" :invalid="selectedCities2?.length === 0" class="w-full md:w-80" variant="filled" />
 ```
 
-<details>
-<summary>Composition API Example</summary>
+#full
 
 ```vue
 <template>
@@ -498,20 +501,23 @@ const cities = ref([
     { name: 'Istanbul', code: 'IST' },
     { name: 'Paris', code: 'PRS' }
 ]);
-<\/script>
+</script>
 ```
-</details>
+::
 
 ## Loading State
 
 Loading state can be used loading property.
 
+::SampleMultiSelectLoadingState
+::
+
+::DocsCodeSample
 ```vue
 <MultiSelect placeholder="Loading..." loading class="w-full md:w-80"></MultiSelect>
 ```
 
-<details>
-<summary>Composition API Example</summary>
+#full
 
 ```vue
 <template>
@@ -521,22 +527,25 @@ Loading state can be used loading property.
 </template>
 
 <script setup>
-<\/script>
+</script>
 ```
-</details>
+::
 
 ## Sizes
 
 MultiSelect provides small and large sizes as alternatives to the base.
 
+::SampleMultiSelectSizes
+::
+
+::DocsCodeSample
 ```vue
 <MultiSelect v-model="value1" :options="cities" optionLabel="name" :maxSelectedLabels="3" class="w-full md:w-80" size="small" placeholder="Small" />
 <MultiSelect v-model="value2" :options="cities" optionLabel="name" :maxSelectedLabels="3" class="w-full md:w-80" placeholder="Normal" />
 <MultiSelect v-model="value3" :options="cities" optionLabel="name" :maxSelectedLabels="3" class="w-full md:w-80" size="large" placeholder="Large" />
 ```
 
-<details>
-<summary>Composition API Example</summary>
+#full
 
 ```vue
 <template>
@@ -560,14 +569,18 @@ const cities = ref([
     { name: 'Istanbul', code: 'IST' },
     { name: 'Paris', code: 'PRS' }
 ]);
-<\/script>
+</script>
 ```
-</details>
+::
 
 ## Template
 
 MultiSelect offers multiple slots for customization through templating.
 
+::SampleMultiSelectTemplate
+::
+
+::DocsCodeSample
 ```vue
 <MultiSelect v-model="selectedCountries" :options="countries" optionLabel="name" filter placeholder="Select Countries" display="chip" class="w-full md:w-80">
     <template #option="slotProps">
@@ -594,8 +607,7 @@ MultiSelect offers multiple slots for customization through templating.
 </MultiSelect>
 ```
 
-<details>
-<summary>Composition API Example</summary>
+#full
 
 ```vue
 <template>
@@ -603,7 +615,7 @@ MultiSelect offers multiple slots for customization through templating.
         <MultiSelect v-model="selectedCountries" :options="countries" optionLabel="name" filter placeholder="Select Countries" display="chip" class="w-full md:w-80">
             <template #option="slotProps">
                 <div class="flex items-center">
-                    <img :alt="slotProps.option.name" src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png" :class="\`flag flag-\${slotProps.option.code.toLowerCase()} mr-2\`" style="width: 18px" />
+                    <img :alt="slotProps.option.name" src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png" :class="\`flag flag-\${slotProps.option.code.toLowerCase()} mr-2`" style="width: 18px" />
                     <div>{{ slotProps.option.name }}</div>
                 </div>
             </template>
@@ -642,21 +654,24 @@ const countries = ref([
     { name: 'Spain', code: 'ES' },
     { name: 'United States', code: 'US' }
 ]);
-<\/script>
+</script>
 ```
-</details>
+::
 
 ## VirtualScroll
 
 VirtualScroller is used to render a long list of options efficiently like 100K records in this demo. The configuration is done with virtualScrollerOptions property, refer to the VirtualScroller for more information about the available options as it is used internally by MultiSelect.
 
+::SampleMultiSelectVirtualScroll
+::
+
+::DocsCodeSample
 ```vue
 <MultiSelect v-model="selectedItems" :options="items" :maxSelectedLabels="3" :selectAll="selectAll" optionLabel="label" optionValue="value"
     @selectall-change="onSelectAllChange($event)" @change="onChange($event)" :virtualScrollerOptions="{ itemSize: 44 }" filter placeholder="Select Item" class="w-full md:w-80" />
 ```
 
-<details>
-<summary>Composition API Example</summary>
+#full
 
 ```vue
 <template>
@@ -672,7 +687,7 @@ import { ref } from 'vue';
 
 const selectedItems = ref();
 const selectAll = ref(false);
-const items = ref(Array.from({ length: 100000 }, (_, i) => ({ label: \`Item #\${i}\`, value: i })));
+const items = ref(Array.from({ length: 100000 }, (_, i) => ({ label: \`Item #\${i}`, value: i })));
 
 const onSelectAllChange = (event) => {
     selectedItems.value = event.checked ? items.value.map((item) => item.value) : [];
@@ -682,9 +697,9 @@ const onChange = (event) => {
     selectAll.value = event.value.length === items.value.length;
 }
 
-<\/script>
+</script>
 ```
-</details>
+::
 
 ## Multi Select
 
