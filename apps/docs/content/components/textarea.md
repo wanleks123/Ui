@@ -1,51 +1,39 @@
 ---
-Tittle: Password
+Tittle: Textarea
 ---
 
-Password displays strength indicator for password fields.
+Textarea adds styling and autoResize functionality to standard textarea element.
 
 ## Import
 
 ```javascript
-import Password from 'primevue/password';
+import Textarea from 'primevue/textarea';
 ```
 
 ## Accessibility
 
-Screen Reader Value to describe the component can either be provided via label tag combined with id prop or using aria-labelledby , aria-label props. Screen reader is notified about the changes to the strength of the password using a section that has aria-live while typing. Keyboard Support Key Function tab Moves focus to the input. escape Hides the strength meter if open.
+Screen Reader Textarea component renders a native textarea element that implicitly includes any passed prop. Value to describe the component can either be provided via label tag combined with id prop or using aria-labelledby , aria-label props. Keyboard Support Key Function tab Moves focus to the input.
 
 ```vue
-<label for="pwd1">Password</label>
-<Password inputId="pwd1" />
+<label for="address1">Address 1</label>
+<Textarea id="address1" />
 
-<span id="pwd2">Password</span>
-<Password aria-labelledby="pwd2" />
+<span id="address2">Address 2</span>
+<Textarea aria-labelledby="address2" />
 
-<Password aria-label="Password"/>
+<Textarea aria-label="Address Details"/>
 ```
 
-## Basic
+## AutoResizeDoc
 
-Password is used with the v-model property for two-way value binding.
+When autoResize is enabled, textarea grows instead of displaying a scrollbar.
 
-::SamplePasswordBasic
+::SampleTextAreaAutoResize
 ::
 
 ::DocsCodeSample
 ```vue
-<Password v-model="value" :feedback="false" />
-```
-
-## Clear Icon
-
-When showClear is enabled, a clear icon is added to reset the Password.
-
-::SamplePasswordClearIcon
-::
-
-::docsCodeSample
-```vue
-<Password v-model="value" :feedback="false" showClear inputClass="w-56" />
+<Textarea v-model="value" autoResize rows="5" cols="30" />
 ```
 
 #full
@@ -53,15 +41,28 @@ When showClear is enabled, a clear icon is added to reset the Password.
 ```vue
 <template>
     <div class="card flex justify-center">
-        <Password v-model="value" :feedback="false" showClear inputClass="w-56" />
+        <Textarea v-model="value" autoResize rows="5" cols="30" />
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 
-const value = ref(null);
+const value = ref('');
 </script>
+```
+::
+
+## Basic
+
+Textarea is used with the v-model property for two-way value binding.
+
+::SampleTextAreaBasic
+::
+
+::DocsCodeSample
+```vue
+<Textarea v-model="value" rows="5" cols="30" />
 ```
 ::
 
@@ -69,12 +70,12 @@ const value = ref(null);
 
 When disabled is present, the element cannot be edited and focused.
 
-::SamplePasswordDisabled
+::SampleTextAreaDisabled
 ::
 
 ::DocsCodeSample
 ```vue
-<Password disabled placeholder="Disabled" />
+<Textarea v-model="value" rows="5" cols="30" disabled />
 ```
 
 #full
@@ -82,11 +83,14 @@ When disabled is present, the element cannot be edited and focused.
 ```vue
 <template>
     <div class="card flex justify-center">
-        <Password disabled placeholder="Disabled" />
+        <Textarea v-model="value" rows="5" cols="30" disabled />
     </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
+const value = ref('Disabled');
 </script>
 ```
 ::
@@ -95,27 +99,26 @@ When disabled is present, the element cannot be edited and focused.
 
 Specify the variant property as filled to display the component with a higher visual emphasis than the default outlined style.
 
-::SamplePasswordFilled
+::SampleTextAreaFilled
 ::
 
 ::DocsCodeSample
 ```vue
-<Password v-model="value" :feedback="false" variant="filled" />
+<Textarea v-model="value" variant="filled" rows="5" cols="30" />
 ```
-
 #full
 
 ```vue
 <template>
     <div class="card flex justify-center">
-        <Password v-model="value" :feedback="false" variant="filled" />
+        <Textarea v-model="value" variant="filled" rows="5" cols="30" />
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 
-const value = ref(null);
+const value = ref('');
 </script>
 ```
 ::
@@ -124,23 +127,23 @@ const value = ref(null);
 
 A floating label appears on top of the input field when focused. Visit FloatLabel documentation for more information.
 
-::SamplePasswordFloatLabel
+::SampleTextAreaFloatLabel
 ::
 
 ::DocsCodeSample
 ```vue
 <FloatLabel>
-    <Password v-model="value1" inputId="over_label" />
+    <Textarea id="over_label" v-model="value1" rows="5" cols="30" style="resize: none" />
     <label for="over_label">Over Label</label>
 </FloatLabel>
 
 <FloatLabel variant="in">
-    <Password v-model="value2" inputId="in_label" variant="filled" />
+    <Textarea id="in_label" v-model="value2" rows="5" cols="30" style="resize: none" />
     <label for="in_label">In Label</label>
 </FloatLabel>
 
 <FloatLabel variant="on">
-    <Password v-model="value3" inputId="on_label" />
+    <Textarea id="on_label" v-model="value3" rows="5" cols="30" style="resize: none" />
     <label for="on_label">On Label</label>
 </FloatLabel>
 ```
@@ -149,19 +152,19 @@ A floating label appears on top of the input field when focused. Visit FloatLabe
 
 ```vue
 <template>
-   <div class="card flex flex-wrap justify-center items-end gap-4">
+    <div class="card flex flex-wrap justify-center items-end gap-4">
         <FloatLabel>
-            <Password v-model="value1" inputId="over_label" />
+            <Textarea id="over_label" v-model="value1" rows="5" cols="30" style="resize: none" />
             <label for="over_label">Over Label</label>
         </FloatLabel>
 
         <FloatLabel variant="in">
-            <Password v-model="value2" inputId="in_label" variant="filled" />
+            <Textarea id="in_label" v-model="value2" rows="5" cols="30" style="resize: none" />
             <label for="in_label">In Label</label>
         </FloatLabel>
 
         <FloatLabel variant="on">
-            <Password v-model="value3" inputId="on_label" />
+            <Textarea id="on_label" v-model="value3" rows="5" cols="30" style="resize: none" />
             <label for="on_label">On Label</label>
         </FloatLabel>
     </div>
@@ -170,9 +173,9 @@ A floating label appears on top of the input field when focused. Visit FloatLabe
 <script setup>
 import { ref } from 'vue';
 
-const value1 = ref(null);
-const value2 = ref(null);
-const value3 = ref(null);
+const value1 = ref('');
+const value2 = ref('');
+const value3 = ref('');
 </script>
 ```
 ::
@@ -181,12 +184,12 @@ const value3 = ref(null);
 
 The fluid prop makes the component take up the full width of its container when set to true.
 
-::SamplePasswordFluid
+::SampleTextAreaFluid
 ::
 
 ::DocsCodeSample
 ```vue
-<Password v-model="value" :feedback="false" fluid />
+<Textarea v-model="value" rows="5" fluid />
 ```
 
 #full
@@ -194,33 +197,31 @@ The fluid prop makes the component take up the full width of its container when 
 ```vue
 <template>
     <div class="card">
-        <Password v-model="value" :feedback="false" />
+        <Textarea v-model="value" rows="5" fluid />
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 
-const value = ref(null);
+const value = ref('');
 </script>
 ```
 ::
 
 ## Forms
 
-InputText is used with the v-model property.
+Textarea integrates seamlessly with the PrimeVue Forms library.
 
-::SamplePasswordForms
+::SampleTextAreaForms
 ::
 
 ::DocsCodeSample
 ```vue
-<Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-64">
+<Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4">
     <div class="flex flex-col gap-1">
-        <Password name="password" placeholder="Password" :feedback="false" fluid />
-        <template v-if="$form.password?.invalid">
-            <Message v-for="(error, index) of $form.password.errors" :key="index" severity="error" size="small" variant="simple">{{ error.message }}</Message>
-        </template>
+        <Textarea name="address" rows="5" cols="30" style="resize: none" />
+        <Message v-if="$form.address?.invalid" severity="error" size="small" variant="simple">{{ $form.address.error?.message }}</Message>
     </div>
     <Button type="submit" severity="secondary" label="Submit" />
 </Form>
@@ -231,12 +232,10 @@ InputText is used with the v-model property.
 ```vue
 <template>
     <div class="card flex justify-center">
-        <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-64">
+        <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4">
             <div class="flex flex-col gap-1">
-                <Password name="password" placeholder="Password" :feedback="false" fluid />
-                <template v-if="$form.password?.invalid">
-                    <Message v-for="(error, index) of $form.password.errors" :key="index" severity="error" size="small" variant="simple">{{ error.message }}</Message>
-                </template>
+                <Textarea name="address" rows="5" cols="30" style="resize: none" />
+                <Message v-if="$form.address?.invalid" severity="error" size="small" variant="simple">{{ $form.address.error?.message }}</Message>
             </div>
             <Button type="submit" severity="secondary" label="Submit" />
         </Form>
@@ -251,23 +250,11 @@ import { z } from 'zod';
 
 const toast = useToast();
 const initialValues = ref({
-    password: ''
+    address: ''
 });
 const resolver = ref(zodResolver(
     z.object({
-        password: z
-            .string()
-            .min(3, { message: 'Minimum 3 characters.' })
-            .max(8, { message: 'Maximum 8 characters.' })
-            .refine((value) => /[a-z]/.test(value), {
-                message: 'Must have a lowercase letter.'
-            })
-            .refine((value) => /[A-Z]/.test(value), {
-                message: 'Must have an uppercase letter.'
-            })
-            .refine((value) => /\d/.test(value), {
-                message: 'Must have a number.'
-            })
+        address: z.string().min(1, { message: 'Address is required.' })
     })
 ));
 
@@ -284,14 +271,14 @@ const onFormSubmit = ({ valid }) => {
 
 IftaLabel is used to create infield top aligned labels. Visit IftaLabel documentation for more information.
 
-::SamplePasswordIftaLabel
+::SampleTextAreaIftaLabel
 ::
 
 ::DocsCodeSample
 ```vue
 <IftaLabel>
-    <Password v-model="value" inputId="password" variant="filled" />
-    <label for="password">Password</label>
+    <Textarea id="description" v-model="value" rows="5" cols="30" style="resize: none" />
+    <label for="description">Description</label>
 </IftaLabel>
 ```
 
@@ -301,8 +288,8 @@ IftaLabel is used to create infield top aligned labels. Visit IftaLabel document
 <template>
     <div class="card flex justify-center">
         <IftaLabel>
-            <Password v-model="value" inputId="password" variant="filled" />
-            <label for="password">Password</label>
+            <Textarea id="description" v-model="value" rows="5" cols="30" style="resize: none" />
+            <label for="description">Description</label>
         </IftaLabel>
     </div>
 </template>
@@ -319,44 +306,12 @@ const value = ref(null);
 
 Invalid state is displayed using the invalid prop to indicate a failed validation. You can use this style when integrating with form validation libraries.
 
-::SamplePasswordInvalid
+::SampleTextAreaInvalid
 ::
 
 ::DocsCodeSample
 ```vue
-<Password v-model="value1" :invalid="!value1" placeholder="Password" />
-<Password v-model="value2" :invalid="!value2" variant="filled" placeholder="Password" />
-```
-
-#full
-
-```vue
-<template>
-    <div class="card flex flex-wrap justify-center gap-4">
-        <Password v-model="value1" :invalid="!value1" placeholder="Password" />
-        <Password v-model="value2" :invalid="!value2" variant="filled" placeholder="Password" />
-    </div>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-
-const value1 = ref(null);
-const value2 = ref(null);
-</script>
-```
-::
-
-## Locale
-
-Labels are translated at component level by promptLabel , weakLabel , mediumLabel and strongLabel properties. In order to apply global translations for all Password components in the application, refer to the locale .
-
-::SamplePasswordLocale
-::
-
-::DocsCodeSample
-```vue
-<Password v-model="value" promptLabel="Choose a password" weakLabel="Too simple" mediumLabel="Average complexity" strongLabel="Complex password" />
+<Textarea v-model="value" rows="5" cols="30" :invalid="!value" style="resize: none" placeholder="Address" />
 ```
 
 #full
@@ -364,71 +319,39 @@ Labels are translated at component level by promptLabel , weakLabel , mediumLabe
 ```vue
 <template>
     <div class="card flex justify-center">
-        <Password v-model="value" promptLabel="Choose a password" weakLabel="Too simple" mediumLabel="Average complexity" strongLabel="Complex password" />
+        <Textarea v-model="value" rows="5" cols="30" :invalid="!value" style="resize: none" placeholder="Address" />
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 
-const value = ref(null);
-</script>
-```
-::
-
-## Meter
-
-Strength meter is displayed as a popup while a value is being entered.
-
-::SamplePasswordMeter
-::
-
-::DocsCodeSample
-```vue
-<Password v-model="value" />
-```
-
-#full
-
-```vue
-<template>
-    <div class="card flex justify-center">
-        <Password v-model="value" />
-    </div>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-
-const value = ref(null);
+const value = ref('');
 </script>
 ```
 ::
 
 ## Sizes
 
-Password provides small and large sizes as alternatives to the base.
+Textarea provides small and large sizes as alternatives to the base.
 
-::SamplePasswordSizes
+::SampleTextAreaSizes
 ::
 
 ::DocsCodeSample
 ```vue
-<div class="card flex flex-col items-center gap-4">
-    <Password v-model="value1" size="small" placeholder="Small" />
-    <Password v-model="value2" placeholder="Normal" />
-    <Password v-model="value3" size="large" placeholder="Large" />
-</div>
+<Textarea v-model="value1" size="small" placeholder="Small" rows="3" />
+<Textarea v-model="value2" placeholder="Normal" rows="3" />
+<Textarea v-model="value3" size="large" placeholder="Large" rows="3" />
 ```
 
 #full
-
 ```vue
 <template>
     <div class="card flex flex-col items-center gap-4">
-        <Password v-model="value1" size="small" placeholder="Small" />
-        <Password v-model="value2" placeholder="Normal" />
-        <Password v-model="value3" size="large" placeholder="Large" />
+        <Textarea v-model="value1" size="small" placeholder="Small" rows="3" />
+        <Textarea v-model="value2" placeholder="Normal" rows="3" />
+        <Textarea v-model="value3" size="large" placeholder="Large" rows="3" />
     </div>
 </template>
 
@@ -441,92 +364,7 @@ const value3 = ref(null);
 </script>
 ```
 ::
-
-## Template
-
-3 slots are included to customize the overlay. These are header , content and footer . Note that content overrides the default meter.
-
-::SamplePasswordTemplate
-::
-
-::DocsCodeSample
-```vue
-<Password v-model="value">
-    <template #header>
-        <div class="font-semibold text-xm mb-4">Reset Password</div>
-    </template>
-    <template #footer>
-        <Divider />
-        <ul class="pl-2 my-0 leading-normal text-sm">
-            <li>At least one lowercase</li>
-            <li>At least one uppercase</li>
-            <li>At least one numeric</li>
-            <li>Minimum 8 characters</li>
-        </ul>
-    </template>
-</Password>
-```
-
-#full
-
-```vue
-<template>
-    <div class="card flex justify-center">
-        <Password v-model="value">
-            <template #header>
-                <div class="font-semibold text-xm mb-4">Reset Password</div>
-            </template>
-            <template #footer>
-                <Divider />
-                <ul class="pl-2 my-0 leading-normal text-sm">
-                    <li>At least one lowercase</li>
-                    <li>At least one uppercase</li>
-                    <li>At least one numeric</li>
-                    <li>Minimum 8 characters</li>
-                </ul>
-            </template>
-        </Password>
-    </div>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-
-const value = ref(null);
-</script>
-```
-::
-
-## ToggleMask
-
-When toggleMask is present, an icon is displayed to show the value as plain text.
-
-::SamplePasswordToggleMask
-::
-
-::DocsCodeSample
-```vue
-<Password v-model="value" toggleMask />
-```
-
-#full
-
-```vue
-<template>
-    <div class="card flex justify-center">
-        <Password v-model="value" toggleMask />
-    </div>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-
-const value = ref(null);
-</script>
-```
-::
-
-## Password
+## Textarea
 
 ### Props
 
@@ -624,34 +462,20 @@ const value = ref(null);
 | is | string | - | Specify that a standard HTML element should behave like a defined custom built-in element |
 | exportparts | string | - |  |
 | part | string | - |  |
-| accept | string | - |  |
-| alt | string | - |  |
-| autocomplete | InputAutoCompleteAttribute | - |  |
-| capture | boolean \| "user" \| "environment" | - |  |
-| checked | any[] \| Set<any> \| Booleanish | - |  |
-| crossorigin | string | - |  |
+| autocomplete | string | - |  |
+| autofocus | Booleanish | - |  |
+| cols | Numberish | - |  |
+| dirname | string | - |  |
+| disabled | Booleanish | - |  |
 | form | string | - |  |
-| formaction | string | - |  |
-| formenctype | string | - |  |
-| formmethod | string | - |  |
-| formnovalidate | Booleanish | - |  |
-| formtarget | string | - |  |
-| height | Numberish | - |  |
-| indeterminate | boolean | - |  |
-| list | string | - |  |
-| max | Numberish | - |  |
 | maxlength | Numberish | - |  |
-| min | Numberish | - |  |
 | minlength | Numberish | - |  |
-| multiple | Booleanish | - |  |
-| pattern | string | - |  |
+| placeholder | string | - |  |
 | readonly | Booleanish | - |  |
-| src | string | - |  |
-| step | Numberish | - |  |
-| type | InputTypeHTMLAttribute | - |  |
-| value | any | - |  |
-| width | Numberish | - |  |
-| onCancel | Function | - |  |
+| required | Booleanish | - |  |
+| rows | Numberish | - |  |
+| value | null \| string \| number \| readonly string[] | - |  |
+| wrap | string | - |  |
 | onCopy | Function | - |  |
 | onCut | Function | - |  |
 | onPaste | Function | - |  |
@@ -749,63 +573,29 @@ const value = ref(null);
 | modelValue | Nullable<string> | - | Value of the component. |
 | defaultValue | Nullable<string> | - | The default value for the input when not controlled by  `modelValue` . |
 | name | string | - | The name attribute for the element, typically used in form submissions. |
-| promptLabel | string | - | Text to prompt password entry. Defaults to PrimeVue Locale configuration. |
-| mediumRegex | string \| RegExp | ^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,}) | Regex for a medium level password. |
-| strongRegex | string \| RegExp | ^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,}) | Regex for a strong level password. |
-| weakLabel | string | - | Text for a weak password. Defaults to PrimeVue Locale configuration. |
-| mediumLabel | string | - | Text for a medium password. Defaults to PrimeVue Locale configuration. |
-| strongLabel | string | - | Text for a strong password. Defaults to PrimeVue Locale configuration. |
-| feedback | boolean | true | Whether to show the strength indicator or not. |
-| appendTo | HTMLElement \| HintedString<"body" \| "self"> | body | A valid query selector or an HTMLElement to specify where the overlay gets attached. |
-| toggleMask | boolean | false | Whether to show an icon to display the password as plain text. |
-| maskIcon | string | - | Icon to hide displaying the password as plain text. |
-| unmaskIcon | string | - | Icon to show displaying the password as plain text. |
-| showClear | boolean | false | When enabled, a clear icon is displayed to clear the value. |
+| autoResize | boolean | false | When present, height of textarea changes as being typed. |
 | size | HintedString<"small" \| "large"> | - | Defines the size of the component. |
 | invalid | boolean | false | When present, it specifies that the component should have invalid state style. |
-| disabled | boolean | false | When present, it specifies that the component should be disabled. |
 | variant | null \| HintedString<"outlined" \| "filled"> | null | Specifies the input variant of the component. |
-| placeholder | string | - | Placeholder text for the input. |
-| required | boolean | false | When present, it specifies that an input field must be filled out before submitting the form. |
 | fluid | boolean | null | Spans 100% width of the container when enabled. |
-| autofocus | boolean | null | When present, it specifies that an input element should automatically get focus when the page loads. |
-| inputId | string | - | Identifier of the underlying input element. |
-| inputStyle | object | - | Inline style of the input field. |
-| inputClass | string \| object | - | Style class of the input field. |
-| inputProps | InputHTMLAttributes | - | Used to pass all properties of the HTMLInputElement to the focusable input element inside the component. |
-| panelId | string | - | Identifier of the underlying overlay panel element. |
-| panelClass | string \| object | - | Style class of the overlay panel. |
-| panelStyle | object | - | Inline style of the overlay panel. |
-| panelProps | HTMLAttributes | - | Used to pass all properties of the HTMLDivElement to the overlay panel inside the component. |
-| overlayId | string | - | Identifier of the underlying overlay element. |
-| overlayClass | string \| object | - | Style class of the overlay. |
-| overlayStyle | object | - | Inline style of the overlay. |
-| overlayProps | HTMLAttributes | - | Used to pass all properties of the HTMLDivElement to the overlay inside the component. |
-| ariaLabelledby | string | - | Establishes relationships between the component and label(s) where its value should be one or more element IDs. |
-| ariaLabel | string | - | Establishes a string value that labels the component. |
 | formControl | Record<string, any> | - | Form control object, typically used for handling validation and form state. |
 | dt | any | - | It generates scoped CSS variables using design tokens for the component. |
-| pt | PassThrough<PasswordPassThroughOptions> | - | Used to pass attributes to DOM elements inside the component. |
+| pt | PassThrough<TextareaPassThroughOptions> | - | Used to pass attributes to DOM elements inside the component. |
 | ptOptions | any | - | Used to configure passthrough(pt) options of the component. |
 | unstyled | boolean | false | When enabled, it removes component related styles in the core. |
+
+### Emits
+
+| Name | Parameters | Description |
+|------|------------|-------------|
+| update:modelValue | Function |  |
 
 ## Pass Through Options
 
 | Name | Type | Description |
 |------|------|-------------|
-| root | PasswordPassThroughOptionType | Used to pass attributes to the root's DOM element. |
-| pcInputText | any | Used to pass attributes to the InputText component. |
-| maskIcon | PasswordPassThroughOptionType | Used to pass attributes to the mask icon's DOM element. |
-| unmaskIcon | PasswordPassThroughOptionType | Used to pass attributes to the unmask icon's DOM element. |
-| clearIcon | PasswordPassThroughOptionType | Used to pass attributes to the clear icon's DOM element. |
-| overlay | PasswordPassThroughOptionType | Used to pass attributes to the overlay's DOM element. |
-| content | PasswordPassThroughOptionType | Used to pass attributes to the overlay's content DOM element. |
-| meter | PasswordPassThroughOptionType | Used to pass attributes to the meter's DOM element. |
-| meterLabel | PasswordPassThroughOptionType | Used to pass attributes to the meter label's DOM element. |
-| meterText | PasswordPassThroughOptionType | Used to pass attributes to the meter text's DOM element. |
-| hiddenAccesible | PasswordPassThroughOptionType | Used to pass attributes to the hidden accessible DOM element. |
+| root | TextareaPassThroughOptionType | Used to pass attributes to the root's DOM element. |
 | hooks | any | Used to manage all lifecycle hooks. |
-| transition | PasswordPassThroughTransitionType | Used to control Vue Transition API. |
 
 ## Theming
 
@@ -813,32 +603,39 @@ const value = ref(null);
 
 | Class | Description |
 |-------|-------------|
-| p-password | Class name of the root element |
-| p-password-input | Class name of the pt input element |
-| p-password-mask-icon | Class name of the mask icon element |
-| p-password-unmask-icon | Class name of the unmask icon element |
-| p-password-clear-icon | Class name of the clear icon element |
-| p-password-overlay | Class name of the overlay element |
-| p-password-meter | Class name of the meter element |
-| p-password-meter-label | Class name of the meter label element |
-| p-password-meter-text | Class name of the meter text element |
+| p-textarea | Class name of the root element |
 
 ### Design Tokens
 
 | Token | CSS Variable | Description |
 |-------|--------------|-------------|
-| password.meter.background | --p-password-meter-background | Background of meter |
-| password.meter.border.radius | --p-password-meter-border-radius | Border radius of meter |
-| password.meter.height | --p-password-meter-height | Height of meter |
-| password.icon.color | --p-password-icon-color | Color of icon |
-| password.overlay.background | --p-password-overlay-background | Background of overlay |
-| password.overlay.border.color | --p-password-overlay-border-color | Border color of overlay |
-| password.overlay.border.radius | --p-password-overlay-border-radius | Border radius of overlay |
-| password.overlay.color | --p-password-overlay-color | Color of overlay |
-| password.overlay.padding | --p-password-overlay-padding | Padding of overlay |
-| password.overlay.shadow | --p-password-overlay-shadow | Shadow of overlay |
-| password.content.gap | --p-password-content-gap | Gap of content |
-| password.strength.weak.background | --p-password-strength-weak-background | Weak background of strength |
-| password.strength.medium.background | --p-password-strength-medium-background | Medium background of strength |
-| password.strength.strong.background | --p-password-strength-strong-background | Strong background of strength |
+| textarea.background | --p-textarea-background | Background of root |
+| textarea.disabled.background | --p-textarea-disabled-background | Disabled background of root |
+| textarea.filled.background | --p-textarea-filled-background | Filled background of root |
+| textarea.filled.hover.background | --p-textarea-filled-hover-background | Filled hover background of root |
+| textarea.filled.focus.background | --p-textarea-filled-focus-background | Filled focus background of root |
+| textarea.border.color | --p-textarea-border-color | Border color of root |
+| textarea.hover.border.color | --p-textarea-hover-border-color | Hover border color of root |
+| textarea.focus.border.color | --p-textarea-focus-border-color | Focus border color of root |
+| textarea.invalid.border.color | --p-textarea-invalid-border-color | Invalid border color of root |
+| textarea.color | --p-textarea-color | Color of root |
+| textarea.disabled.color | --p-textarea-disabled-color | Disabled color of root |
+| textarea.placeholder.color | --p-textarea-placeholder-color | Placeholder color of root |
+| textarea.invalid.placeholder.color | --p-textarea-invalid-placeholder-color | Invalid placeholder color of root |
+| textarea.shadow | --p-textarea-shadow | Shadow of root |
+| textarea.padding.x | --p-textarea-padding-x | Padding x of root |
+| textarea.padding.y | --p-textarea-padding-y | Padding y of root |
+| textarea.border.radius | --p-textarea-border-radius | Border radius of root |
+| textarea.focus.ring.width | --p-textarea-focus-ring-width | Focus ring width of root |
+| textarea.focus.ring.style | --p-textarea-focus-ring-style | Focus ring style of root |
+| textarea.focus.ring.color | --p-textarea-focus-ring-color | Focus ring color of root |
+| textarea.focus.ring.offset | --p-textarea-focus-ring-offset | Focus ring offset of root |
+| textarea.focus.ring.shadow | --p-textarea-focus-ring-shadow | Focus ring shadow of root |
+| textarea.transition.duration | --p-textarea-transition-duration | Transition duration of root |
+| textarea.sm.font.size | --p-textarea-sm-font-size | Sm font size of root |
+| textarea.sm.padding.x | --p-textarea-sm-padding-x | Sm padding x of root |
+| textarea.sm.padding.y | --p-textarea-sm-padding-y | Sm padding y of root |
+| textarea.lg.font.size | --p-textarea-lg-font-size | Lg font size of root |
+| textarea.lg.padding.x | --p-textarea-lg-padding-x | Lg padding x of root |
+| textarea.lg.padding.y | --p-textarea-lg-padding-y | Lg padding y of root |
 

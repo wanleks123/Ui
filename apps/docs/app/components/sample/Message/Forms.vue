@@ -16,6 +16,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import { Form } from '@primevue/forms';
 
 const username = ref(null);
 const email = ref(null);

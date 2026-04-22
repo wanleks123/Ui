@@ -1,6 +1,6 @@
 <template>
     <DocsCard>
-        <UForm v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex justify-center flex-col gap-4">
+        <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex justify-center flex-col gap-4">
             <div class="flex flex-col gap-1">
                 <UMultiSelect name="city" :options="cities" optionLabel="name" filter placeholder="Select Cities" :maxSelectedLabels="3" class="w-full md:w-80" />
                 
@@ -9,7 +9,7 @@
                 </UMessage>
             </div>
             <UButton type="submit" severity="secondary" label="Submit" />
-        </UForm>
+        </Form>
     </DocsCard>
 </template>
 
@@ -19,6 +19,7 @@ import { zodResolver } from '@primevue/forms/resolvers/zod';
 import { useToast } from "primevue/usetoast";
 import { z } from 'zod';
 
+import { Form } from '@primevue/forms';
 const toast = useToast();
 const initialValues = ref({
     city: []

@@ -2,25 +2,11 @@
     <Timeline
         unstyled
         :pt="theme"
-        :ptOptions="{
+        :pt-options="{
             mergeProps: ptViewMerge
         }"
+        v-bind="$attrs"
     >
-        <template #content="slotProps">
-            <div class="flex flex-col min-w-0">
-                <span :class="[
-                    'text-sm font-medium transition-colors duration-200',
-                    slotProps.item.status === 'current' ? 'text-primary-600 dark:text-primary-400' : 
-                    slotProps.item.status === 'complete' ? 'text-surface-900 dark:text-white' : 'text-surface-500 dark:text-surface-400'
-                ]">
-                    {{ slotProps.item.name }}
-                </span>
-                <span class="text-sm text-surface-500 dark:text-surface-400">
-                    {{ slotProps.item.description }}
-                </span>
-            </div>
-        </template>
-
         <template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
             <slot :name="slotName" v-bind="slotProps ?? {}" />
         </template>
@@ -32,52 +18,72 @@ import Timeline, { type TimelinePassThroughOptions, type TimelineProps } from 'p
 import { ref } from 'vue';
 import { ptViewMerge } from './utils';
 
+// Menggunakan interface asli dari PrimeVue untuk kompatibilitas penuh
 interface Props extends /* @vue-ignore */ TimelineProps {}
 defineProps<Props>();
 
+/**
+ * Theme Definition menggunakan Tailwind Utility Classes
+ * Menggunakan prefix p-* untuk menangani state orientasi dan alignment PrimeVue
+ */
 const theme = ref<TimelinePassThroughOptions>({
-    root: 'flex flex-col grow p-horizontal:flex-row',
-    event: ({ props, context }: any) => ({
+    root: {
         class: [
-            'flex relative min-h-[5rem] last:min-h-0',
-            {
-                'flex-row-reverse': props.align === 'right',
-                'flex-col flex-1 last:flex-none': props.layout === 'horizontal'
-            },
-            // Spacing between steps
-            'pb-10 last:pb-0'
+            'flex flex-col flex-grow',
+            'p-horizontal:flex-row'
         ]
-    }),
-    eventOpposite: 'hidden', // Standard progress trackers usually hide the opposite side
-    eventSeparator: 'flex flex-col items-center flex-none',
-    eventMarker: ({ context }: any) => {
-        const status = context.item?.status;
-        return {
-            class: [
-                'relative z-10 flex size-8 items-center justify-center rounded-full border-2 transition-all duration-200',
-                // Complete State
-                { 'bg-primary-600 border-primary-600 dark:bg-primary-500 dark:border-primary-500': status === 'complete' },
-                // Current State
-                { 'bg-surface-0 border-primary-600 dark:bg-surface-900 dark:border-primary-500': status === 'current' },
-                // Upcoming State
-                { 'bg-surface-0 border-surface-300 dark:bg-surface-900 dark:border-white/15': status === 'upcoming' || !status },
-                
-                // Inner indicator logic via before/after
-                status === 'current' ? 'before:size-2.5 before:rounded-full before:bg-primary-600 dark:before:bg-primary-500' : '',
-                status === 'complete' ? 'after:content-["✓"] after:text-white after:font-bold after:text-sm' : ''
-            ]
-        };
     },
-    eventConnector: ({ context }: any) => {
-        const status = context.item?.status;
-        return {
-            class: [
-                'grow w-0.5 mt-0.5 -ml-px transition-colors duration-300',
-                // Line is colored if the CURRENT step is complete
-                status === 'complete' ? 'bg-primary-600 dark:bg-primary-500' : 'bg-surface-300 dark:bg-white/15'
-            ]
-        };
+    event: {
+        class: [
+            'group flex relative min-h-[5rem] last:min-h-0',
+            'p-right:flex-row-reverse',
+            'p-horizontal:flex-col p-horizontal:flex-1 p-horizontal:last:flex-none',
+            'p-bottom:flex-col-reverse',
+            'p-vertical:p-alternate:even:flex-row-reverse',
+            'p-horizontal:p-alternate:even:flex-col-reverse'
+        ]
     },
-    eventContent: 'flex-1 px-4 pt-1.5'
+    eventOpposite: {
+        class: [
+            'flex-1',
+            'p-left:text-right p-right:text-left',
+            'p-vertical:py-0 p-vertical:px-4 p-vertical:leading-none',
+            'p-vertical:p-alternate:group-odd:text-right p-vertical:p-alternate:group-even:text-left',
+            'p-horizontal:py-4 p-horizontal:px-0'
+        ]
+    },
+    eventSeparator: {
+        class: 'flex-none flex flex-col items-center p-horizontal:flex-row'
+    },
+    eventMarker: {
+        class: [
+            'inline-flex items-center justify-center relative self-baseline',
+            'w-4.5 h-4.5 border-2 rounded-full',
+            'border-surface-200 dark:border-surface-700',
+            'bg-surface-0 dark:bg-surface-900',
+            // Inner Circle (Primary)
+            'before:rounded-full before:w-1.5 before:h-1.5 before:bg-primary',
+            // Shadow Effect
+            'after:absolute after:w-full after:h-full after:rounded-full',
+            'after:shadow-[0px_0.5px_0px_0px_rgba(0,0,0,0.06),0px_1px_1px_0px_rgba(0,0,0,0.12)]',
+            'p-horizontal:flex-row'
+        ]
+    },
+    eventConnector: {
+        class: [
+            'flex-grow bg-surface-200 dark:bg-surface-700',
+            'p-vertical:w-[2px]',
+            'p-horizontal:w-full p-horizontal:h-[2px]'
+        ]
+    },
+    eventContent: {
+        class: [
+            'flex-1',
+            'p-left:text-left p-right:text-right',
+            'p-vertical:py-0 p-vertical:px-4 p-vertical:leading-none',
+            'p-vertical:p-alternate:group-odd:text-left p-vertical:p-alternate:group-even:text-right',
+            'p-horizontal:py-4 p-horizontal:px-0'
+        ]
+    }
 });
 </script>

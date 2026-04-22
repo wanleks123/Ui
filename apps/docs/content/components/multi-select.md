@@ -278,7 +278,7 @@ const cities = ref([
 
 ## Forms
 
-::SampleMultiSelectGroup
+::SampleMultiSelectForms
 ::
 
 ::DocsCodeSample

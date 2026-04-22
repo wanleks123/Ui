@@ -105,6 +105,26 @@ export const navigation = [
                 title: 'Tag',
                 href: '/components/tag'
             },
+            {
+                title: 'Textarea',
+                href: '/components/textarea'
+            },
+             {
+                title: 'Timeline',
+                href: '/components/timeline'
+            },
+             {
+                title: 'Toast',
+                href: '/components/toast'
+            },
+            {
+                title: 'Toggle Switch',
+                href: '/components/toggle-switch'
+            },
+            {
+                title: 'Toolbar',
+                href: '/components/toolbar'
+            }
         ]
     },
     {

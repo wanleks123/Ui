@@ -23,6 +23,7 @@ import { ref } from 'vue';
 import { zodResolver } from '@primevue/forms/resolvers/zod';
 import { useToast } from "primevue/usetoast";
 import { z } from 'zod';
+import { Form } from '@primevue/forms';
 
 const toast = useToast();
 
