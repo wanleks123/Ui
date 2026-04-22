@@ -100,7 +100,11 @@ export const navigation = [
             {
                 title: 'Tabs',
                 href: '/components/tabs'
-            }
+            },
+            {
+                title: 'Tag',
+                href: '/components/tag'
+            },
         ]
     },
     {
