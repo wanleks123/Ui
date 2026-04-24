@@ -73,7 +73,7 @@ const theme = ref<AutoCompletePassThroughOptions>({
             'transition-colors duration-200'
         ]
     },
-    overlay: `absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md 
+    overlay: `absolute z-10 mt-1 max-h-60 overflow-auto rounded-md 
         bg-white dark:bg-surface-800 
         py-1 text-base sm:text-sm shadow-lg 
         outline outline-black/5 dark:outline-white/10`,

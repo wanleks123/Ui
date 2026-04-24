@@ -25,7 +25,7 @@ const navButton = `!absolute flex-shrink-0 top-0 z-20 h-full flex items-center j
         transition-colors duration-200`;
 
 const theme = ref<TabListPassThroughOptions>({
-    root: `flex relative`,
+    root: `flex relative w-full overflow-x-auto`,
     prevButton: navButton + ` start-0`,
     nextButton: navButton + ` end-0`,
     content: `flex-grow
