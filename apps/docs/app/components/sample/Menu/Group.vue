@@ -18,7 +18,7 @@ const items = ref([
             },
             {
                 label: 'Search',
-                icon: 'ph:search'
+                icon: 'ph:magnifying-glass'
             }
         ]
     },
@@ -27,7 +27,7 @@ const items = ref([
         items: [
             {
                 label: 'Settings',
-                icon: 'ph:cog'
+                icon: 'ph:gear'
             },
             {
                 label: 'Logout',

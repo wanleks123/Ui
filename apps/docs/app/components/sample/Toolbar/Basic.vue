@@ -4,20 +4,23 @@
         <UToolbar>
             <template #start>
                 <UButton icon="ph:plus" class="mr-2" severity="secondary" text />
-                <UButton icon="ph:print" class="mr-2" severity="secondary" text />
+                <UButton icon="ph:printer" class="mr-2" severity="secondary" text />
                 <UButton icon="ph:upload" severity="secondary" text />
             </template>
 
             <template #center>
-                <UIconField>
-                    <UInputIcon>
-                        <i class="ph:search" />
-                    </UInputIcon>
-                    <UInputText placeholder="Search" />
-                </UIconField>
-            </template>
+    <UIconField class="relative flex items-center">
+        
+        <UInputIcon class="absolute left-3 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center text-surface-500 dark:text-surface-400">
+            <Icon name="ph:magnifying-glass" size="18" />
+        </UInputIcon>
 
-            <template #end> <SplitButton label="Save" :model="items"></SplitButton></template>
+        <UInputText placeholder="Search" class="pl-10 w-full" />
+        
+    </UIconField>
+</template>
+
+            <template #end> <USplitButton label="Save" :model="items"></USplitButton></template>
         </UToolbar>
     </DocsCard>
 </template>
@@ -28,11 +31,11 @@ import { ref } from 'vue';
 const items = ref([
     {
         label: 'Update',
-        icon: 'ph:refresh'
+        icon: 'ph:arrow-clockwise'
     },
     {
         label: 'Delete',
-        icon: 'ph:times'
+        icon: 'ph:trash'
     }
 ])
 </script>

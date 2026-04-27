@@ -51,6 +51,7 @@ export { default as Select } from './Select.vue';
 export { default as SelectButton } from './SelectButton.vue';
 export { default as Skeleton } from './Skeleton.vue';
 export { default as Slider } from './Slider.vue';
+export { default as SplitButton } from './SplitButton.vue';
 export { default as Splitter } from './Splitter.vue';
 export { default as Step } from './Step.vue';
 export { default as StepItem } from './StepItem.vue';

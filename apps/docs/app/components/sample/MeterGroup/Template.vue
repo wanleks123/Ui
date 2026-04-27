@@ -45,9 +45,9 @@
 import { ref } from "vue";
 
 const value = ref([
-    { label: 'Apps', color1: '#34d399', color2: '#fbbf24', value: 25, icon: 'ph:table' },
-    { label: 'Messages', color1: '#fbbf24', color2: '#60a5fa', value: 15, icon: 'ph:inbox' },
+    { label: 'Apps', color1: '#34d399', color2: '#fbbf24', value: 25, icon: 'ph:squares-four' },
+    { label: 'Messages', color1: '#fbbf24', color2: '#60a5fa', value: 15, icon: 'ph:chat-circle-dots' },
     { label: 'Media', color1: '#60a5fa', color2: '#c084fc', value: 20, icon: 'ph:image' },
-    { label: 'System', color1: '#c084fc', color2: '#c084fc', value: 10, icon: 'ph:cog' }
+    { label: 'System', color1: '#c084fc', color2: '#c084fc', value: 10, icon: 'ph:gear' }
 ]);
 </script>

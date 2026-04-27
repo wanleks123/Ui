@@ -4,6 +4,15 @@
         :pt="theme"
         :ptOptions="{ mergeProps: ptViewMerge }"
     >
+        <template #icon="slotProps">
+            <Icon 
+                v-if="icon" 
+                :name="icon" 
+                :class="slotProps.class" 
+                :size="iconSize || '20'"
+            />
+        </template>
+
         <template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
             <slot :name="slotName" v-bind="slotProps ?? {}" />
         </template>
@@ -12,10 +21,12 @@
 
 <script setup lang="ts">
 import Button, { type ButtonPassThroughOptions, type ButtonProps } from 'primevue/button';
-import {onMounted, ref, useAttrs} from 'vue';
+import { ref, useAttrs } from 'vue';
 import { ptViewMerge } from './utils';
 
-interface Props extends /* @vue-ignore */ ButtonProps {}
+interface Props extends /* @vue-ignore */ ButtonProps {
+    icon?: string; // Kita terima string icon seperti 'ph:user'
+}
 const props = defineProps<Props>();
 const attrs = useAttrs();
 

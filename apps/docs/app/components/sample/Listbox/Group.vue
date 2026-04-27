@@ -4,7 +4,7 @@
         <UListbox v-model="selectedCity" :options="groupedCities" optionLabel="label" optionGroupLabel="label" optionGroupChildren="items" class="w-full md:w-56" listStyle="max-height:250px">
             <template #optiongroup="slotProps">
                 <div class="flex items-center">
-                    <img :alt="slotProps.option.name" src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png" :class="`flag flag-${slotProps.option.code.toLowerCase()} mr-2`" style="width: 18px" />
+                   <Icon :name="`flag:${slotProps.option.code.toLowerCase()}-4x3`" class="me-2" :style="{ width: '18px' }" />
                     <div>{{ slotProps.option.label }}</div>
                 </div>
             </template>
@@ -19,7 +19,7 @@ const selectedCity = ref();
 const groupedCities = ref([
     {
         label: 'Germany',
-        code: 'DE',
+        code: 'de',
         items: [
             { label: 'Berlin', value: 'Berlin' },
             { label: 'Frankfurt', value: 'Frankfurt' },
@@ -29,7 +29,7 @@ const groupedCities = ref([
     },
     {
         label: 'USA',
-        code: 'US',
+        code: 'us',
         items: [
             { label: 'Chicago', value: 'Chicago' },
             { label: 'Los Angeles', value: 'Los Angeles' },
@@ -39,7 +39,7 @@ const groupedCities = ref([
     },
     {
         label: 'Japan',
-        code: 'JP',
+        code: 'jp',
         items: [
             { label: 'Kyoto', value: 'Kyoto' },
             { label: 'Osaka', value: 'Osaka' },

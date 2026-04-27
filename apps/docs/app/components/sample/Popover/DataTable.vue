@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="flex gap-2">
-                        <UButton icon="ph:shopping-cart" :label="`Buy Now | \$${selectedProduct.price}`" :disabled="selectedProduct.inventoryStatus === 'OUTOFSTOCK'" class="flex-auto whitespace-nowrap" @click="hidePopover"></UButton>
+                        <UButton icon="ph:shopping" :label="`Buy Now | \$${selectedProduct.price}`" :disabled="selectedProduct.inventoryStatus === 'OUTOFSTOCK'" class="flex-auto whitespace-nowrap" @click="hidePopover"></UButton>
                         <UButton icon="ph:heart" variant="outlined" @click="hidePopover"></UButton>
                     </div>
                 </div>

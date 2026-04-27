@@ -17,12 +17,13 @@
         <Icon 
             v-if="item.icon"
             :name="item.icon" 
+            :size="iconSize || '20'"
             :class="[
                 item.current ? 'text-primary-600 dark:text-primary-400' : 'text-surface-400 group-hover:text-primary-600 dark:text-surface-500 dark:group-hover:text-white',
                 'size-6 shrink-0 transition-colors duration-200'
             ]" 
         />
-        u
+        
         <span :class="[item.current ? 'text-primary-600 dark:text-white' : 'text-surface-700 dark:text-surface-300 group-hover:text-primary-600 dark:group-hover:text-white']">
             {{ item.label }}
         </span>

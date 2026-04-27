@@ -1,7 +1,7 @@
 
 <template>
     <DocsCard>
-        <UButton type="button" icon="ph:share-alt" label="Share" @click="toggle" />
+        <UButton type="button" icon="ph:share" label="Share" @click="toggle" />
 
         <UPopover ref="op">
             <div class="flex flex-col gap-4 w-[25rem]">

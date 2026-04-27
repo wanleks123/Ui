@@ -2,10 +2,13 @@
     <DocsCard>
         <UTimeline :value="events" align="alternate" class="customized-timeline">
             <template #marker="slotProps">
-                <span class="flex w-8 h-8 items-center justify-center text-white rounded-full z-10 shadow-sm" :style="{ backgroundColor: slotProps.item.color }">
-                    <i :class="slotProps.item.icon"></i>
-                </span>
-            </template>
+    <span 
+        class="flex w-8 h-8 items-center justify-center text-white rounded-full z-10 shadow-sm" 
+        :style="{ backgroundColor: slotProps.item.color }"
+    >
+        <Icon :name="slotProps.item.icon" size="18" />
+    </span>
+</template>
             <template #content="slotProps">
                 <UCard class="mt-4">
                     <template #title>
@@ -31,9 +34,9 @@
 import { ref } from "vue";
 
 const events = ref([
-    { status: 'Ordered', date: '15/10/2020 10:30', icon: 'ph:shopping-cart', color: '#9C27B0', image: 'game-controller.jpg' },
-    { status: 'Processing', date: '15/10/2020 14:00', icon: 'ph:cog', color: '#673AB7' },
-    { status: 'Shipped', date: '15/10/2020 16:15', icon: 'ph:shopping-cart', color: '#FF9800' },
+    { status: 'Ordered', date: '15/10/2020 10:30', icon: 'ph:shopping-cart', color: '#9C27B0' },
+    { status: 'Processing', date: '15/10/2020 14:00', icon: 'ph:gear', color: '#673AB7' }, // Ganti ph:cog ke ph:gear
+    { status: 'Shipped', date: '15/10/2020 16:15', icon: 'ph:truck', color: '#FF9800' },     // ph:truck lebih cocok untuk Shipped
     { status: 'Delivered', date: '16/10/2020 10:00', icon: 'ph:check', color: '#607D8B' }
 ]);
 </script>

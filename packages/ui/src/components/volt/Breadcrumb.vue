@@ -2,10 +2,17 @@
     <Breadcrumb
         unstyled
         :pt="theme"
-        :ptOptions="{
-            mergeProps: ptViewMerge
-        }"
+        :ptOptions="{ mergeProps: ptViewMerge }"
     >
+        <template #itemicon="{ item, class: itemClass }">
+            <Icon 
+                v-if="item.icon && item.icon.includes(':')" 
+                :icon="item.icon" 
+                :class="itemClass" 
+            />
+            <span v-else-if="item.icon" :class="[item.icon, itemClass]"></span>
+        </template>
+
         <template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
             <slot :name="slotName" v-bind="slotProps ?? {}" />
         </template>
@@ -13,7 +20,8 @@
 </template>
 
 <script setup lang="ts">
-import Breadcrumb, { type BreadcrumbPassThroughOptions, type BreadcrumbProps } from 'primevue/breadcrumb';
+import Breadcrumb, { type BreadcrumbPassThroughOptions } from 'primevue/breadcrumb';
+import { Icon } from '@iconify/vue'; // Import ini!
 import { ref } from 'vue';
 import { ptViewMerge } from './utils';
 

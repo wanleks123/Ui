@@ -19,7 +19,7 @@
                 </div>
             </template>
             <template #icons>
-                <UButton icon="ph:cog" severity="secondary" rounded text @click="toggle" />
+                <UButton icon="ph:gear" severity="secondary" rounded text @click="toggle" />
                 <UMenu ref="menu" id="config_menu" :model="items" popup />
             </template>
             <p class="m-0">
@@ -43,18 +43,18 @@ const router = useRouter();
 const items = ref([
     {
         label: 'Refresh',
-        icon: 'ph:refresh'
+        icon: 'ph:arrows-counter-clockwise'
     },
     {
         label: 'Search',
-        icon: 'ph:search'
+        icon: 'ph:magnifying-glass'
     },
     {
         separator: true
     },
     {
         label: 'Delete',
-        icon: 'ph:times'
+        icon: 'ph:trash'
     }
 ]);
 

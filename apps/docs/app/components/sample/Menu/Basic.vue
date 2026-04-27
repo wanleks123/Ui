@@ -10,6 +10,6 @@ import { ref } from "vue";
 
 const items = ref([
     { label: 'New', icon: 'ph:plus' },
-    { label: 'Search', icon: 'ph:search' }
+    { label: 'Search', icon: 'ph:magnifying-glass' }
 ]);
 </script>

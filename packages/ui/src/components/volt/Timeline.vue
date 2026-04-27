@@ -62,7 +62,7 @@ const theme = ref<TimelinePassThroughOptions>({
             'border-surface-200 dark:border-surface-700',
             'bg-surface-0 dark:bg-surface-900',
             // Inner Circle (Primary)
-            'before:rounded-full before:w-1.5 before:h-1.5 before:bg-primary',
+            'before:rounded-full shrink-0 before:w-1.5 before:h-1.5 before:bg-primary',
             // Shadow Effect
             'after:absolute after:w-full after:h-full after:rounded-full',
             'after:shadow-[0px_0.5px_0px_0px_rgba(0,0,0,0.06),0px_1px_1px_0px_rgba(0,0,0,0.12)]',

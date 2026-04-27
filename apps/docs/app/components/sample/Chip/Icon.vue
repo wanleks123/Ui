@@ -20,7 +20,7 @@
 
         <UChip label="Microsoft" removable>
             <template #icon>
-                <Icon name="ph:microsoft-logo" />
+                <Icon name="simple-icons:microsoft" />
             </template>
         </UChip>
         

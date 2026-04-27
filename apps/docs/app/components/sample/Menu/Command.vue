@@ -22,7 +22,7 @@ const items = ref([
     },
     {
         label: 'Search',
-        icon: 'ph:search',
+        icon: 'ph:magnifying-glass',
         command: () => {
             toast.add({ severity: 'warn', summary: 'Search Completed', detail: 'No results found', life: 3000 });
         }
