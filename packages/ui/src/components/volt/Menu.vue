@@ -22,7 +22,7 @@
                 'size-6 shrink-0 transition-colors duration-200'
             ]" 
         />
-        
+        u
         <span :class="[item.current ? 'text-primary-600 dark:text-white' : 'text-surface-700 dark:text-surface-300 group-hover:text-primary-600 dark:group-hover:text-white']">
             {{ item.label }}
         </span>
