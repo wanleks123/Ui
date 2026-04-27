@@ -21,7 +21,7 @@
 import { ref } from "vue";
 
 const home = ref({
-    icon: 'pi pi-home',
+    icon: 'ph:home',
     route: '/introduction'
 });
 const items = ref([

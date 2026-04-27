@@ -53,12 +53,12 @@ const items = ref([
         items: [
             {
                 label: 'New',
-                icon: 'pi pi-plus',
+                icon: 'ph:plus',
                 shortcut: '⌘+N'
             },
             {
                 label: 'Search',
-                icon: 'pi pi-search',
+                icon: 'ph:search',
                 shortcut: '⌘+S'
             }
         ]
@@ -68,17 +68,17 @@ const items = ref([
         items: [
             {
                 label: 'Settings',
-                icon: 'pi pi-cog',
+                icon: 'ph:cog',
                 shortcut: '⌘+O'
             },
             {
                 label: 'Messages',
-                icon: 'pi pi-inbox',
+                icon: 'ph:inbox',
                 badge: 2
             },
             {
                 label: 'Logout',
-                icon: 'pi pi-sign-out',
+                icon: 'ph:sign-out',
                 shortcut: '⌘+Q'
             }
         ]

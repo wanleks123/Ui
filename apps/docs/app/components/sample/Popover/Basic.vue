@@ -1,7 +1,7 @@
 
 <template>
     <DocsCard>
-        <UButton type="button" icon="pi pi-share-alt" label="Share" @click="toggle" />
+        <UButton type="button" icon="ph:share-alt" label="Share" @click="toggle" />
 
         <UPopover ref="op">
             <div class="flex flex-col gap-4 w-[25rem]">
@@ -10,7 +10,7 @@
                     <UInputGroup>
                         <UInputText value="https://primevue.org/12323ff26t2g243g423g234gg52hy25XADXAG3" readonly class="w-[25rem]"></UInputText>
                         <UInputGroupAddon>
-                            <i class="pi pi-copy"></i>
+                            <i class="ph:copy"></i>
                         </UInputGroupAddon>
                     </UInputGroup>
                 </div>
@@ -18,7 +18,7 @@
                     <span class="font-medium block mb-2">Invite Member</span>
                     <UInputGroup>
                         <UInputText disabled />
-                        <UButton label="Invite" icon="pi pi-users"></UButton>
+                        <UButton label="Invite" icon="ph:users"></UButton>
                     </UInputGroup>
                 </div>
                 <div>
@@ -32,7 +32,7 @@
                             </div>
                             <div class="flex items-center gap-2 text-surface-500 dark:text-surface-400 ml-auto text-sm">
                                 <span>{{ member.role }}</span>
-                                <i class="pi pi-angle-down"></i>
+                                <i class="ph:angle-down"></i>
                             </div>
                         </li>
                     </ul>

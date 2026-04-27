@@ -12,14 +12,14 @@
             <template #footer>
                 <div class="flex flex-wrap items-center justify-between gap-4">
                     <div class="flex items-center gap-2">
-                        <UButton icon="pi pi-user" rounded text></UButton>
-                        <UButton icon="pi pi-bookmark" severity="secondary" rounded text></UButton>
+                        <UButton icon="ph:user" rounded text></UButton>
+                        <UButton icon="ph:bookmark" severity="secondary" rounded text></UButton>
                     </div>
                     <span class="text-surface-500 dark:text-surface-400">Updated 2 hours ago</span>
                 </div>
             </template>
             <template #icons>
-                <UButton icon="pi pi-cog" severity="secondary" rounded text @click="toggle" />
+                <UButton icon="ph:cog" severity="secondary" rounded text @click="toggle" />
                 <UMenu ref="menu" id="config_menu" :model="items" popup />
             </template>
             <p class="m-0">
@@ -43,18 +43,18 @@ const router = useRouter();
 const items = ref([
     {
         label: 'Refresh',
-        icon: 'pi pi-refresh'
+        icon: 'ph:refresh'
     },
     {
         label: 'Search',
-        icon: 'pi pi-search'
+        icon: 'ph:search'
     },
     {
         separator: true
     },
     {
         label: 'Delete',
-        icon: 'pi pi-times'
+        icon: 'ph:times'
     }
 ]);
 

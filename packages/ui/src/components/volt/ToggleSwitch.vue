@@ -11,11 +11,11 @@ const theme = ref<ToggleSwitchPassThroughOptions>({
         class: [
             // Container utama
             'relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out',
-            'outline-offset-2 focus-visible:outline-2 focus-visible:outline-indigo-600',
+            'outline-offset-2 focus-visible:outline-2 focus-visible:outline-primary-600',
             
             // Background Logic
             props.modelValue === props.trueValue 
-                ? 'bg-indigo-600 dark:bg-indigo-500' 
+                ? 'bg-primary-600 dark:bg-primary-500' 
                 : 'bg-gray-200 dark:bg-slate-700',
             
             { 'opacity-50 pointer-events-none': props.disabled }
@@ -56,7 +56,7 @@ const theme = ref<ToggleSwitchPassThroughOptions>({
             <svg v-if="!checked" class="size-3 text-gray-400" fill="none" viewBox="0 0 12 12">
                 <path d="M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-            <svg v-else class="size-3 text-indigo-600" fill="currentColor" viewBox="0 0 12 12">
+            <svg v-else class="size-3 text-primary-600" fill="currentColor" viewBox="0 0 12 12">
                 <path d="M3.707 5.293a1 1 0 00-1.414 1.414l1.414-1.414zM5 8l-.707.707a1 1 0 001.414 0L5 8zm4.707-3.293a1 1 0 00-1.414-1.414l1.414 1.414zm-7.414 2l2 2 1.414-1.414-2-2-1.414 1.414zm3.414 2l4-4-1.414-1.414-4 4 1.414 1.414z" />
             </svg>
         </template>

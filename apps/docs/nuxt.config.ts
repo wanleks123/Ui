@@ -92,9 +92,10 @@ export default defineNuxtConfig({
     },
 
     icon: {
-        mode: 'svg',
-        cssLayer: 'base'
-    },
+  serverBundle: {
+    collections: ['ph']
+  },
+},
 
     'unimmaUi': {
         prefix: 'U'

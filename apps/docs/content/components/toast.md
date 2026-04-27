@@ -41,7 +41,7 @@ Headless mode is enabled by defining a container slot that lets you implement en
     <template #container="{ message, closeCallback }">
         <section class="flex flex-col p-4 gap-4 w-full bg-primary/70 rounded-xl">
             <div class="flex items-center gap-5">
-                <i class="pi pi-cloud-upload text-white dark:text-black text-2xl"></i>
+                <i class="ph:cloud-upload text-white dark:text-black text-2xl"></i>
                 <span class="font-bold text-base text-white dark:text-black">{{ message.summary }}</span>
             </div>
             <div class="flex flex-col gap-2">
@@ -67,7 +67,7 @@ Headless mode is enabled by defining a container slot that lets you implement en
             <template #container="{ message, closeCallback }">
                 <section class="flex flex-col p-4 gap-4 w-full bg-primary/70 rounded-xl">
                     <div class="flex items-center gap-5">
-                        <i class="pi pi-cloud-upload text-white dark:text-black text-2xl"></i>
+                        <i class="ph:cloud-upload text-white dark:text-black text-2xl"></i>
                         <span class="font-bold text-base text-white dark:text-black">{{ message.summary }}</span>
                     </div>
                     <div class="flex flex-col gap-2">

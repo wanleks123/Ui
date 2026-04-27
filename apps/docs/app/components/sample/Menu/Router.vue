@@ -27,19 +27,19 @@ const router = useRouter();
 const items = ref([
     {
         label: 'Router Link',
-        icon: 'pi pi-palette',
+        icon: 'ph:palette',
         route: '/theming/unstyled'
     },
     {
         label: 'Programmatic',
-        icon: 'pi pi-link',
+        icon: 'ph:link',
         command: () => {
             router.push('/introduction');
         }
     },
     {
         label: 'External',
-        icon: 'pi pi-home',
+        icon: 'ph:home',
         url: 'https://vuejs.org/'
     }
 ]);

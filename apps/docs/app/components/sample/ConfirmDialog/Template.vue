@@ -28,16 +28,16 @@ const showTemplate = () => {
         group: 'templating',
         header: 'Confirmation',
         message: 'Please confirm to proceed moving forward.',
-        icon: 'pi pi-exclamation-circle',
+        icon: 'ph:exclamation-circle',
         rejectProps: {
             label: 'Cancel',
-            icon: 'pi pi-times',
+            icon: 'ph:times',
             outlined: true,
             size: 'small'
         },
         acceptProps: {
             label: 'Save',
-            icon: 'pi pi-check',
+            icon: 'ph:check',
             size: 'small'
         },
         accept: () => {

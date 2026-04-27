@@ -13,7 +13,7 @@
             </template>
             <template #footer>
                 <div class="px-3 py-3">
-                    <UButton label="Add New" fluid severity="secondary" text size="small" icon="pi pi-plus" />
+                    <UButton label="Add New" fluid severity="secondary" text size="small" icon="ph:plus" />
                 </div>
             </template>
         </UAutoComplete>

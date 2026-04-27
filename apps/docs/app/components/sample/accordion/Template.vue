@@ -1,7 +1,7 @@
 
 <template>
     <DocsCard>
-        <UAccordion value="0" expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
+        <UAccordion value="0" expandIcon="ph:plus" collapseIcon="ph:minus">
             <UAccordionPanel value="0">
                 <UAccordionHeader>
                     <span class="flex items-center gap-2 w-full">

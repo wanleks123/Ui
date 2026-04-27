@@ -9152,7 +9152,7 @@ snapshots:
     dependencies:
       detect-libc: 2.1.2
       is-glob: 4.0.3
-      node-addon-api: 7.1.1
+      node-addon-aph: 7.1.1
       picomatch: 4.0.4
     optionalDependencies:
       '@parcel/watcher-android-arm64': 2.5.6
@@ -13533,7 +13533,7 @@ snapshots:
     dependencies:
       '@colordx/core': 5.2.0
       browserslist: 4.28.2
-      caniuse-api: 3.0.0
+      caniuse-aph: 3.0.0
       postcss: 8.5.10
       postcss-value-parser: 4.2.0
 
@@ -13569,7 +13569,7 @@ snapshots:
   postcss-merge-rules@7.0.9(postcss@8.5.10):
     dependencies:
       browserslist: 4.28.2
-      caniuse-api: 3.0.0
+      caniuse-aph: 3.0.0
       cssnano-utils: 5.0.1(postcss@8.5.10)
       postcss: 8.5.10
       postcss-selector-parser: 7.1.1
@@ -13653,7 +13653,7 @@ snapshots:
   postcss-reduce-initial@7.0.7(postcss@8.5.10):
     dependencies:
       browserslist: 4.28.2
-      caniuse-api: 3.0.0
+      caniuse-aph: 3.0.0
       postcss: 8.5.10
 
   postcss-reduce-transforms@7.0.1(postcss@8.5.10):

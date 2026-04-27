@@ -412,7 +412,7 @@ Custom content for a header is defined with the default slot. The optional `as` 
 
 ::DocsCodeSample
 ```vue
-        <Accordion value="0" expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
+        <Accordion value="0" expandIcon="ph:plus" collapseIcon="ph:minus">
             <AccordionPanel value="0">
                 <AccordionHeader>
                     <span class="flex items-center gap-2 w-full">
@@ -465,7 +465,7 @@ Custom content for a header is defined with the default slot. The optional `as` 
 
 <template>
     <div class="card">
-        <Accordion value="0" expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
+        <Accordion value="0" expandIcon="ph:plus" collapseIcon="ph:minus">
             <AccordionPanel value="0">
                 <AccordionHeader>
                     <span class="flex items-center gap-2 w-full">

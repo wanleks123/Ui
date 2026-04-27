@@ -14,11 +14,11 @@ const items = ref([
         items: [
             {
                 label: 'New',
-                icon: 'pi pi-plus'
+                icon: 'ph:plus'
             },
             {
                 label: 'Search',
-                icon: 'pi pi-search'
+                icon: 'ph:search'
             }
         ]
     },
@@ -27,11 +27,11 @@ const items = ref([
         items: [
             {
                 label: 'Settings',
-                icon: 'pi pi-cog'
+                icon: 'ph:cog'
             },
             {
                 label: 'Logout',
-                icon: 'pi pi-sign-out'
+                icon: 'ph:sign-out'
             }
         ]
     }

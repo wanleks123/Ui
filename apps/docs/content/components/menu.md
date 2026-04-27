@@ -56,14 +56,14 @@ const toast = useToast();
 const items = ref([
     {
         label: 'New',
-        icon: 'pi pi-plus',
+        icon: 'ph:plus',
         command: () => {
             toast.add({ severity: 'success', summary: 'Success', detail: 'File created', life: 3000 });
         }
     },
     {
         label: 'Search',
-        icon: 'pi pi-search',
+        icon: 'ph:search',
         command: () => {
             toast.add({ severity: 'warn', summary: 'Search Completed', detail: 'No results found', life: 3000 });
         }
@@ -103,11 +103,11 @@ const items = ref([
         items: [
             {
                 label: 'New',
-                icon: 'pi pi-plus'
+                icon: 'ph:plus'
             },
             {
                 label: 'Search',
-                icon: 'pi pi-search'
+                icon: 'ph:search'
             }
         ]
     },
@@ -116,11 +116,11 @@ const items = ref([
         items: [
             {
                 label: 'Settings',
-                icon: 'pi pi-cog'
+                icon: 'ph:cog'
             },
             {
                 label: 'Logout',
-                icon: 'pi pi-sign-out'
+                icon: 'ph:sign-out'
             }
         ]
     }
@@ -138,7 +138,7 @@ Overlay mode is enabled by adding popup property and calling toggle function of 
 
 ::DocsCodeSample
 ```vue
-<Button type="button" icon="pi pi-ellipsis-v" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
+<Button type="button" icon="ph:ellipsis-v" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
 <Menu ref="menu" id="overlay_menu" :model="items" :popup="true" />
 ```
 #full
@@ -146,7 +146,7 @@ Overlay mode is enabled by adding popup property and calling toggle function of 
 ```vue
 <template>
     <div class="card flex justify-center">
-        <Button type="button" icon="pi pi-ellipsis-v" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
+        <Button type="button" icon="ph:ellipsis-v" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
         <Menu ref="menu" id="overlay_menu" :model="items" :popup="true" />
     </div>
 </template>
@@ -161,11 +161,11 @@ const items = ref([
         items: [
             {
                 label: 'Refresh',
-                icon: 'pi pi-refresh'
+                icon: 'ph:refresh'
             },
             {
                 label: 'Export',
-                icon: 'pi pi-upload'
+                icon: 'ph:upload'
             }
         ]
     }
@@ -233,19 +233,19 @@ const router = useRouter();
 const items = ref([
     {
         label: 'Router Link',
-        icon: 'pi pi-palette',
+        icon: 'ph:palette',
         route: '/theming/unstyled'
     },
     {
         label: 'Programmatic',
-        icon: 'pi pi-link',
+        icon: 'ph:link',
         command: () => {
             router.push('/introduction');
         }
     },
     {
         label: 'External',
-        icon: 'pi pi-home',
+        icon: 'ph:home',
         url: 'https://vuejs.org/'
     }
 ]);
@@ -351,12 +351,12 @@ const items = ref([
         items: [
             {
                 label: 'New',
-                icon: 'pi pi-plus',
+                icon: 'ph:plus',
                 shortcut: '⌘+N'
             },
             {
                 label: 'Search',
-                icon: 'pi pi-search',
+                icon: 'ph:search',
                 shortcut: '⌘+S'
             }
         ]
@@ -366,17 +366,17 @@ const items = ref([
         items: [
             {
                 label: 'Settings',
-                icon: 'pi pi-cog',
+                icon: 'ph:cog',
                 shortcut: '⌘+O'
             },
             {
                 label: 'Messages',
-                icon: 'pi pi-inbox',
+                icon: 'ph:inbox',
                 badge: 2
             },
             {
                 label: 'Logout',
-                icon: 'pi pi-sign-out',
+                icon: 'ph:sign-out',
                 shortcut: '⌘+Q'
             }
         ]

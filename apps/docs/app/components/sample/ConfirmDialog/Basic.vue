@@ -21,7 +21,7 @@ const confirm1 = () => {
     confirm.require({
         message: 'Are you sure you want to proceed?',
         header: 'Confirmation',
-        icon: 'pi pi-exclamation-triangle',
+        icon: 'ph:exclamation-triangle',
         rejectProps: {
             label: 'Cancel',
             severity: 'secondary',
@@ -43,7 +43,7 @@ const confirm2 = () => {
     confirm.require({
         message: 'Do you want to delete this record?',
         header: 'Danger Zone',
-        icon: 'pi pi-info-circle',
+        icon: 'ph:info-circle',
         rejectLabel: 'Cancel',
         rejectProps: {
             label: 'Cancel',

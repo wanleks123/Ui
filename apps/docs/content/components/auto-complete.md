@@ -260,7 +260,7 @@ Grouping is available by wrapping multiple Avatar components inside an AvatarGro
     </template>
     <template #footer>
         <div class="px-3 py-3">
-            <Button label="Add New" fluid severity="secondary" text size="small" icon="pi pi-plus" />
+            <Button label="Add New" fluid severity="secondary" text size="small" icon="ph:plus" />
         </div>
     </template>
 </AutoComplete>
@@ -282,7 +282,7 @@ Grouping is available by wrapping multiple Avatar components inside an AvatarGro
             </template>
             <template #footer>
                 <div class="px-3 py-3">
-                    <Button label="Add New" fluid severity="secondary" text size="small" icon="pi pi-plus" />
+                    <Button label="Add New" fluid severity="secondary" text size="small" icon="ph:plus" />
                 </div>
             </template>
         </AutoComplete>

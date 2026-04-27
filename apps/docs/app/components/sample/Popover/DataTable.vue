@@ -15,7 +15,7 @@
             </Column>
             <Column header="Details" class="w-1/6">
                 <template #body="slotProps">
-                    <Button type="button" @click="displayProduct($event, slotProps.data)" icon="pi pi-search" severity="secondary" rounded></Button>
+                    <Button type="button" @click="displayProduct($event, slotProps.data)" icon="ph:search" severity="secondary" rounded></Button>
                 </template>
             </Column>
         </UDataTable>
@@ -37,13 +37,13 @@
                         <div class="bg-surface-100 p-1" style="border-radius: 30px">
                             <div class="bg-surface-0 flex items-center gap-2 justify-center py-1 px-2" style="border-radius: 30px; box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.04), 0px 1px 2px 0px rgba(0, 0, 0, 0.06)">
                                 <span class="text-surface-900 font-medium text-sm">{{ selectedProduct.rating }}</span>
-                                <i class="pi pi-star-fill text-yellow-500"></i>
+                                <i class="ph:star-fill text-yellow-500"></i>
                             </div>
                         </div>
                     </div>
                     <div class="flex gap-2">
-                        <UButton icon="pi pi-shopping-cart" :label="`Buy Now | \$${selectedProduct.price}`" :disabled="selectedProduct.inventoryStatus === 'OUTOFSTOCK'" class="flex-auto whitespace-nowrap" @click="hidePopover"></UButton>
-                        <UButton icon="pi pi-heart" variant="outlined" @click="hidePopover"></UButton>
+                        <UButton icon="ph:shopping-cart" :label="`Buy Now | \$${selectedProduct.price}`" :disabled="selectedProduct.inventoryStatus === 'OUTOFSTOCK'" class="flex-auto whitespace-nowrap" @click="hidePopover"></UButton>
+                        <UButton icon="ph:heart" variant="outlined" @click="hidePopover"></UButton>
                     </div>
                 </div>
             </div>

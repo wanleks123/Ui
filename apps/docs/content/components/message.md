@@ -74,8 +74,8 @@ Validation errors in a form are displayed with the error severity.
 
 ::DocsCodeSample
 ```vue
-<Message v-if="!username || !email" severity="error" icon="pi pi-times-circle" class="mb-2">Validation error</Message>
-<Message v-if="username && email" severity="success" icon="pi pi-times-circle" class="mb-2">Form is valid</Message>
+<Message v-if="!username || !email" severity="error" icon="ph:times-circle" class="mb-2">Validation error</Message>
+<Message v-if="username && email" severity="success" icon="ph:times-circle" class="mb-2">Form is valid</Message>
 <div class="flex flex-col gap-1">
     <InputText v-model="username" placeholder="Username" aria-label="username" :invalid="!username" />
     <Message v-show="!username" severity="error" variant="simple" size="small">Username is required</Message>
@@ -90,8 +90,8 @@ Validation errors in a form are displayed with the error severity.
 ```vue
 <template>
     <div class="flex flex-col gap-4">
-        <Message v-if="!username || !email" severity="error" icon="pi pi-times-circle" class="mb-2">Validation error</Message>
-        <Message v-if="username && email" severity="success" icon="pi pi-times-circle" class="mb-2">Form is valid</Message>
+        <Message v-if="!username || !email" severity="error" icon="ph:times-circle" class="mb-2">Validation error</Message>
+        <Message v-if="username && email" severity="success" icon="ph:times-circle" class="mb-2">Form is valid</Message>
         <div class="flex flex-col gap-1">
             <InputText v-model="username" placeholder="Username" aria-label="username" :invalid="!username" />
             <Message v-show="!username" severity="error" variant="simple" size="small">Username is required</Message>
@@ -121,7 +121,7 @@ Icon property and the icon slots are available to customize the icon of the mess
 
 ::DocsCodeSample
 ```vue
-<Message severity="info" icon="pi pi-send">Info Message</Message>
+<Message severity="info" icon="ph:send">Info Message</Message>
 <Message severity="success">
     <template #icon>
         <Avatar image="/images/avatar/amyelsner.png" shape="circle" />
@@ -134,7 +134,7 @@ Icon property and the icon slots are available to customize the icon of the mess
 ```vue
 <template>
     <div class="card flex justify-center gap-4">
-        <Message severity="info" icon="pi pi-send">Info Message</Message>
+        <Message severity="info" icon="ph:send">Info Message</Message>
         <Message severity="success">
             <template #icon>
                 <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" />
@@ -302,18 +302,18 @@ Message provides small and large sizes as alternatives to the base.
 
 ::DocsCodeSample
 ```vue
-<Message size="small" icon="pi pi-send">Small Message</Message>
-<Message icon="pi pi-user">Normal Message</Message>
-<Message size="large" icon="pi pi-check">Large Message</Message>
+<Message size="small" icon="ph:send">Small Message</Message>
+<Message icon="ph:user">Normal Message</Message>
+<Message size="large" icon="ph:check">Large Message</Message>
 ```
 #full
 
 ```vue
 <template>
     <div class="card flex flex-col items-center gap-4">
-        <Message size="small" icon="pi pi-send">Small Message</Message>
-        <Message icon="pi pi-user">Normal Message</Message>
-        <Message size="large" icon="pi pi-check">Large Message</Message>
+        <Message size="small" icon="ph:send">Small Message</Message>
+        <Message icon="ph:user">Normal Message</Message>
+        <Message size="large" icon="ph:check">Large Message</Message>
     </div>
 </template>
 

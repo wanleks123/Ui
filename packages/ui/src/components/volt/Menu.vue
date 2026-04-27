@@ -13,25 +13,21 @@
         </template>
         
         <template #item="{ item, props }">
-            <a v-ripple :href="item.url" v-bind="props.action" class="group">
-                <component 
-                    :is="item.icon" 
-                    :class="[
-                        item.current ? 'text-primary-600 dark:text-primary-400' : 'text-surface-400 group-hover:text-primary-600 dark:text-surface-500 dark:group-hover:text-white',
-                        'size-6 shrink-0 transition-colors duration-200'
-                    ]" 
-                />
-                <span :class="[item.current ? 'text-primary-600 dark:text-white' : 'text-surface-700 dark:text-surface-300 group-hover:text-primary-600 dark:group-hover:text-white']">
-                    {{ item.label }}
-                </span>
-                <span 
-                    v-if="item.count" 
-                    class="ml-auto w-9 min-w-max rounded-full bg-surface-0 px-2.5 py-0.5 text-center text-xs/5 font-medium text-surface-600 outline-1 -outline-offset-1 outline-surface-200 dark:bg-surface-900 dark:text-surface-400 dark:outline-white/10"
-                >
-                    {{ item.count }}
-                </span>
-            </a>
-        </template>
+    <a v-ripple :href="item.url" v-bind="props.action" class="group">
+        <Icon 
+            v-if="item.icon"
+            :name="item.icon" 
+            :class="[
+                item.current ? 'text-primary-600 dark:text-primary-400' : 'text-surface-400 group-hover:text-primary-600 dark:text-surface-500 dark:group-hover:text-white',
+                'size-6 shrink-0 transition-colors duration-200'
+            ]" 
+        />
+        
+        <span :class="[item.current ? 'text-primary-600 dark:text-white' : 'text-surface-700 dark:text-surface-300 group-hover:text-primary-600 dark:group-hover:text-white']">
+            {{ item.label }}
+        </span>
+        </a>
+</template>
     </Menu>
 </template>
 

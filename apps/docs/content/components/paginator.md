@@ -157,7 +157,7 @@ Sample implementation of a login form using a divider with content.
             <InputText id="password" type="password" />
         </div>
         <div class="flex">
-            <Button label="Login" icon="pi pi-user" class="w-full max-w-[17.35rem] mx-auto"></Button>
+            <Button label="Login" icon="ph:user" class="w-full max-w-[17.35rem] mx-auto"></Button>
         </div>
     </div>
     <div class="w-full md:w-2/12">
@@ -165,7 +165,7 @@ Sample implementation of a login form using a divider with content.
         <Divider layout="horizontal" class="!flex md:!hidden" align="center"><b>OR</b></Divider>
     </div>
     <div class="w-full md:w-5/12 flex items-center justify-center py-5">
-        <Button label="Sign Up" icon="pi pi-user-plus" severity="success" class="w-full max-w-[17.35rem] mx-auto"></Button>
+        <Button label="Sign Up" icon="ph:user-plus" severity="success" class="w-full max-w-[17.35rem] mx-auto"></Button>
     </div>
 </div>
 ```
@@ -186,7 +186,7 @@ Sample implementation of a login form using a divider with content.
                     <InputText id="password" type="password" />
                 </div>
                 <div class="flex">
-                    <Button label="Login" icon="pi pi-user" class="w-full max-w-[17.35rem] mx-auto"></Button>
+                    <Button label="Login" icon="ph:user" class="w-full max-w-[17.35rem] mx-auto"></Button>
                 </div>
             </div>
             <div class="w-full md:w-2/12">
@@ -194,7 +194,7 @@ Sample implementation of a login form using a divider with content.
                 <Divider layout="horizontal" class="!flex md:!hidden" align="center"><b>OR</b></Divider>
             </div>
             <div class="w-full md:w-5/12 flex items-center justify-center py-5">
-                <Button label="Sign Up" icon="pi pi-user-plus" severity="success" class="w-full max-w-[17.35rem] mx-auto"></Button>
+                <Button label="Sign Up" icon="ph:user-plus" severity="success" class="w-full max-w-[17.35rem] mx-auto"></Button>
             </div>
         </div>
     </div>

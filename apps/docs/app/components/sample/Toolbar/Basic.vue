@@ -3,15 +3,15 @@
     <DocsCard>
         <UToolbar>
             <template #start>
-                <UButton icon="pi pi-plus" class="mr-2" severity="secondary" text />
-                <UButton icon="pi pi-print" class="mr-2" severity="secondary" text />
-                <UButton icon="pi pi-upload" severity="secondary" text />
+                <UButton icon="ph:plus" class="mr-2" severity="secondary" text />
+                <UButton icon="ph:print" class="mr-2" severity="secondary" text />
+                <UButton icon="ph:upload" severity="secondary" text />
             </template>
 
             <template #center>
                 <UIconField>
                     <UInputIcon>
-                        <i class="pi pi-search" />
+                        <i class="ph:search" />
                     </UInputIcon>
                     <UInputText placeholder="Search" />
                 </UIconField>
@@ -28,11 +28,11 @@ import { ref } from 'vue';
 const items = ref([
     {
         label: 'Update',
-        icon: 'pi pi-refresh'
+        icon: 'ph:refresh'
     },
     {
         label: 'Delete',
-        icon: 'pi pi-times'
+        icon: 'ph:times'
     }
 ])
 </script>

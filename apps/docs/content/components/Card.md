@@ -41,8 +41,9 @@ A letter Avatar is defined with the label property.
         </template>
 </Card>
 ```
-```vue
 
+#full
+```vue
 <template>
     <Card>
         <template #title>Simple Card</template>

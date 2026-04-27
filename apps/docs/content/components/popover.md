@@ -23,7 +23,7 @@ Popover is accessed via its ref and visibility is controlled using toggle , show
 
 ::DocsCodeSample
 ```vue
-<Button type="button" icon="pi pi-share-alt" label="Share" @click="toggle" />
+<Button type="button" icon="ph:share-alt" label="Share" @click="toggle" />
 
 <Popover ref="op">
     <div class="flex flex-col gap-4 w-[25rem]">
@@ -32,7 +32,7 @@ Popover is accessed via its ref and visibility is controlled using toggle , show
             <InputGroup>
                 <InputText value="https://primevue.org/12323ff26t2g243g423g234gg52hy25XADXAG3" readonly class="w-[25rem]"></InputText>
                 <InputGroupAddon>
-                    <i class="pi pi-copy"></i>
+                    <i class="ph:copy"></i>
                 </InputGroupAddon>
             </InputGroup>
         </div>
@@ -40,7 +40,7 @@ Popover is accessed via its ref and visibility is controlled using toggle , show
             <span class="font-medium block mb-2">Invite Member</span>
             <InputGroup>
                 <InputText disabled />
-                <Button label="Invite" icon="pi pi-users"></Button>
+                <Button label="Invite" icon="ph:users"></Button>
             </InputGroup>
         </div>
         <div>
@@ -54,7 +54,7 @@ Popover is accessed via its ref and visibility is controlled using toggle , show
                     </div>
                     <div class="flex items-center gap-2 text-surface-500 dark:text-surface-400 ml-auto text-sm">
                         <span>{{ member.role }}</span>
-                        <i class="pi pi-angle-down"></i>
+                        <i class="ph:angle-down"></i>
                     </div>
                 </li>
             </ul>
@@ -86,7 +86,7 @@ Place the Popover outside of the data iteration components to avoid rendering it
     </Column>
     <Column header="Details" class="w-1/6">
         <template #body="slotProps">
-            <Button type="button" @click="displayProduct($event, slotProps.data)" icon="pi pi-search" severity="secondary" rounded></Button>
+            <Button type="button" @click="displayProduct($event, slotProps.data)" icon="ph:search" severity="secondary" rounded></Button>
         </template>
     </Column>
 </DataTable>
@@ -108,13 +108,13 @@ Place the Popover outside of the data iteration components to avoid rendering it
                 <div class="bg-surface-100 p-1" style="border-radius: 30px">
                     <div class="bg-surface-0 flex items-center gap-2 justify-center py-1 px-2" style="border-radius: 30px; box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.04), 0px 1px 2px 0px rgba(0, 0, 0, 0.06)">
                         <span class="text-surface-900 font-medium text-sm">{{ selectedProduct.rating }}</span>
-                        <i class="pi pi-star-fill text-yellow-500"></i>
+                        <i class="ph:star-fill text-yellow-500"></i>
                     </div>
                 </div>
             </div>
             <div class="flex gap-2">
-                <Button icon="pi pi-shopping-cart" :label="\`Buy Now | \\$\${selectedProduct.price}\`" :disabled="selectedProduct.inventoryStatus === 'OUTOFSTOCK'" class="flex-auto whitespace-nowrap" @click="hidePopover"></Button>
-                <Button icon="pi pi-heart" variant="outlined" @click="hidePopover"></Button>
+                <Button icon="ph:shopping-cart" :label="\`Buy Now | \\$\${selectedProduct.price}\`" :disabled="selectedProduct.inventoryStatus === 'OUTOFSTOCK'" class="flex-auto whitespace-nowrap" @click="hidePopover"></Button>
+                <Button icon="ph:heart" variant="outlined" @click="hidePopover"></Button>
             </div>
         </div>
     </div>
@@ -140,7 +140,7 @@ Place the Popover outside of the data iteration components to avoid rendering it
             </Column>
             <Column header="Details" class="w-1/6">
                 <template #body="slotProps">
-                    <Button type="button" @click="displayProduct($event, slotProps.data)" icon="pi pi-search" severity="secondary" rounded></Button>
+                    <Button type="button" @click="displayProduct($event, slotProps.data)" icon="ph:search" severity="secondary" rounded></Button>
                 </template>
             </Column>
         </DataTable>
@@ -162,13 +162,13 @@ Place the Popover outside of the data iteration components to avoid rendering it
                         <div class="bg-surface-100 p-1" style="border-radius: 30px">
                             <div class="bg-surface-0 flex items-center gap-2 justify-center py-1 px-2" style="border-radius: 30px; box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.04), 0px 1px 2px 0px rgba(0, 0, 0, 0.06)">
                                 <span class="text-surface-900 font-medium text-sm">{{ selectedProduct.rating }}</span>
-                                <i class="pi pi-star-fill text-yellow-500"></i>
+                                <i class="ph:star-fill text-yellow-500"></i>
                             </div>
                         </div>
                     </div>
                     <div class="flex gap-2">
-                        <Button icon="pi pi-shopping-cart" :label="\`Buy Now | $${selectedProduct.price}`" :disabled="selectedProduct.inventoryStatus === 'OUTOFSTOCK'" class="flex-auto whitespace-nowrap" @click="hidePopover"></Button>
-                        <Button icon="pi pi-heart" variant="outlined" @click="hidePopover"></Button>
+                        <Button icon="ph:shopping-cart" :label="\`Buy Now | $${selectedProduct.price}`" :disabled="selectedProduct.inventoryStatus === 'OUTOFSTOCK'" class="flex-auto whitespace-nowrap" @click="hidePopover"></Button>
+                        <Button icon="ph:heart" variant="outlined" @click="hidePopover"></Button>
                     </div>
                 </div>
             </div>

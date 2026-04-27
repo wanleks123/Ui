@@ -20,9 +20,9 @@
 import { ref } from "vue";
 
 const items = ref([
-    { route: '/dashboard', label: 'Dashboard', icon: 'pi pi-home' },
-    { route: '/transactions', label: 'Transactions', icon: 'pi pi-chart-line' },
-    { route: '/products', label: 'Products', icon: 'pi pi-list' },
-    { route: '/messages', label: 'Messages', icon: 'pi pi-inbox' }
+    { route: '/dashboard', label: 'Dashboard', icon: 'ph:home' },
+    { route: '/transactions', label: 'Transactions', icon: 'ph:chart-line' },
+    { route: '/products', label: 'Products', icon: 'ph:list' },
+    { route: '/messages', label: 'Messages', icon: 'ph:inbox' }
 ]);
 </script>

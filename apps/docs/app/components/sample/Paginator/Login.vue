@@ -11,7 +11,7 @@
                     <label for="password" class="font-medium">Password</label>
                     <UInputText id="password" type="password" class="w-full" />
                 </div>
-                <UButton label="Login" icon="pi pi-user" class="w-full mt-2" />
+                <UButton label="Login" icon="ph:user" class="w-full mt-2" />
             </div>  
 
             <div class="w-full md:w-2/12 flex items-center justify-center">
@@ -20,7 +20,7 @@
             </div>
 
             <div class="w-full md:w-5/12 flex items-center justify-center py-5 px-6">
-                <UButton label="Sign Up" icon="pi pi-user-plus" severity="success" class="w-full" />
+                <UButton label="Sign Up" icon="ph:user-plus" severity="success" class="w-full" />
             </div>
 
         </div>

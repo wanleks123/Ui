@@ -590,18 +590,18 @@ MultiSelect offers multiple slots for customization through templating.
         </div>
     </template>
     <template #dropdownicon>
-        <i class="pi pi-map" />
+        <i class="ph:map" />
     </template>
     <template #filtericon>
-        <i class="pi pi-map-marker" />
+        <i class="ph:map-marker" />
     </template>
     <template #header>
         <div class="font-medium px-3 py-2">Available Countries</div>
     </template>
     <template #footer>
         <div class="p-3 flex justify-between">
-            <Button label="Add New" severity="secondary" variant="text" size="small" icon="pi pi-plus" />
-            <Button label="Remove All" severity="danger" variant="text" size="small" icon="pi pi-times" />
+            <Button label="Add New" severity="secondary" variant="text" size="small" icon="ph:plus" />
+            <Button label="Remove All" severity="danger" variant="text" size="small" icon="ph:times" />
         </div>
     </template>
 </MultiSelect>
@@ -620,18 +620,18 @@ MultiSelect offers multiple slots for customization through templating.
                 </div>
             </template>
             <template #dropdownicon>
-                <i class="pi pi-map" />
+                <i class="ph:map" />
             </template>
             <template #filtericon>
-                <i class="pi pi-map-marker" />
+                <i class="ph:map-marker" />
             </template>
             <template #header>
                 <div class="font-medium px-3 py-2">Available Countries</div>
             </template>
             <template #footer>
                 <div class="p-3 flex justify-between">
-                    <Button label="Add New" severity="secondary" variant="text" size="small" icon="pi pi-plus" />
-                    <Button label="Remove All" severity="danger" variant="text" size="small" icon="pi pi-times" />
+                    <Button label="Add New" severity="secondary" variant="text" size="small" icon="ph:plus" />
+                    <Button label="Remove All" severity="danger" variant="text" size="small" icon="ph:times" />
                 </div>
             </template>
         </MultiSelect>

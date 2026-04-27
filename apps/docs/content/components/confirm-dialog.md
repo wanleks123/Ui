@@ -48,7 +48,7 @@ const confirm1 = () => {
     confirm.require({
         message: 'Are you sure you want to proceed?',
         header: 'Confirmation',
-        icon: 'pi pi-exclamation-triangle',
+        icon: 'ph:exclamation-triangle',
         rejectProps: {
             label: 'Cancel',
             severity: 'secondary',
@@ -70,7 +70,7 @@ const confirm2 = () => {
     confirm.require({
         message: 'Do you want to delete this record?',
         header: 'Danger Zone',
-        icon: 'pi pi-info-circle',
+        icon: 'ph:info-circle',
         rejectLabel: 'Cancel',
         rejectProps: {
             label: 'Cancel',
@@ -199,7 +199,7 @@ const confirmPosition = (position) => {
         group: 'positioned',
         message: 'Are you sure you want to proceed?',
         header: 'Confirmation',
-        icon: 'pi pi-info-circle',
+        icon: 'ph:info-circle',
         position: position,
         rejectProps: {
             label: 'Cancel',
@@ -271,16 +271,16 @@ const showTemplate = () => {
         group: 'templating',
         header: 'Confirmation',
         message: 'Please confirm to proceed moving forward.',
-        icon: 'pi pi-exclamation-circle',
+        icon: 'ph:exclamation-circle',
         rejectProps: {
             label: 'Cancel',
-            icon: 'pi pi-times',
+            icon: 'ph:times',
             outlined: true,
             size: 'small'
         },
         acceptProps: {
             label: 'Save',
-            icon: 'pi pi-check',
+            icon: 'ph:check',
             size: 'small'
         },
         accept: () => {
@@ -343,16 +343,16 @@ const showTemplate = () => {
         group: 'templating',
         header: 'Confirmation',
         message: 'Please confirm to proceed moving forward.',
-        icon: 'pi pi-exclamation-circle',
+        icon: 'ph:exclamation-circle',
         rejectProps: {
             label: 'Cancel',
-            icon: 'pi pi-times',
+            icon: 'ph:times',
             outlined: true,
             size: 'small'
         },
         acceptProps: {
             label: 'Save',
-            icon: 'pi pi-check',
+            icon: 'ph:check',
             size: 'small'
         },
         accept: () => {

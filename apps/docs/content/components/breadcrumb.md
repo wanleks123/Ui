@@ -38,7 +38,7 @@ Breadcrumb requires a collection of menuitems as its model , the root item is de
 import { ref } from "vue";
 
 const home = ref({
-    icon: 'pi pi-home'
+    icon: 'ph:home'
 });
 const items = ref([
     { label: 'Electronics' },
@@ -87,8 +87,8 @@ Custom content can be placed inside the items using the item template. The divid
 <script setup>
 import { ref } from "vue";
 
-const home = ref({ icon: 'pi pi-home' });
-const items = ref([{ icon: 'pi pi-sitemap' }, { icon: 'pi pi-book' }, { icon: 'pi pi-wallet' }, { icon: 'pi pi-shopping-bag' }, { icon: 'pi pi-calculator' }]);
+const home = ref({ icon: 'ph:home' });
+const items = ref([{ icon: 'ph:sitemap' }, { icon: 'ph:book' }, { icon: 'ph:wallet' }, { icon: 'ph:shopping-bag' }, { icon: 'ph:calculator' }]);
 </script>
 ```
 ::
@@ -141,7 +141,7 @@ Items with navigation are defined with templating to be able to use a router lin
 import { ref } from "vue";
 
 const home = ref({
-    icon: 'pi pi-home',
+    icon: 'ph:home',
     route: '/introduction'
 });
 const items = ref([

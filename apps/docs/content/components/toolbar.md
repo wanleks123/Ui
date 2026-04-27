@@ -25,15 +25,15 @@ Toolbar provides start , center and end properties to place content at these sec
 ```vue
 <Toolbar>
     <template #start>
-        <Button icon="pi pi-plus" class="mr-2" severity="secondary" text />
-        <Button icon="pi pi-print" class="mr-2" severity="secondary" text />
-        <Button icon="pi pi-upload" severity="secondary" text />
+        <Button icon="ph:plus" class="mr-2" severity="secondary" text />
+        <Button icon="ph:print" class="mr-2" severity="secondary" text />
+        <Button icon="ph:upload" severity="secondary" text />
     </template>
 
     <template #center>
         <IconField>
             <InputIcon>
-                <i class="pi pi-search" />
+                <i class="ph:search" />
             </InputIcon>
             <InputText placeholder="Search" />
         </IconField>
