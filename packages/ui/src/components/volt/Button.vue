@@ -137,10 +137,14 @@ const rootClasses = [
 
     // ================= VARIANTS =================
 
-    // --- Text & Outlined (Reset Base) ---
-    'p-text:bg-transparent p-text:border-transparent p-text:shadow-none',
-    'p-outlined:bg-transparent p-outlined:hover:bg-surface-100/50 p-outlined:shadow-none dark:p-outlined:bg-transparent dark:p-outlined:hover:bg-surface-800/50 dark:p-outlined:shadow-none',
-    'p-outlined:active:bg-surface-100/80 dark:p-outlined:active:bg-surface-950/10',
+// --- Text & Outlined (Reset Base) ---
+// Ditambah dark: untuk memastikan di mode gelap tetap transparan
+'p-text:bg-transparent p-text:border-transparent p-text:shadow-none',
+'dark:p-text:bg-transparent dark:p-text:border-transparent', // Tambahan ini
+
+'p-outlined:bg-transparent p-outlined:hover:bg-surface-100/50 p-outlined:shadow-none',
+'dark:p-outlined:bg-transparent dark:p-outlined:hover:bg-surface-800/50 dark:p-outlined:shadow-none',
+'p-outlined:active:bg-surface-100/80 dark:p-outlined:active:bg-surface-950/10',
 
     // --- Text Colors ---
     // Note: Used /20 for active state vs /10 for hover

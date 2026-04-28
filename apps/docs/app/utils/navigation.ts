@@ -124,7 +124,8 @@ export const navigation = [
             {
                 title: 'Toolbar',
                 href: '/components/toolbar'
-            }
+            },
+            { title: 'Tree', href: '/components/tree' },
         ]
     },
     {
